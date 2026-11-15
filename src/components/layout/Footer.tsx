@@ -4,9 +4,12 @@ import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/brand/Logo";
 import { companyData } from "@/data/company";
 import { footerNavigation } from "@/data/navigation";
+import { getAllProducts } from "@/lib/products";
 import { ShieldCheck, Terminal } from "lucide-react";
 
 export const Footer: React.FC = () => {
+  const products = getAllProducts();
+
   return (
     <footer className="bg-[#080D1B] border-t border-[#263650] pt-16 pb-12 mt-20 relative overflow-hidden">
       {/* Subtle top edge border gradient highlight */}
@@ -76,15 +79,18 @@ export const Footer: React.FC = () => {
               Innovation Lab
             </h3>
             <ul className="space-y-2.5">
-              {footerNavigation.initiatives.map((item) => (
-                <li key={item.label}>
+              {products.map((product) => (
+                <li key={product.slug}>
                   <Link
-                    href={item.href}
+                    href={`/products/${product.slug}`}
                     className="text-xs text-[#A5B2CC] hover:text-[#F4F6FF] transition-colors flex items-center gap-1.5"
                   >
                     <span className="w-1 h-1 rounded-full bg-[#40D6C5]" />
-                    {item.label}
+                    {product.name}
                   </Link>
+                  <span className="ml-2 text-[9px] font-mono text-[#A5B2CC]/60">
+                    {product.statusLabel}
+                  </span>
                 </li>
               ))}
             </ul>

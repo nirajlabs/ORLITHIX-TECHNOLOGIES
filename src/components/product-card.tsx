@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { ProductItem } from "@/lib/products";
+import Image from "next/image";
+import type { ProductCategory, ProductItem } from "@/lib/products";
 import { 
   ArrowRight, 
   Terminal, 
   CheckCircle2, 
-  Sparkles, 
   Layers, 
   ShieldAlert,
   Cpu,
@@ -24,6 +24,86 @@ const categoryIcons: Record<string, React.ElementType> = {
   "Data Intelligence": Database,
   Automation: Layers,
 };
+
+const artworkStyles: Record<ProductCategory, string> = {
+  "AI & ML": "from-indigo-500/30 via-[#10192B] to-cyan-400/10",
+  "Enterprise Software": "from-cyan-500/25 via-[#10192B] to-indigo-500/20",
+  "Data Intelligence": "from-emerald-500/20 via-[#10192B] to-blue-500/25",
+  Automation: "from-violet-500/25 via-[#10192B] to-cyan-400/15",
+};
+
+interface ProductArtworkProps {
+  product: ProductItem;
+  className?: string;
+  sizes?: string;
+}
+
+export function ProductArtwork({
+  product,
+  className = "",
+  sizes = "(max-width: 768px) 100vw, 1280px",
+}: ProductArtworkProps) {
+  const CategoryIcon = categoryIcons[product.category] || Terminal;
+
+  return (
+    <div
+      className={`relative isolate aspect-[16/7] overflow-hidden bg-[#10192B] ${className}`}
+    >
+      {product.image ? (
+        <Image
+          src={product.image}
+          alt={`${product.name} concept artwork`}
+          fill
+          sizes={sizes}
+          className="object-cover"
+        />
+      ) : (
+        <div
+          aria-hidden="true"
+          className={`absolute inset-0 bg-gradient-to-br ${artworkStyles[product.category]}`}
+        >
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(165,178,204,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(165,178,204,0.07)_1px,transparent_1px)] bg-[size:32px_32px]" />
+          <svg
+            viewBox="0 0 640 280"
+            className="absolute inset-0 h-full w-full text-[#40D6C5]/30"
+            fill="none"
+          >
+            <circle cx="470" cy="140" r="118" stroke="currentColor" />
+            <circle cx="470" cy="140" r="82" stroke="currentColor" />
+            <circle cx="470" cy="140" r="46" stroke="currentColor" />
+            <path
+              d="M325 140h290M470 0v280M368 38l204 204M572 38 368 242"
+              stroke="currentColor"
+            />
+          </svg>
+          <div className="absolute right-[20%] top-1/2 flex h-20 w-20 -translate-y-1/2 items-center justify-center rounded-2xl border border-[#40D6C5]/40 bg-[#080D1B]/70 text-[#40D6C5] shadow-[0_0_40px_rgba(64,214,197,0.18)] sm:h-24 sm:w-24">
+            <CategoryIcon
+              aria-hidden="true"
+              className="h-10 w-10 sm:h-12 sm:w-12"
+            />
+          </div>
+        </div>
+      )}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-r from-[#080D1B]/90 via-[#080D1B]/35 to-transparent"
+      />
+      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4 sm:p-6">
+        <div className="min-w-0">
+          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#40D6C5] sm:text-[10px]">
+            {product.category} // Product Concept
+          </p>
+          <p className="mt-1 truncate text-sm font-semibold text-[#F4F6FF] sm:text-base">
+            {product.name}
+          </p>
+        </div>
+        <span className="shrink-0 rounded-full border border-[#263650] bg-[#080D1B]/70 px-2.5 py-1 font-mono text-[9px] uppercase text-[#A5B2CC] sm:text-[10px]">
+          {product.statusLabel}
+        </span>
+      </div>
+    </div>
+  );
+}
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
@@ -61,6 +141,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       {/* Subtle top edge border gradient highlight */}
       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#586BFF]/40 to-transparent pointer-events-none" />
+
+      <ProductArtwork
+        product={product}
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        className="-mx-6 -mt-6 mb-6 rounded-t-2xl border-b border-[#263650] sm:-mx-8 sm:-mt-8"
+      />
 
       <div>
         {/* Top Header Bar: Category + Status Badge */}

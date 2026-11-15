@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { ProductItem, ProductCategory } from "@/lib/products";
+import type { ProductItem } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
-import { Search, SlidersHorizontal, Sparkles } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
 
 interface ProductGridProps {
   products: ProductItem[];

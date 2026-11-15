@@ -67,13 +67,13 @@ export const productsList: ProductItem[] = [
     statusLabel: "Research and Validation",
     stageBadgeVariant: "concept",
     problemStatement:
-      "When software projects transition between engineering teams or AI coding agents, up to 70% of undocumented context is lost. Teams claim code is complete without empirical test proof, leading to silent bugs, broken dependencies, security liabilities, and massive onboarding friction.",
+      "When software projects transition between engineering teams or AI coding agents, handover evidence can be incomplete or inconsistent. Unverified completion claims, unresolved issues, and outdated documentation can create onboarding friction and operational uncertainty.",
     solution:
-      "An automated verification engine that inspects active codebases, validates documentation against actual AST code structures, runs empirical test harnesses, flags untested assertions, and compiles a mathematically sound, drift-free handover readiness dossier.",
+      "A proposed verification workflow for inspecting codebases, comparing documentation with source structures, reviewing test evidence, identifying unresolved issues, and assembling a structured handover readiness dossier.",
     description:
       "AI-powered analysis of software project handover evidence, technical documentation, unresolved issues and operational readiness.",
     longOverview:
-      "Software Handover Readiness AI is an active research and validation initiative developed within the Orlithix Innovation Lab. It acts as an autonomous auditor across human-to-human, human-to-agent, and agent-to-agent software transitions. By parsing abstract syntax trees (ASTs), tracing runtime dependencies, verifying that documented interfaces match real exports, and generating targeted unit regression suites, the system produces an incontrovertible Handover Readiness Score before any team accepts ownership of a repository.",
+      "Software Handover Readiness AI is a research and validation concept for human-to-human, human-to-agent, and agent-to-agent software transitions. The proposed approach explores parsing abstract syntax trees (ASTs), mapping repository dependencies, comparing documentation with source interfaces, and identifying areas where additional tests or handover evidence may be needed. These capabilities are under research and are not presented as a completed product.",
     features: [
       {
         title: "AST-Driven Documentation Drift Detection",
@@ -120,8 +120,8 @@ export const productsList: ProductItem[] = [
         phase: "Phase 1",
         title: "Algorithmic AST Drift Engine",
         description: "Benchmark static comparison against TypeScript and Python enterprise repositories.",
-        targetHorizon: "Current Milestone",
-        status: "in_progress",
+        targetHorizon: "Research and Validation",
+        status: "planned",
       },
       {
         phase: "Phase 2",
@@ -140,10 +140,10 @@ export const productsList: ProductItem[] = [
     ],
     targetAudience: "Engineering Leadership, Enterprise DevOps Teams, and Multi-Agent AI Swarms",
     architecturalHighlights: [
-      "Zero-Fabrication Empirical Verification",
-      "Sub-Second AST Tree Indexing",
-      "Cryptographic Handover Dossier Signing",
-      "Zero Runtime Execution Overhead",
+      "Evidence-Linked Readiness Reporting",
+      "AST-Based Documentation Review",
+      "Repository Dependency Mapping",
+      "Test and Handover Evidence Checks",
     ],
     relatedCapabilities: [
       { name: "Automation & AI Agents", slug: "automation-ai-agents" },
@@ -162,7 +162,7 @@ export const productsList: ProductItem[] = [
     statusLabel: "Future Concept",
     stageBadgeVariant: "concept",
     problemStatement:
-      "Enterprise data ingestion from legacy databases, disparate CSVs, and third-party partner feeds requires hundreds of hours of manual ETL mapping. Upstream schema drift and corrupt rows silently contaminate analytical models and production databases.",
+      "Enterprise data onboarding across legacy databases, files, and partner feeds can require substantial manual schema mapping. Upstream schema drift and invalid rows can affect downstream analytical models and databases.",
     solution:
       "An intelligent autonomous data copilot that analyzes raw unstructured or tabular data sources, infers semantic schemas, proposes type-safe normalization mappings, and continuously monitors data streams with declarative quality sentinels.",
     description:
@@ -235,7 +235,7 @@ export const productsList: ProductItem[] = [
     targetAudience: "Chief Data Officers, Data Engineers, Enterprise Analytics Teams",
     architecturalHighlights: [
       "Sub-Second Schema Identification",
-      "Zero Data Loss Quarantine Isolation",
+      "Quarantine and Recovery Workflow",
       "ACID-Compliant PostgreSQL Pipeline",
       "Declarative Data Contract Modeling",
     ],
@@ -255,7 +255,7 @@ export const productsList: ProductItem[] = [
     statusLabel: "Future Concept",
     stageBadgeVariant: "concept",
     problemStatement:
-      "Enterprise vendor management and procurement departments struggle to reconcile high-value contracts against milestone deliverables, timesheets, and technical outputs. Commercial discrepancies cause invoice disputes, audit failures, and millions in unverified expenditures.",
+      "Enterprise vendor management and procurement teams may need to reconcile contracts with milestone deliverables, timesheets, and technical outputs. Discrepancies can lead to invoice disputes and audit challenges.",
     solution:
       "An automated commercial reconciliation platform that correlates contractual milestone clauses, code commits, delivery receipts, and invoices into an immutable verification chain, flagging discrepancies before financial disbursement.",
     description:
@@ -267,7 +267,7 @@ export const productsList: ProductItem[] = [
         title: "Contract Milestone Parsing & Clause Extraction",
         description:
           "Extracts acceptance criteria, delivery dates, penalty clauses, and SLA thresholds from legal agreements into structured milestone models.",
-        technicalDetail: "Transformer-based legal entity extraction with zero-hallucination constraint guarantees.",
+        technicalDetail: "Proposed constrained extraction with review paths for uncertain fields.",
       },
       {
         title: "Technical Deliverable Correlator",
@@ -329,7 +329,7 @@ export const productsList: ProductItem[] = [
     targetAudience: "Chief Financial Officers, Enterprise Procurement Directors, Legal Operations",
     architecturalHighlights: [
       "Cryptographic Milestone Verification",
-      "Zero-Hallucination Contract Parsing",
+      "Evidence-Linked Contract Parsing",
       "Tamper-Evident Audit Ledger",
       "Enterprise Multi-Tenant Security",
     ],
@@ -415,7 +415,7 @@ export const productsList: ProductItem[] = [
       {
         phase: "Phase 3",
         title: "Real-Time Production Hallucination Firewall",
-        description: "Sub-50ms streaming filter intercepting generated tokens before end-user delivery.",
+        description: "Explore low-latency review of generated token streams before end-user delivery.",
         targetHorizon: "Production Horizon",
         status: "planned",
       },

@@ -5,16 +5,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { getAllProducts } from "@/lib/products";
 import { ProductGrid } from "@/components/product-grid";
-import { 
-  Terminal, 
-  ShieldAlert, 
-  Sparkles, 
-  ArrowRight,
-  FlaskConical,
-  Layers,
-  Compass,
-  CheckCircle2
-} from "lucide-react";
+import { ShieldAlert, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Product Innovation Lab",
@@ -53,7 +44,7 @@ export default function ProductsPage() {
             <strong className="text-[#F4F6FF] uppercase tracking-wider block mb-1">
               R&D Lifecycle Transparency Notice:
             </strong>
-            All initiatives described below represent active research concepts, architectural prototypes, or developmental roadmaps within the Orlithix Innovation Lab. None of these concepts are marketed as established commercial offerings, and no customer relationships, financial figures, or unverified claims are fabricated.
+            All initiatives described below represent active research concepts, architectural prototypes, or developmental roadmaps within the Orlithix Innovation Lab. Feature descriptions, technology stacks, and roadmap items communicate proposed direction, not deployed product functionality. None are marketed as established commercial offerings.
           </div>
         </div>
 

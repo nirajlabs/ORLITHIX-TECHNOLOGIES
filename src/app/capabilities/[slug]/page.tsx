@@ -11,6 +11,7 @@ import {
   getCapabilityBySlug, 
   getAdjacentCapabilities 
 } from "@/lib/capabilities";
+import { getAllProducts } from "@/lib/products";
 import { 
   Brain, 
   Code2, 
@@ -88,6 +89,9 @@ export default async function CapabilityDetailPage({
   }
 
   const { prev, next } = getAdjacentCapabilities(slug);
+  const relatedProducts = getAllProducts().filter((product) =>
+    product.relatedCapabilities.some((relatedCapability) => relatedCapability.slug === slug),
+  );
   const IconComponent = iconMap[capability.icon] || Layers;
 
   // Status badge config
@@ -368,7 +372,7 @@ export default async function CapabilityDetailPage({
         </section>
 
         {/* Related Products & Initiatives */}
-        {capability.relatedProducts.length > 0 && (
+        {relatedProducts.length > 0 && (
           <section className="mb-16">
             <div className="p-6 sm:p-8 rounded-2xl bg-[#10192B] border border-[#263650]">
               <span className="text-xs font-mono uppercase tracking-wider text-[#586BFF] block mb-1">
@@ -379,7 +383,7 @@ export default async function CapabilityDetailPage({
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {capability.relatedProducts.map((prod) => (
+                {relatedProducts.map((prod) => (
                   <div
                     key={prod.slug}
                     className="p-4 rounded-xl bg-[#121F36] border border-[#263650] flex items-center justify-between gap-4"
@@ -392,11 +396,11 @@ export default async function CapabilityDetailPage({
                         {prod.name}
                       </h4>
                       <p className="text-xs text-[#A5B2CC] mt-0.5">
-                        {prod.relation}
+                        {prod.category}
                       </p>
                     </div>
                     <Link
-                      href={`/products#${prod.slug}`}
+                      href={`/products/${prod.slug}`}
                       className="p-2 rounded-lg bg-[#10192B] border border-[#263650] text-[#586BFF] hover:text-[#40D6C5] transition-colors"
                       aria-label={`View ${prod.name}`}
                     >

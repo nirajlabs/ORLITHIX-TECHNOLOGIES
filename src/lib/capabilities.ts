@@ -7,13 +7,6 @@ export interface CapabilityUseCase {
   architecturalImpact: string;
 }
 
-export interface RelatedProductRef {
-  name: string;
-  slug: string;
-  relation: string;
-  statusLabel: string;
-}
-
 export interface CapabilityItem {
   id: string;
   name: string;
@@ -30,7 +23,6 @@ export interface CapabilityItem {
   availableServices: string[];
   futureResearch: string[];
   image?: string;
-  relatedProducts: RelatedProductRef[];
   architecturalPillars: string[];
   benchmarkMetric?: {
     label: string;
@@ -95,20 +87,6 @@ export const capabilitiesList: CapabilityItem[] = [
         problem: "Unscheduled downtime in cloud server fleets and industrial machinery leads to catastrophic revenue loss.",
         solution: "Implement multivariate time-series LSTM models trained on high-frequency vibrational and thermal sensor telemetry.",
         architecturalImpact: "Predicts impending hardware failures up to 72 hours prior to physical breakdown.",
-      },
-    ],
-    relatedProducts: [
-      {
-        name: "Software Handover Readiness AI",
-        slug: "handover-readiness-ai",
-        relation: "Neural AST verification engine",
-        statusLabel: "Research Concept",
-      },
-      {
-        name: "Neural Mesh Gateway",
-        slug: "neural-mesh-gateway",
-        relation: "Dynamic inference router & DLP filter",
-        statusLabel: "Alpha Architecture",
       },
     ],
     architecturalPillars: [
@@ -180,14 +158,6 @@ export const capabilitiesList: CapabilityItem[] = [
         architecturalImpact: "Eliminates API integration bugs at compile time before staging environments are populated.",
       },
     ],
-    relatedProducts: [
-      {
-        name: "Software Handover Readiness AI",
-        slug: "handover-readiness-ai",
-        relation: "Static codebase analysis & drift verification",
-        statusLabel: "Research Concept",
-      },
-    ],
     architecturalPillars: [
       "Distributed Event-Driven Architecture",
       "Strict Compile-Time Type Safety",
@@ -253,14 +223,6 @@ export const capabilitiesList: CapabilityItem[] = [
         problem: "Inventory volatility causes costly stockouts and excessive carrying overhead.",
         solution: "Formulate dimensional analytics models combining historical sales data, supplier lead times, and external economic signals.",
         architecturalImpact: "Improves inventory forecasting accuracy by 34% with automated restocking trigger alerts.",
-      },
-    ],
-    relatedProducts: [
-      {
-        name: "Orlithix Telemetry Fabric",
-        slug: "orlithix-telemetry-fabric",
-        relation: "Distributed event tracing & observability plane",
-        statusLabel: "In Active Development",
       },
     ],
     architecturalPillars: [
@@ -329,14 +291,6 @@ export const capabilitiesList: CapabilityItem[] = [
         architecturalImpact: "Resolves 65% of transient infrastructure incidents without human intervention.",
       },
     ],
-    relatedProducts: [
-      {
-        name: "Software Handover Readiness AI",
-        slug: "handover-readiness-ai",
-        relation: "Autonomous handover verification agent",
-        statusLabel: "Research Concept",
-      },
-    ],
     architecturalPillars: [
       "Multi-Agent Swarm Orchestration",
       "Goal-Oriented Planning State Machines",
@@ -403,14 +357,6 @@ export const capabilitiesList: CapabilityItem[] = [
         architecturalImpact: "Eliminates configuration drift and guarantees that zero unverified packages execute in production.",
       },
     ],
-    relatedProducts: [
-      {
-        name: "Orlithix Telemetry Fabric",
-        slug: "orlithix-telemetry-fabric",
-        relation: "Real-time distributed observability runtime",
-        statusLabel: "In Active Development",
-      },
-    ],
     architecturalPillars: [
       "Declarative Infrastructure as Code (IaC)",
       "Zero-Downtime Blue/Green Deployments",
@@ -475,14 +421,6 @@ export const capabilitiesList: CapabilityItem[] = [
         problem: "Mobile dashboards displaying high-frequency IoT streaming telemetry frequently freeze and drop frames.",
         solution: "Leverage native Flutter rendering threads paired with efficient binary data decoding and GPU-accelerated chart components.",
         architecturalImpact: "Smooth, continuous 120 FPS performance while processing hundreds of incoming sensor updates per second.",
-      },
-    ],
-    relatedProducts: [
-      {
-        name: "Software Handover Readiness AI",
-        slug: "handover-readiness-ai",
-        relation: "Mobile code repository inspection",
-        statusLabel: "Research Concept",
       },
     ],
     architecturalPillars: [

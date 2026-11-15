@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ProductArtwork } from "@/components/product-card";
 import { 
   getAllProducts, 
   getProductBySlug, 
@@ -132,6 +133,11 @@ export default async function ProductDetailPage({
         <div className="rounded-3xl bg-gradient-to-b from-[#121F36] to-[#0c1424] border border-[#263650] p-6 sm:p-10 lg:p-12 mb-14 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
           {/* Subtle top edge border gradient highlight */}
           <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#586BFF]/40 to-transparent pointer-events-none" />
+
+          <ProductArtwork
+            product={product}
+            className="mb-8 rounded-2xl border border-[#263650]"
+          />
 
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-[#263650]">
             <div>

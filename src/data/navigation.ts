@@ -24,10 +24,4 @@ export const footerNavigation = {
     { label: "Innovation Lab", href: "/#innovation-lab" },
     { label: "Contact & Collaboration", href: "/contact" },
   ],
-  initiatives: [
-    { label: "Handover Readiness AI", href: "/products/software-handover-readiness-ai" },
-    { label: "DataPilot AI", href: "/products/datapilot-ai" },
-    { label: "ProofFlow", href: "/products/proofflow" },
-    { label: "RAGProof", href: "/products/ragproof" },
-  ],
 };
