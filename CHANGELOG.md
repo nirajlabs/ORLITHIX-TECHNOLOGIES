@@ -6,33 +6,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased]
+## [0.3.0] - 2026-11-15
 
-### Planned Next Steps
-- Initialize Next.js 14+/15 App Router project structure with TypeScript and Tailwind CSS using `npm`.
-- Install `lucide-react` for brand and domain iconography.
-- Configure `tailwind.config.ts` with brand design tokens (`#080D1B`, `#10192B`, `#121F36`, `#586BFF`, `#40D6C5`, `#F4F6FF`, `#A5B2CC`, `#263650`).
-- Implement centralized typed data layer (`src/data/company.ts`, `src/data/divisions.ts`, `src/data/capabilities.ts`, `src/data/products.ts`, `src/data/navigation.ts`).
-- Build reusable UI primitives and layout organisms (`Navbar`, `Footer`, `Logo`, `Card`, `Badge`, `Button`).
-- Construct page routes: Home (`/`), About (`/about`), Capabilities (`/capabilities`), Products (`/products`), Contact (`/contact`).
-- Implement contact route handler with input sanitization and mock submission feedback.
+### Added
+- **Expandable Central Technology Capabilities System (`src/lib/capabilities.ts`):**
+  - Centralized data model with strongly typed interfaces (`CapabilityItem`, `CapabilityUseCase`, `RelatedProductRef`, `CapabilityStatusType`).
+  - Helper functions: `getAllCapabilities()`, `getCapabilityBySlug()`, `getCapabilitiesByStatus()`, `getAdjacentCapabilities()`.
+  - Configured 6 core capability disciplines with rich technologies, use cases, benchmark metrics, and three-horizon delivery mappings:
+    1. *Artificial Intelligence & Machine Learning* (Python, PyTorch, TensorFlow, NLP, Generative AI, Computer Vision, Predictive ML).
+    2. *Software Engineering* (Next.js, React, TypeScript, Python, FastAPI, Enterprise SaaS, Backend Engineering).
+    3. *Data Intelligence* (Data Engineering, PostgreSQL, Data Analytics, Data Quality, Business Intelligence).
+    4. *Automation & AI Agents* (Workflow Automation, AI Agents, API Integrations, Intelligent Document Processing).
+    5. *Cloud & DevOps* (Cloud Architecture, Deployment, CI/CD, Monitoring).
+    6. *Mobile Development* (Android, iOS, Flutter, Cross-platform Applications).
+- **Reusable Card & Grid Components:**
+  - `src/components/capability-card.tsx`: Dark enterprise surface, dynamic Lucide icon mapping, status pills, technology chips, use cases preview, and deep-link routing.
+  - `src/components/capability-grid.tsx`: Interactive filterable and searchable grid (Active Engineering Core, Available Architectural Services, Active R&D Expansion, plus live text search).
+- **Main Capabilities Catalog Route (`src/app/capabilities/page.tsx`):**
+  - Centralized, fully automated rendering consuming `getAllCapabilities()`.
+  - Strategic horizon distinction overview (Current Core vs. Available Services vs. Future R&D).
+- **Dynamic SSG Capability Route (`src/app/capabilities/[slug]/page.tsx`):**
+  - `generateStaticParams()` pre-compiling all capability slugs at build time.
+  - Dynamic SEO `generateMetadata()`.
+  - Tri-partition maturity matrix (Current Core Skills, Available Services, Future R&D Vectors).
+  - Real-world enterprise use cases breakdown (Challenge, Solution, Architectural Impact).
+  - Cross-linked related software products from the Innovation Lab.
+  - Previous / Next adjacent discipline navigation.
+- **Dynamic XML Sitemap Updates (`src/app/sitemap.ts`):**
+  - Auto-mapped dynamic `/capabilities/[slug]` URLs with priority 0.85.
+- **Verification Execution:**
+  - `npm run lint`: 0 errors, 0 warnings.
+  - `npm run build`: Compiled and prerendered 15/15 static routes (SSG) in 1.17s.
+
+---
+
+## [0.2.0] - 2026-11-15
+
+### Added
+- Core Next.js App Router setup with Tailwind CSS and PostCSS.
+- Brand Identity & scalable SVG `<Logo />` (Interconnected ecosystem 'O' with ascending bridge).
+- Sticky responsive `<Navbar />` and corporate `<Footer />`.
+- Enterprise Homepage sections: `<HeroSection />`, `<TechVisual />`, `<CapabilitiesSection />`, `<AboutPreviewSection />`, `<InnovationLabSection />`, `<DevelopmentApproachSection />`, `<ContactCtaSection />`.
 
 ---
 
 ## [0.1.0] - 2026-11-15
 
 ### Added
-- **Repository Inspection:** Verified environment runtime (Windows, Node.js v25.4.0, npm v11.7.0, Git v2.54.0.windows.1). Confirmed clean initial Git repository on branch `master`.
-- **System Architecture Specification:** Created `ARCHITECTURE.md` establishing the 8-pillar blueprint:
-  1. Complete website architecture (Parent company model, decoupled content layer).
-  2. Page-by-page structure (Home, About, Capabilities, Products, Contact).
-  3. Component structure (UI primitives, Layout, Domain sections).
-  4. Logo design direction ("Neural Monolith" isometric hexagon monogram + geometric wordmark).
-  5. Design system (8-token color palette, elevation, typography, glassmorphism).
-  6. Responsive layout plan (Mobile-first, breakpoints 320px to 1920px+).
-  7. Expandable product and capability architecture (TypeScript schemas and division taxonomy).
-  8. SEO and metadata plan (OpenGraph, Twitter cards, JSON-LD, sitemap, robots).
-- **Architecture Decision Records:** Created `DECISIONS.md` documenting ADR 001 through ADR 005.
-- **Agent Operating Standards:** Created `AGENTS.md` specifying zero-fabrication rules, provisional legal guardrails, and coding conventions.
-- **Project Handoff Documentation:** Created `PROJECT_HANDOFF.md` detailing exact next tasks, testing protocols, and verification commands.
-- **Environment Template:** Created `.env.example` defining environment variables for public URL and contact configuration.
+- Initial discovery, environment verification, and architectural design blueprint.
+- Created `AGENTS.md`, `PROJECT_HANDOFF.md`, `ARCHITECTURE.md`, `DECISIONS.md`, and `.env.example`.
