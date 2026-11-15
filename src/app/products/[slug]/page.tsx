@@ -12,6 +12,7 @@ import {
   getProductBySlug, 
   getAdjacentProducts 
 } from "@/lib/products";
+import { createPageMetadata } from "@/lib/seo";
 import { 
   Terminal, 
   ArrowLeft, 
@@ -58,18 +59,15 @@ export async function generateMetadata({
   if (!product) {
     return {
       title: "Product Not Found",
+      robots: { index: false, follow: true },
     };
   }
 
-  return {
-    title: `${product.name} | Product Innovation Lab`,
+  return createPageMetadata({
+    title: product.name,
     description: product.description,
-    openGraph: {
-      title: `${product.name} | Orlithix Technologies`,
-      description: product.description,
-      type: "website",
-    },
-  };
+    path: `/products/${product.slug}`,
+  });
 }
 
 export default async function ProductDetailPage({
@@ -193,9 +191,9 @@ export default async function ProductDetailPage({
                 <span className="mb-2 block text-xs font-mono uppercase tracking-wider text-[#586BFF]">
                   THE ENTERPRISE PROBLEM SPACE
                 </span>
-                <h3 className="mb-3 text-lg font-semibold text-[#F4F6FF]">
+                <h2 className="mb-3 text-lg font-semibold text-[#F4F6FF]">
                   Operational Vulnerability & Bottleneck
-                </h3>
+                </h2>
                 <p className="text-sm leading-relaxed text-[#A5B2CC]">
                   {product.problemStatement}
                 </p>
@@ -211,9 +209,9 @@ export default async function ProductDetailPage({
                 <span className="font-mono text-xs uppercase tracking-wider text-[#40D6C5] block mb-2">
                   THE ARCHITECTURAL SOLUTION
                 </span>
-                <h3 className="mb-3 text-lg font-semibold text-[#F4F6FF]">
+                <h2 className="mb-3 text-lg font-semibold text-[#F4F6FF]">
                   Deterministic Verification Architecture
-                </h3>
+                </h2>
                 <p className="text-sm leading-relaxed text-[#A5B2CC]">
                   {product.solution}
                 </p>

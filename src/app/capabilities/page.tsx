@@ -1,5 +1,4 @@
 import React from "react";
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -11,12 +10,14 @@ import {
   FlaskConical,
   Wrench
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Technology Capabilities",
   description:
-    "Explore the technology capabilities, engineering disciplines, and multi-disciplinary systems powering Orlithix Technologies.",
-};
+    "Explore the proposed technology domains and engineering disciplines documented by Orlithix Technologies.",
+  path: "/capabilities",
+});
 
 export default function CapabilitiesPage() {
   const capabilities = getAllCapabilities();
@@ -37,7 +38,7 @@ export default function CapabilitiesPage() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-[#A5B2CC] sm:mt-6 sm:text-base">
-            As a multi-technology parent company, Orlithix organizes its technical competencies into distinct, modular capability domains. From applied machine intelligence to cloud-native platforms, explore our technical disciplines, tools, and enterprise use cases.
+            As a proposed technology venture, Orlithix is exploring technical focus areas across applied machine intelligence, software engineering, data, and cloud platforms. The domains below describe areas of interest and illustrative applications, not a record of delivered client work.
           </p>
         </div>
 
@@ -50,16 +51,16 @@ export default function CapabilitiesPage() {
                   <Cpu aria-hidden="true" className="h-4 w-4" />
                 </div>
                 <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[#F4F6FF]">
-                  Current Engineering Core
+                  Engineering Focus Areas
                 </span>
               </div>
               <p className="text-sm leading-relaxed text-[#A5B2CC]">
-                Battle-tested production proficiencies, strict TypeScript patterns, and high-concurrency microservices continuously active in our platform runtime.
+                Technical themes under consideration for future projects. These are not claims of deployed systems or completed client work.
               </p>
             </div>
             <div className="mt-4 flex items-center gap-2 border-t border-[#263650] pt-3 font-mono text-[10px] text-[#586BFF]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#586BFF]" />
-              Production Deployed
+              Proposed Focus
             </div>
           </div>
 
@@ -70,16 +71,16 @@ export default function CapabilitiesPage() {
                   <Wrench aria-hidden="true" className="h-4 w-4" />
                 </div>
                 <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[#F4F6FF]">
-                  Available Architectural Services
+                  Potential Service Areas
                 </span>
               </div>
               <p className="text-sm leading-relaxed text-[#A5B2CC]">
-                Structured technical engagement models, cloud modernizations, multi-agent integration, and high-assurance architecture consulting.
+                Possible future engagement areas. Availability, scope, and delivery are not currently confirmed.
               </p>
             </div>
             <div className="mt-4 flex items-center gap-2 border-t border-[#263650] pt-3 font-mono text-[10px] text-[#40D6C5]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#40D6C5]" />
-              Engagement Ready
+              Not Yet Available
             </div>
           </div>
 
@@ -90,31 +91,36 @@ export default function CapabilitiesPage() {
                   <FlaskConical aria-hidden="true" className="h-4 w-4" />
                 </div>
                 <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[#F4F6FF]">
-                  Active R&D Expansion
+                  Planned Research Areas
                 </span>
               </div>
               <p className="text-sm leading-relaxed text-[#A5B2CC]">
-                Next-generation exploratory research, edge model quantization, self-healing swarms, and cross-platform native sync architectures.
+                Topics that may be explored as the proposed venture develops; this does not imply active research programs.
               </p>
             </div>
             <div className="mt-4 flex items-center gap-2 border-t border-[#263650] pt-3 font-mono text-[10px] text-[#A5B2CC]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#A5B2CC]" />
-              Innovation Pipeline
+              Future Direction
             </div>
           </div>
         </div>
 
         {/* Central Data-Driven Capabilities Grid */}
-        <CapabilityGrid capabilities={capabilities} enableFilters={true} />
+        <section aria-labelledby="capability-domains-heading">
+          <h2 id="capability-domains-heading" className="sr-only">
+            Capability domains
+          </h2>
+          <CapabilityGrid capabilities={capabilities} enableFilters={true} />
+        </section>
 
         {/* Bottom Consultation Banner */}
         <div className="mt-16 flex flex-col items-center justify-between gap-6 rounded-2xl border border-[#263650] bg-[#10192B] p-6 sm:mt-20 sm:p-8 lg:flex-row">
           <div className="max-w-xl text-center md:text-left">
             <h2 className="text-xl font-semibold text-[#F4F6FF] sm:text-2xl">
-              Need a Custom Multi-Disciplinary Architecture?
+              Exploring a Multi-Disciplinary Architecture?
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[#A5B2CC]">
-              Our engineering team collaborates with partners on high-concurrency systems design, distributed data telemetry, and deterministic AI pipelines.
+              Potential areas for future technical collaboration include distributed systems, data intelligence, and AI reliability. Engagement details will be shared if and when they are established.
             </p>
           </div>
 

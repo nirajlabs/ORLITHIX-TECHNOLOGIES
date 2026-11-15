@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/brand/Logo";
@@ -12,6 +12,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -36,7 +37,10 @@ export const Navbar: React.FC = () => {
     if (!isMobileMenuOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsMobileMenuOpen(false);
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+        mobileMenuButtonRef.current?.focus();
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -106,6 +110,7 @@ export const Navbar: React.FC = () => {
           {/* Mobile Menu Hamburger */}
           <div className="flex items-center gap-2 lg:hidden">
             <button
+              ref={mobileMenuButtonRef}
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#263650] bg-[#10192B] text-[#A5B2CC] transition-colors hover:border-[#586BFF]/60 hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
@@ -114,9 +119,9 @@ export const Navbar: React.FC = () => {
               aria-controls="mobile-navigation"
             >
               {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-[#F4F6FF]" />
+                <X aria-hidden="true" className="w-5 h-5 text-[#F4F6FF]" />
               ) : (
-                <Menu className="w-5 h-5 text-[#F4F6FF]" />
+                <Menu aria-hidden="true" className="w-5 h-5 text-[#F4F6FF]" />
               )}
             </button>
           </div>
@@ -124,11 +129,11 @@ export const Navbar: React.FC = () => {
       </Container>
 
       {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div
-          id="mobile-navigation"
-          className="absolute inset-x-0 top-full border-b border-[#263650] bg-[#080D1B] shadow-xl shadow-black/25 lg:hidden"
-        >
+      <div
+        id="mobile-navigation"
+        hidden={!isMobileMenuOpen}
+        className="absolute inset-x-0 top-full border-b border-[#263650] bg-[#080D1B] shadow-xl shadow-black/25 lg:hidden"
+      >
           <Container className="flex flex-col gap-3 py-5">
             <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
               {mainNavItems.map((item) => {
@@ -169,8 +174,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </div>
           </Container>
-        </div>
-      )}
+      </div>
     </header>
   );
 };

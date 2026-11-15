@@ -40,7 +40,7 @@ interface ProductArtworkProps {
 export function ProductArtwork({
   product,
   className = "",
-  sizes = "(max-width: 768px) 100vw, 1280px",
+  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1280px",
 }: ProductArtworkProps) {
   const CategoryIcon = categoryIcons[product.category] || Terminal;
 
@@ -87,7 +87,7 @@ export function ProductArtwork({
         aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-r from-[#080D1B]/90 via-[#080D1B]/35 to-transparent"
       />
-      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4 sm:p-6">
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4 sm:p-6">
         <div className="min-w-0">
           <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#40D6C5] sm:text-[10px]">
             {product.category}

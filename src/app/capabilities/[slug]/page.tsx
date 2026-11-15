@@ -12,6 +12,7 @@ import {
   getAdjacentCapabilities 
 } from "@/lib/capabilities";
 import { getAllProducts } from "@/lib/products";
+import { createPageMetadata } from "@/lib/seo";
 import { 
   Brain, 
   Code2, 
@@ -63,18 +64,15 @@ export async function generateMetadata({
   if (!capability) {
     return {
       title: "Capability Not Found",
+      robots: { index: false, follow: true },
     };
   }
 
-  return {
-    title: `${capability.name} | Capabilities`,
+  return createPageMetadata({
+    title: capability.name,
     description: capability.description,
-    openGraph: {
-      title: `${capability.name} | Orlithix Technologies`,
-      description: capability.description,
-      type: "website",
-    },
-  };
+    path: `/capabilities/${capability.slug}`,
+  });
 }
 
 export default async function CapabilityDetailPage({
@@ -200,7 +198,7 @@ export default async function CapabilityDetailPage({
               Delivery Horizons & Technical Scope
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-[#A5B2CC]">
-              Transparently distinguishing our active production proficiencies, available consulting services, and future exploratory research.
+              These categories describe proposed technical focus, potential future services, and planned research—not confirmed delivery, active programs, or past client work.
             </p>
           </div>
 
@@ -214,10 +212,10 @@ export default async function CapabilityDetailPage({
                   </div>
                   <div>
                     <h3 className="text-base font-bold text-[#F4F6FF]">
-                      Current Engineering Core
+                      Technical Focus Areas
                     </h3>
                     <span className="text-[10px] font-mono text-[#586BFF]">
-                      Production Mastered
+                      Proposed Focus
                     </span>
                   </div>
                 </div>
@@ -233,7 +231,7 @@ export default async function CapabilityDetailPage({
               </div>
 
               <div className="mt-6 pt-3 border-t border-[#263650] text-[10px] font-mono text-[#586BFF]">
-                STATUS: DEPLOYED IN PRODUCTION
+                STATUS: DEVELOPMENT FOCUS
               </div>
             </Card>
 
@@ -246,10 +244,10 @@ export default async function CapabilityDetailPage({
                   </div>
                   <div>
                     <h3 className="text-base font-bold text-[#F4F6FF]">
-                      Available Architectural Services
+                      Potential Service Areas
                     </h3>
                     <span className="text-[10px] font-mono text-[#40D6C5]">
-                      Client Engagement Ready
+                      Subject to Confirmation
                     </span>
                   </div>
                 </div>
@@ -265,7 +263,7 @@ export default async function CapabilityDetailPage({
               </div>
 
               <div className="mt-6 pt-3 border-t border-[#263650] text-[10px] font-mono text-[#40D6C5]">
-                STATUS: AVAILABLE FOR ENGAGEMENT
+                STATUS: NOT CURRENTLY AVAILABLE
               </div>
             </Card>
 
@@ -281,7 +279,7 @@ export default async function CapabilityDetailPage({
                       Future R&D Vectors
                     </h3>
                     <span className="text-[10px] font-mono text-[#A5B2CC]">
-                      Active Investigation
+                      Planned Investigation
                     </span>
                   </div>
                 </div>
@@ -297,23 +295,23 @@ export default async function CapabilityDetailPage({
               </div>
 
               <div className="mt-6 border-t border-[#263650] pt-3 text-[10px] font-mono text-[#A5B2CC]">
-                STATUS: RESEARCH & EXPERIMENTATION
+                STATUS: FUTURE DIRECTION
               </div>
             </Card>
           </div>
         </section>
 
-        {/* Real-World Use Cases */}
+        {/* Illustrative Architecture Scenarios */}
         <section className="mb-16">
           <div className="mb-8">
             <span className="text-xs font-mono uppercase tracking-wider text-[#40D6C5] block mb-1">
-              PRACTICAL APPLICATIONS
+              ILLUSTRATIVE SCENARIOS
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#F4F6FF]">
-              Real-World Architectural Use Cases
+              Architectural Use Cases
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-[#A5B2CC]">
-              How this capability solves mission-critical organizational bottlenecks with measurable technical outcomes.
+              These examples and target outcomes are illustrative only; they are not measured results or client case studies.
             </p>
           </div>
 
@@ -355,7 +353,7 @@ export default async function CapabilityDetailPage({
 
                 <div className="mt-6 pt-3 border-t border-[#263650]">
                   <strong className="text-[#586BFF] font-mono uppercase block text-[10px]">
-                    Outcome & Impact:
+                    Illustrative Impact Target:
                   </strong>
                   <p className="text-xs text-[#A5B2CC] mt-0.5 leading-relaxed">
                     {useCase.architecturalImpact}
@@ -387,9 +385,9 @@ export default async function CapabilityDetailPage({
                       <span className="font-mono text-[10px] text-[#40D6C5] uppercase">
                         {prod.statusLabel}
                       </span>
-                      <h4 className="text-sm font-bold text-[#F4F6FF]">
+                      <h3 className="text-sm font-bold text-[#F4F6FF]">
                         {prod.name}
-                      </h4>
+                      </h3>
                       <p className="text-xs text-[#A5B2CC] mt-0.5">
                         {prod.category}
                       </p>

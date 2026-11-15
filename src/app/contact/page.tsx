@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   ArrowUpRight,
   Briefcase,
@@ -11,12 +10,14 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { companyData } from "@/data/company";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Explore project, collaboration, partnership, and general enquiry options for Orlithix Technologies.",
-};
+    "Find project, collaboration, partnership, and general enquiry options for Orlithix Technologies.",
+  path: "/contact",
+});
 
 const enquiryOptions = [
   {

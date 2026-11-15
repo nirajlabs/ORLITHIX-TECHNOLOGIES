@@ -3,15 +3,16 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { companyData } from "@/data/company";
+import { siteName, siteUrl, socialImageUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://orlithix.com"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Orlithix Technologies | Engineering Intelligence. Building the Future.",
+    default: siteName,
     template: "%s | Orlithix Technologies",
   },
   description:
-    "An AI-first parent software and technology venture architecting high-concurrency distributed systems, applied artificial intelligence, enterprise SaaS, and cloud-native platforms.",
+    "Orlithix Technologies is a proposed technology venture exploring artificial intelligence, software engineering, and digital innovation.",
   keywords: [
     "Orlithix Technologies",
     "Artificial Intelligence",
@@ -32,17 +33,26 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://orlithix.com",
-    title: "Orlithix Technologies | Engineering Intelligence. Building the Future.",
+    url: siteUrl,
+    title: siteName,
     description:
-      "An AI-first parent software and technology venture architecting high-concurrency distributed platforms and deterministic machine intelligence.",
-    siteName: "Orlithix Technologies",
+      "A proposed technology venture exploring artificial intelligence, software engineering, and digital innovation.",
+    siteName,
+    images: [
+      {
+        url: socialImageUrl,
+        width: 1200,
+        height: 630,
+        alt: "Orlithix Technologies — Engineering Intelligence. Building the Future.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orlithix Technologies | Engineering Intelligence. Building the Future.",
+    title: siteName,
     description:
-      "An AI-first parent software and technology venture architecting high-concurrency distributed platforms and deterministic machine intelligence.",
+      "A proposed technology venture exploring artificial intelligence, software engineering, and digital innovation.",
+    images: [socialImageUrl],
   },
 };
 
@@ -56,8 +66,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Orlithix Technologies",
-    "url": "https://orlithix.com",
-    "logo": "https://orlithix.com/logo.svg",
+    "url": siteUrl,
+    "logo": `${siteUrl}/logo.svg`,
     "slogan": companyData.tagline,
     "description": companyData.aboutSummary,
     "disambiguatingDescription": companyData.legalEntityNotice,

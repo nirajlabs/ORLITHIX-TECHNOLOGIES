@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" role="img" aria-labelledby="title">
+  <title id="title">Orlithix Technologies</title>
+  <defs>
+    <linearGradient id="ring" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#586BFF"/>
+      <stop offset="100%" stop-color="#40D6C5"/>
+    </linearGradient>
+    <linearGradient id="path" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#586BFF"/>
+      <stop offset="100%" stop-color="#40D6C5"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(2 0)">
+    <rect width="100" height="100" rx="22" fill="#080D1B"/>
+    <path d="M50 12 78 24 88 50 78 76 50 88 22 76 12 50 22 24Z" fill="#10192B" stroke="url(#ring)" stroke-linejoin="round" stroke-width="5"/>
+    <path d="M39 76 46 43h-7l11-22 11 22h-7l7 33Z" fill="url(#path)"/>
+    <circle cx="50" cy="21" r="3.5" fill="#F4F6FF"/>
+    <circle cx="78" cy="24" r="2.5" fill="#40D6C5"/>
+    <circle cx="88" cy="50" r="2.5" fill="#586BFF"/>
+    <circle cx="78" cy="76" r="2.5" fill="#40D6C5"/>
+    <circle cx="22" cy="76" r="2.5" fill="#586BFF"/>
+    <circle cx="12" cy="50" r="2.5" fill="#40D6C5"/>
+    <circle cx="22" cy="24" r="2.5" fill="#586BFF"/>
+  </g>
+  <text x="126" y="55" fill="#080D1B" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" letter-spacing="4">ORLITHIX<tspan fill="#40D6C5">.</tspan></text>
+  <text x="128" y="76" fill="#263650" font-family="monospace" font-size="10" letter-spacing="4">TECHNOLOGIES</text>
+</svg>

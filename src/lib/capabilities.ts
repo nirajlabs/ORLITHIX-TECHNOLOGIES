@@ -51,7 +51,7 @@ export const capabilitiesList: CapabilityItem[] = [
       "Predictive Machine Learning",
     ],
     statusType: "current",
-    statusLabel: "Active Engineering Core",
+    statusLabel: "Engineering Focus",
     currentSkills: [
       "Custom Neural Network Modeling & Fine-Tuning (PyTorch & TensorFlow)",
       "High-Dimensional Vector Embeddings & Hybrid Semantic Search",
@@ -120,7 +120,7 @@ export const capabilitiesList: CapabilityItem[] = [
       "Backend Engineering",
     ],
     statusType: "current",
-    statusLabel: "Active Engineering Core",
+    statusLabel: "Engineering Focus",
     currentSkills: [
       "Strict-Mode TypeScript Architecture across Client & Server Runtimes",
       "Modern Next.js App Router & React Server Component (RSC) Engineering",
@@ -187,7 +187,7 @@ export const capabilitiesList: CapabilityItem[] = [
       "Business Intelligence",
     ],
     statusType: "current",
-    statusLabel: "Active Engineering Core",
+    statusLabel: "Engineering Focus",
     currentSkills: [
       "Advanced Relational Database Modeling & Index Optimization in PostgreSQL",
       "Automated ETL/ELT Batch & Streaming Pipeline Construction",
@@ -253,7 +253,7 @@ export const capabilitiesList: CapabilityItem[] = [
       "Intelligent Document Processing",
     ],
     statusType: "service",
-    statusLabel: "Available Architectural Service",
+    statusLabel: "Potential Service Area",
     currentSkills: [
       "State-Machine Governed Multi-Agent Task Delegation & Handover Protocols",
       "Intelligent Document Parsing, Table Extraction & Semantic Verification",
@@ -319,7 +319,7 @@ export const capabilitiesList: CapabilityItem[] = [
       "Monitoring",
     ],
     statusType: "service",
-    statusLabel: "Available Architectural Service",
+    statusLabel: "Potential Service Area",
     currentSkills: [
       "Cloud Architecture & Multi-Region High-Availability Engineering",
       "Automated Blue/Green and Canary Deployment Pipelines via GitOps",
@@ -385,7 +385,7 @@ export const capabilitiesList: CapabilityItem[] = [
       "Cross-platform Applications",
     ],
     statusType: "research",
-    statusLabel: "Active R&D Expansion",
+    statusLabel: "Planned Research",
     currentSkills: [
       "Cross-Platform Native Application Engineering with Flutter & React Native",
       "Native iOS (Swift) & Android (Kotlin) Core Runtime Integration",

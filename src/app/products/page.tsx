@@ -1,17 +1,18 @@
 import React from "react";
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { getAllProducts } from "@/lib/products";
 import { ProductGrid } from "@/components/product-grid";
 import { Info, ArrowRight } from "lucide-react";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Product Innovation Lab",
   description:
-    "Explore exploratory software platforms, AI agents, and enterprise tools incubated within the Orlithix Technologies Product Innovation Lab.",
-};
+    "Explore published Orlithix product concepts and their research, validation, and development stages.",
+  path: "/products",
+});
 
 export default function ProductsPage() {
   const products = getAllProducts();
@@ -119,7 +120,12 @@ export default function ProductsPage() {
         </div>
 
         {/* Central Data-Driven Products Grid */}
-        <ProductGrid products={products} enableFilters={true} />
+        <section aria-labelledby="published-products-heading">
+          <h2 id="published-products-heading" className="sr-only">
+            Published product concepts
+          </h2>
+          <ProductGrid products={products} enableFilters={true} />
+        </section>
 
         {/* Bottom Consultation Banner */}
         <div className="mt-16 flex flex-col items-center justify-between gap-6 rounded-2xl border border-[#263650] bg-[#10192B] p-6 sm:mt-20 sm:p-8 lg:flex-row">

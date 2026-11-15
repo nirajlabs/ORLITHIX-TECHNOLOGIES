@@ -1,10 +1,18 @@
 import React from "react";
+import { createPageMetadata } from "@/lib/seo";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
 import { AboutPreviewSection } from "@/components/sections/AboutPreviewSection";
 import { InnovationLabSection } from "@/components/sections/InnovationLabSection";
 import { DevelopmentApproachSection } from "@/components/sections/DevelopmentApproachSection";
 import { ContactCtaSection } from "@/components/sections/ContactCtaSection";
+
+export const metadata = createPageMetadata({
+  title: "Engineering Intelligence and Digital Innovation",
+  description:
+    "Meet Orlithix Technologies, a proposed venture exploring artificial intelligence, software engineering, and digital innovation.",
+  path: "/",
+});
 
 export default function HomePage() {
   return (

@@ -23,17 +23,17 @@ export const CapabilityGrid: React.FC<CapabilityGridProps> = ({
     { id: "all", label: "All Capabilities", count: capabilities.length },
     {
       id: "current",
-      label: "Active Engineering Core",
+      label: "Engineering Focus",
       count: capabilities.filter((c) => c.statusType === "current").length,
     },
     {
       id: "service",
-      label: "Available Architectural Services",
+      label: "Potential Service Areas",
       count: capabilities.filter((c) => c.statusType === "service").length,
     },
     {
       id: "research",
-      label: "Active R&D Expansion",
+      label: "Planned Research",
       count: capabilities.filter((c) => c.statusType === "research").length,
     },
   ];

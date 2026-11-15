@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import type { ElementType } from "react";
 import { ArrowRight, Bot, BrainCircuit, Briefcase, Cloud, Cpu, Database, Layers, ShieldCheck } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
@@ -9,12 +8,14 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { companyData } from "@/data/company";
 import { developmentApproachData } from "@/data/developmentApproach";
 import { divisionsData } from "@/data/divisions";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "About",
   description:
-    "Learn about Orlithix Technologies, a proposed emerging technology venture exploring AI, software engineering, and digital innovation.",
-};
+    "Learn about Orlithix Technologies, a proposed venture exploring artificial intelligence, software engineering, and digital innovation.",
+  path: "/about",
+});
 
 const divisionIcons: Record<string, ElementType> = {
   BrainCircuit,
