@@ -33,7 +33,7 @@ export default function ProductsPage() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-[#A5B2CC] sm:mt-6 sm:text-base">
-            As an AI-first parent venture, Orlithix incubates specialized software architectures designed to solve foundational enterprise bottlenecks. Explore our active research initiatives, algorithmic prototypes, and conceptual platforms.
+            Orlithix Technologies is a proposed venture exploring software concepts intended to address enterprise challenges. The entries below are research or future concepts, not established commercial offerings.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export default function ProductsPage() {
             <strong className="mb-1 block font-mono text-xs uppercase tracking-wider text-[#F4F6FF]">
               R&D Lifecycle Transparency Notice:
             </strong>
-            All initiatives described below represent active research concepts, architectural prototypes, or developmental roadmaps within the Orlithix Innovation Lab. Feature descriptions, technology stacks, and roadmap items communicate proposed direction, not deployed product functionality. None are marketed as established commercial offerings.
+            Each initiative is shown at its stated stage: research and validation or future concept. Feature descriptions, technology stacks, and roadmap items communicate proposed direction, not deployed product functionality. None are marketed as established commercial offerings.
           </div>
         </div>
 

@@ -13,23 +13,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced the simulated contact form flow with four enquiry categories: project, collaboration, business partnership, and general.
 - Added optional centralized contact configuration fields for email, phone, address, and social links.
 - Added a README with current routes, data sources, and development commands.
+- Added shared SEO metadata helpers, an SVG favicon, a public SVG logo, and a generated Open Graph image route.
 
 ### Changed
 - Contact actions are rendered only when corresponding real contact details are configured. The current configuration is empty, so the Contact page displays a pending-details notice and does not send or persist inquiries.
 - Updated the homepage About preview, CTA, and footer to avoid fabricated contact details and unsupported operating/privacy claims.
 - Reframed innovation-area and development-approach copy as exploratory or proposed.
+- Refined the dark enterprise visual system across shared UI, cards, catalog/detail pages, navigation, footer, logo, and hero; reduced glow/motion and improved focus, reduced-motion, and mobile-navigation behavior.
+- Replaced mock technology-visual metrics with an interactive visualization derived from configured division data.
 - Product catalog/detail presentation includes optional local artwork with generated fallback artwork; product descriptions, features, and roadmaps are disclosed as proposed rather than deployed functionality.
-- Updated architecture, decision, agent, and handoff documentation to describe the actual application and known limitations.
+- Updated capability, homepage, product, and Innovation Lab copy to distinguish proposed interests and future concepts from established services or delivered work; hypothetical impact metrics remain labeled illustrative.
+- Removed the fabricated contact-email default from `.env.example`. Contact-related template values are not currently consumed by application code.
+- Integrated page-specific metadata, canonical URLs, Open Graph metadata, structured-data logo URL, and generated sitemap/robots behavior; refined headings, image sizing/alt text, and mobile-navigation ARIA/focus behavior.
+- Updated current QA, architecture, handoff, run/deployment, and component-structure guidance in `README.md`, `PROJECT_HANDOFF.md`, `ARCHITECTURE.md`, `AGENTS.md`, and this changelog. `DECISIONS.md` was reviewed and did not require changes.
 
 ### Verification
 - `npm run lint` passed (exit code 0).
-- `npm run build` passed (exit code 0); Next.js compiled and generated 19/19 static pages, including About, Contact, capability details, and product details.
+- `npm run build` passed (exit code 0); Next.js 16.4.6 compiled, TypeScript completed, and 21/21 pages were generated.
+- Browser QA returned 200 for all 15 content routes and checked navigation, internal targets, product/capability cards and filters, contact behavior, and asset endpoints. A 60-combination route/viewport sweep at 375, 768, 1440, and 1920px found no horizontal overflow and one H1 per route. A production smoke check after the final copy edits rechecked the home, product catalog, AI capability detail, and contact routes.
+- DOM-based accessibility checks found no issues in the checked accessible names, labels, heading structure, landmarks, duplicate IDs, image alt text, and ARIA control references. No axe/Lighthouse or automated end-to-end suite is configured.
 - `git diff --check` passed with no whitespace errors.
-- No automated test script is configured; no unit/integration test suite was run.
+- `npm ls --depth=0` reported `@emnapi/runtime@1.11.3` and `@img/sharp-wasm32@0.35.5` as extraneous; neither is declared in `package.json`. The build passed with these packages present.
 
 ### Not implemented
-- No contact form submission, email provider, CRM integration, API route, server action, or database persistence.
-- No new runtime dependency or database/configuration requirement was added.
+- No genuine contact submission, email provider, CRM integration, API route, server action, or database persistence. The configured contact details remain empty.
+- No database/API changes, new dependency, paid service, or deployment was made.
+- `NEXT_PUBLIC_SITE_URL` retains its existing `https://orlithix.com` fallback; set the approved canonical URL for production if different.
+- No automated unit, integration, or accessibility test suite is configured. Browser and DOM checks are not a WCAG conformance audit.
 
 ---
 

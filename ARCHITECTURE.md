@@ -22,10 +22,11 @@
 | `/products` | Published-product catalog with client-side category filtering and search. |
 | `/products/[slug]` | Product concept detail pages generated from the active product catalog. |
 | `/contact` | Four enquiry categories and contact options that render only from configured contact details. No enquiry is submitted or stored. |
+| `/icon.svg` and `/opengraph-image` | SVG favicon and generated social preview image. |
 | `/sitemap.xml` | Generated from active product and capability catalogs plus core pages. |
 | `/robots.txt` | Next.js robots route. |
 
-The latest recorded production build generated 19/19 static pages, including six capability detail routes and four product detail routes.
+The latest recorded production build generated 21/21 pages, including six capability detail routes and four product detail routes.
 
 ## 3. Active content sources
 
@@ -81,18 +82,21 @@ The site uses a dark visual system with the following established values:
 
 Tailwind utility classes are primarily used in components, with global styles in `src/app/globals.css`. Prefer responsive, mobile-first layouts, accessible labels/ARIA for interactive controls, visible keyboard focus, and touch targets of at least 44px.
 
-The latest lint/build results do not replace browser testing. No responsive browser sweep or dedicated accessibility audit is recorded for the current About/Contact changes.
+The 2026-11-15 QA run checked the 15 content routes at 375, 768, 1440, and 1920 CSS pixels (60 route/viewport combinations), found no horizontal overflow, and found exactly one H1 per route. A production smoke check after the final copy edits rechecked the home, product catalog, AI capability detail, and contact routes. DOM-based checks found no issues in the checked accessible names, labels, heading structure, landmarks, duplicate IDs, image alt text, and ARIA control references. These checks are not a dedicated axe/Lighthouse scan, screen-reader audit, or WCAG conformance assessment.
 
 ## 7. SEO and generated pages
 
-- Root metadata and Organization JSON-LD are in `src/app/layout.tsx`.
+- Shared metadata helpers are in `src/lib/seo.ts`; root metadata and Organization JSON-LD are in `src/app/layout.tsx`.
 - About and Contact pages define route metadata.
 - Product and capability detail routes define static parameters and dynamic metadata from their active catalogs.
 - `src/app/sitemap.ts` derives dynamic detail URLs from `src/lib/products.ts` and `src/lib/capabilities.ts`.
-- `NEXT_PUBLIC_SITE_URL` is optional; code falls back to `https://orlithix.com`.
+- `src/app/icon.svg` provides the SVG favicon; `src/app/opengraph-image.tsx` generates a 1200×630 social preview image; `public/logo.svg` is the public vector logo used by structured metadata.
+- `NEXT_PUBLIC_SITE_URL` currently falls back to `https://orlithix.com`; set it to the approved canonical production URL before deployment if the fallback is not the final domain.
 
 ## 8. Known follow-up
 
-1. Review capability and marketing claims for evidence. The active capability data/page still contains wording that can imply deployed production work, currently available services, or measured performance. Do not treat those claims as verified without supporting evidence.
-2. Obtain owner approval for real contact details and the inquiry-delivery method before implementing a form/API integration.
-3. Decide whether to remove or consolidate the unused duplicate data modules after confirming no external workflow depends on them.
+1. Contact delivery is not implemented. Obtain owner approval for a real destination/provider before adding a server-side form/API integration; do not simulate successful delivery.
+2. The Contact page does not consume product CTA `subject` query parameters.
+3. Keep capability use cases and numeric outcomes explicitly labeled as illustrative targets, not verified delivery results.
+4. Decide whether to remove or consolidate the unused duplicate data modules after confirming no external workflow depends on them.
+5. Add an automated test/accessibility suite only as a separately scoped improvement; currently the package has no test script and the recorded accessibility checks were DOM based.

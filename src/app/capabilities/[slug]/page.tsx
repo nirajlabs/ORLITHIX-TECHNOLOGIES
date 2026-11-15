@@ -442,13 +442,13 @@ export default async function CapabilityDetailPage({
         {/* Targeted Action CTA */}
         <div className="mx-auto max-w-3xl rounded-2xl border border-[#586BFF]/40 bg-[#10192B] p-6 text-center sm:p-10">
           <Badge variant="concept" size="sm" className="mb-4">
-            TECHNICAL ENGAGEMENT
+            POTENTIAL COLLABORATION
           </Badge>
           <h2 className="text-2xl sm:text-3xl font-bold text-[#F4F6FF]">
             Discuss {capability.name} Architecture
           </h2>
           <p className="mt-3 text-xs sm:text-sm text-[#A5B2CC] max-w-lg mx-auto leading-relaxed">
-            Interested in consulting, architectural evaluation, or partnering on our research initiatives in this domain?
+            Potential collaboration areas may be explored in the future. Business contact details and engagement channels are not currently configured.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -457,7 +457,7 @@ export default async function CapabilityDetailPage({
               size="md"
               icon={<ArrowRight className="w-4 h-4" />}
             >
-              Initiate Technical Consultation
+              View Enquiry Options
             </Button>
             <Button
               href="/capabilities"

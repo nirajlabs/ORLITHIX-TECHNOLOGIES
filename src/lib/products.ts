@@ -110,10 +110,10 @@ export const productsList: ProductItem[] = [
       "Deterministic Test Harness",
     ],
     cta: {
-      label: "Request R&D Collaboration",
+      label: "View Enquiry Options",
       href: "/contact?subject=handover-readiness-ai",
       variant: "primary",
-      note: "Currently restricted to research evaluation and closed architectural benchmarks.",
+      note: "Research concept only; no evaluation or collaboration channel is currently configured.",
     },
     futureUpdates: [
       {

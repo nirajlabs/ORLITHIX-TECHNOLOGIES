@@ -33,7 +33,7 @@ export const InnovationLabSection: React.FC = () => {
             Pioneering the Next Horizon of Autonomous Software
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#A5B2CC] sm:text-base">
-            Our Innovation Lab incubates high-impact technological concepts. Every project listed here is in active research or conceptual validation.
+            The proposed Innovation Lab describes product concepts at their stated research or future-concept stage; listed features are not claims of deployed functionality.
           </p>
         </div>
 
@@ -91,7 +91,7 @@ export const InnovationLabSection: React.FC = () => {
                 <div className="mt-8 flex items-start gap-2 rounded-lg border border-[#263650] bg-[#080D1B] p-3 text-xs text-[#A5B2CC]">
                   <Info aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[#40D6C5]" />
                   <span>
-                    <strong>Notice:</strong> This initiative is under internal algorithmic evaluation and has not been launched as a public commercial service.
+                    <strong>Notice:</strong> This concept is described for research and validation; its proposed functionality is not presented as a completed or publicly launched product.
                   </span>
                 </div>
 

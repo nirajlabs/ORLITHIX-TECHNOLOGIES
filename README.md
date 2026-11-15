@@ -9,7 +9,7 @@ Orlithix Technologies is a proposed technology venture in development. This repo
 - `/capabilities` and `/capabilities/[slug]` - Capability catalog and static detail pages.
 - `/products` and `/products/[slug]` - Published product concepts, category filters/search, and static detail pages.
 - `/contact` - Project, collaboration, partnership, and general enquiry categories. No contact destination is currently configured and no inquiry is submitted by this page.
-- `/sitemap.xml` and `/robots.txt` - Generated SEO routes.
+- `/icon.svg`, `/opengraph-image`, `/sitemap.xml`, and `/robots.txt` - Generated or static brand and SEO routes.
 
 Product and capability content describes concepts and intended directions. Read the relevant lifecycle disclosures and do not treat proposed functionality as implemented software.
 
@@ -34,6 +34,19 @@ npm run build
 ```
 
 There is no test script configured in `package.json`.
+
+The latest recorded QA run on 2026-11-15 passed lint and production build. Manual browser checks covered all 15 content routes, navigation, product/capability cards and filters, contact behavior, assets, and responsive widths of 375, 768, 1440, and 1920px. Those checks found no horizontal overflow or application console errors. Accessibility checks were DOM-based; no axe/Lighthouse scan or automated test suite is configured.
+
+## Production
+
+Set `NEXT_PUBLIC_SITE_URL` to the approved canonical production URL before building and deploying. The current fallback is `https://orlithix.com`, so do not rely on it if that is not the final domain.
+
+```powershell
+npm run build
+npm run start
+```
+
+Use a Next.js-compatible deployment target. Deployment has not been performed as part of the recorded QA work.
 
 ## Content sources
 

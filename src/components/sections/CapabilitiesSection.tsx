@@ -34,8 +34,8 @@ export const CapabilitiesSection: React.FC = () => {
         <SectionHeader
           badgeText="ENGINEERING PILLARS"
           badgeVariant="development"
-          title="Core Capabilities Driving Our Technology Ventures"
-          subtitle="Our engineering practice is built on six foundational disciplines, engineered to solve complex operational bottlenecks with mathematical rigor."
+          title="Technology Areas the Venture Is Exploring"
+          subtitle="These six technical areas describe proposed interests and illustrative directions, not verified delivery experience or established services."
         />
 
         <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">

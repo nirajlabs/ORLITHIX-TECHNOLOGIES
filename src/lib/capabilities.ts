@@ -37,9 +37,9 @@ export const capabilitiesList: CapabilityItem[] = [
     slug: "artificial-intelligence-machine-learning",
     shortTagline: "Applied Neural Systems & Deterministic Inference",
     description:
-      "Engineering specialized machine learning architectures, neural models, generative AI pipelines, and computer vision runtimes engineered for deterministic enterprise operations.",
+      "Potential areas of interest include machine learning architectures, generative AI pipelines, and computer vision systems for enterprise contexts.",
     longOverview:
-      "Our Artificial Intelligence practice focuses on moving beyond stochastic, unverified AI experiments into high-assurance, mathematically sound enterprise solutions. We specialize in domain-adapted transformer models, real-time computer vision inference, predictive signal processing, and zero-hallucination retrieval architectures. By integrating strict schema validation with neural outputs, we construct mission-critical AI systems that organizations can trust in regulated environments.",
+      "As a proposed venture, Orlithix identifies domain-adapted language models, computer vision, predictive modeling, and retrieval architectures as potential areas for future exploration. This description does not imply a delivery record or currently available service.",
     icon: "Brain",
     technologies: [
       "Python",
@@ -106,9 +106,9 @@ export const capabilitiesList: CapabilityItem[] = [
     slug: "software-engineering",
     shortTagline: "High-Concurrency Distributed Systems & Modern Web Platforms",
     description:
-      "Constructing resilient distributed microservices, type-safe full-stack platforms, high-throughput backend APIs, and multi-tenant enterprise SaaS applications.",
+      "Potential areas of interest include distributed systems, type-safe web platforms, backend APIs, and multi-tenant software architecture.",
     longOverview:
-      "Software Engineering at Orlithix is anchored in foundational computer science principles: clean architecture, strict compile-time type guarantees, domain-driven design, and resilient distributed coordination. We leverage modern toolchains—including Next.js, React, TypeScript, Python, and FastAPI—to build maintainable software that scales predictably from prototype to high-concurrency enterprise workloads without compounding technical debt.",
+      "The proposed venture's software engineering interests include clean architecture, type safety, domain-driven design, and distributed systems. Technologies such as Next.js, React, TypeScript, Python, and FastAPI are examples of areas under consideration; no currently available service or delivery history is implied.",
     icon: "Code2",
     technologies: [
       "Next.js",
@@ -175,9 +175,9 @@ export const capabilitiesList: CapabilityItem[] = [
     slug: "data-intelligence",
     shortTagline: "Real-Time Telemetry Fabrics & High-Integrity Analytics",
     description:
-      "Architecting scalable data engineering pipelines, robust PostgreSQL infrastructure, real-time analytics aggregation, data quality enforcement, and business intelligence systems.",
+      "Potential areas of interest include data pipelines, database architecture, analytics, data quality, and business intelligence.",
     longOverview:
-      "Data is the foundation of institutional intelligence. Orlithix approaches data intelligence with strict data governance, zero-loss ingestion architectures, and advanced analytical modeling. We engineer resilient data pipelines that transform messy, distributed telemetry into clean, normalized knowledge graphs and real-time business intelligence dashboards, ensuring organizations base critical choices on verified facts.",
+      "The proposed venture identifies data governance, ingestion, analytical modeling, and business intelligence as possible areas of future exploration. These are conceptual directions, not claims of delivered systems, guaranteed data integrity, or established services.",
     icon: "DatabaseZap",
     technologies: [
       "Data Engineering",
@@ -242,9 +242,9 @@ export const capabilitiesList: CapabilityItem[] = [
     slug: "automation-ai-agents",
     shortTagline: "Multi-Agent Swarm Orchestration & Intelligent Process Automation",
     description:
-      "Designing autonomous multi-agent orchestration frameworks, end-to-end workflow automation, intelligent document processing, and deep API integrations.",
+      "Potential areas of interest include workflow automation, AI-agent orchestration, document processing, and API integrations.",
     longOverview:
-      "Automation at Orlithix transcends basic script execution. We build autonomous agent swarms that observe system states, reason over complex goals, execute multi-step engineering and business tasks, and self-verify the correctness of their output. By combining intelligent document processing, deep API interconnects, and strict human-in-the-loop governance, we eliminate operational toil across technical organizations.",
+      "The proposed venture is exploring automation concepts involving workflow orchestration, document processing, API integrations, and human oversight. No autonomous system, operational outcome, or currently available service is represented as implemented.",
     icon: "Cpu",
     technologies: [
       "Workflow Automation",
@@ -308,9 +308,9 @@ export const capabilitiesList: CapabilityItem[] = [
     slug: "cloud-devops",
     shortTagline: "Cloud-Native Infrastructure, GitOps Automation & Observability",
     description:
-      "Engineering resilient cloud architecture, automated CI/CD deployment pipelines, immutable container platforms, continuous monitoring, and zero-trust security perimeters.",
+      "Potential areas of interest include cloud architecture, deployment automation, container platforms, monitoring, and security design.",
     longOverview:
-      "Modern infrastructure must be treated as software. Our Cloud & DevOps practice implements declarative, version-controlled Infrastructure as Code (IaC), zero-downtime blue/green deployment workflows, comprehensive telemetry monitoring, and immutable container orchestration. We design cloud topologies that withstand catastrophic regional failures while empowering development teams to deploy code with speed and confidence.",
+      "The proposed venture identifies infrastructure as code, deployment workflows, telemetry, and container orchestration as potential areas of interest. These conceptual directions do not imply available services, verified reliability outcomes, or an established implementation practice.",
     icon: "CloudCog",
     technologies: [
       "Cloud Architecture",
@@ -374,9 +374,9 @@ export const capabilitiesList: CapabilityItem[] = [
     slug: "mobile-development",
     shortTagline: "Cross-Platform Native Engineering & Offline-First Runtimes",
     description:
-      "Developing high-performance Android, iOS, Flutter, and cross-platform mobile applications engineered for native responsiveness, offline-first synchronization, and hardware security.",
+      "Potential areas of interest include cross-platform mobile applications, offline-first synchronization, and device security.",
     longOverview:
-      "Mobile devices are the primary interactive touchpoint for modern enterprise field workers and end users alike. Our Mobile Development engineering covers Android, iOS, Flutter, and cross-platform native architectures. We emphasize local SQLite and vector persistence, resilient bi-directional background synchronization, biometric security integration, and buttery-smooth 60–120 FPS interface fluidity.",
+      "The proposed venture lists Android, iOS, Flutter, offline-first storage, synchronization, and device security as possible areas for future research. This description does not claim that mobile products have been built or that performance or security targets have been achieved.",
     icon: "Smartphone",
     technologies: [
       "Android",

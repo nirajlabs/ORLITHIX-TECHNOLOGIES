@@ -54,9 +54,10 @@ Welcome, AI Coding Agent. This document establishes operational guidelines, arch
    - The platform is designed to scale across multiple technology divisions and future product verticals without refactoring layouts.
    - Reuse existing product and capability components (`src/components/product-card.tsx`, `src/components/product-grid.tsx`, `src/components/capability-card.tsx`, and `src/components/capability-grid.tsx`) and keep their catalog data typed.
 3. **Component Stratification**:
-   - `src/components/ui/`: Atomic reusable UI primitives (Button, Badge, Card, Container, SectionHeader, GlowEffect, Input, Textarea).
-   - `src/components/layout/`: Global structural elements (currently Navbar and Footer).
-   - `src/components/sections/`: Composed homepage sections and previews (HeroSection, CapabilitiesSection, AboutPreviewSection, InnovationLabSection, DevelopmentApproachSection, ContactCtaSection).
+   - `src/components/ui/`: Current shared primitives and visuals include Button, Badge, Card, Container, SectionHeader, and TechVisual. Add form primitives only when an implemented feature needs them.
+   - `src/components/layout/`: Global structural elements currently include Navbar and Footer.
+   - `src/components/sections/`: Composed homepage sections and previews currently include HeroSection, CapabilitiesSection, AboutPreviewSection, InnovationLabSection, DevelopmentApproachSection, and ContactCtaSection.
+   - `src/components/brand/`: Brand assets and reusable identity components, including the SVG Logo.
    - Product and capability card/grid components currently live directly under `src/components/`.
 4. **Server vs. Client Components**:
    - Keep page roots and static marketing sections as **React Server Components (RSC)** for optimal SEO and performance.
