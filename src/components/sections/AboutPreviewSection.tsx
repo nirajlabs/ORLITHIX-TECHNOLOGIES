@@ -29,7 +29,7 @@ export const AboutPreviewSection: React.FC = () => {
             </p>
 
             <p className="mt-3 text-xs sm:text-sm text-[#A5B2CC]/80 leading-relaxed">
-              Modern enterprises do not suffer from a lack of raw AI models — they suffer from the brittle integration of probabilistic systems into mission-critical software fabrics. Orlithix exists to construct the deterministic engineering layers that make advanced intelligence dependable, secure, and auditable.
+              The venture's proposed direction is to explore how AI, software engineering, and digital products may address real-world needs. Ideas remain subject to research and validation; this is not a claim of established capability or client work.
             </p>
 
             {/* Strategic Anchors */}
@@ -56,7 +56,7 @@ export const AboutPreviewSection: React.FC = () => {
                 size="md"
                 icon={<ArrowRight className="w-4 h-4" />}
               >
-                Learn More About Our Vision
+                Learn More About Our Direction
               </Button>
             </div>
           </div>
@@ -72,11 +72,11 @@ export const AboutPreviewSection: React.FC = () => {
                   Parent Architecture
                 </h3>
                 <p className="mt-2 text-xs text-[#A5B2CC] leading-relaxed">
-                  A unified technological core providing shared telemetry, security, and type safety across multiple autonomous software verticals.
+                  A possible future architecture for organizing shared foundations across distinct software concepts.
                 </p>
               </div>
               <span className="mt-4 font-mono text-[10px] text-[#40D6C5] uppercase tracking-wider block">
-                Expandable Foundation
+                Conceptual Direction
               </span>
             </Card>
 
@@ -86,14 +86,14 @@ export const AboutPreviewSection: React.FC = () => {
                   <Cpu className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-bold text-[#F4F6FF]">
-                  Deterministic AI
+                  Responsible AI
                 </h3>
                 <p className="mt-2 text-xs text-[#A5B2CC] leading-relaxed">
-                  Eliminating stochastic unpredictability through rigorous verification pipelines and structured schema validation.
+                  Exploring how evaluation, human oversight, and transparent limitations can inform AI system design.
                 </p>
               </div>
               <span className="mt-4 font-mono text-[10px] text-[#586BFF] uppercase tracking-wider block">
-                Mathematical Rigor
+                Research Interest
               </span>
             </Card>
 
@@ -104,10 +104,10 @@ export const AboutPreviewSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-[#F4F6FF]">
-                    Zero-Fabrication Operating Standards
+                    Transparent Development Stages
                   </h3>
                   <p className="mt-1 text-xs text-[#A5B2CC] leading-relaxed">
-                    We maintain strict transparency: no fictitious client claims, no unearned vanity metrics, and no conceptual prototypes disguised as historical enterprise software.
+                    Product concepts and future initiatives should be described according to their actual stage, without implying unverified outcomes or past client work.
                   </p>
                 </div>
               </div>

@@ -34,12 +34,13 @@ Welcome, AI Coding Agent. This document establishes operational guidelines, arch
 
 ## 3. Tech Stack & Environment Conventions
 
-- **Framework**: Next.js 14+ / 15 (App Router, React Server Components by default).
+- **Framework**: Next.js 16 (App Router, React Server Components by default) with React 19.
 - **Language**: TypeScript (Strict Mode enabled, no `any` without documented architectural justification).
-- **Styling**: Tailwind CSS (extended custom color palette, responsive mobile-first utilities, zero inline styles).
+- **Styling**: Tailwind CSS 4 (custom color theme in `src/app/globals.css`, responsive mobile-first utilities, zero inline styles).
 - **Icons**: `lucide-react`.
-- **Package Manager**: `npm` (Node.js runtime v25.4.0 verified on host system; `pnpm` is not installed on this Windows environment).
+- **Package Manager**: `npm` (host was previously recorded with Node.js v25.4.0 and npm v11.7.0; recheck versions when the environment changes).
 - **Deployment Target**: Vercel / Cloudflare Pages / Containerized Node.js.
+- **Current package versions**: Next.js 16.4.6, React 19.3.1, Tailwind CSS 4.3.5 (see `package.json` for the installed range).
 
 ---
 
@@ -47,17 +48,20 @@ Welcome, AI Coding Agent. This document establishes operational guidelines, arch
 
 1. **Data-Driven Architecture**:
    - **Never hardcode** product lists, capability items, technology divisions, or leadership principles directly inside page JSX files.
-   - All dynamic content must reside in centralized, strongly typed configuration modules located in `src/data/` (e.g., `src/data/products.ts`, `src/data/capabilities.ts`, `src/data/divisions.ts`, `src/data/navigation.ts`, `src/data/company.ts`).
+   - Active product and capability catalogs are `src/lib/products.ts` and `src/lib/capabilities.ts`. Company, division, development-approach, and navigation content is in `src/data/`.
+   - `src/data/products.ts` and `src/data/capabilities.ts` are legacy duplicate modules and are not imported by the active routes; do not treat them as sources of truth.
 2. **Parent Company Expandability**:
    - The platform is designed to scale across multiple technology divisions and future product verticals without refactoring layouts.
-   - Use reusable card components (`ProductCard`, `CapabilityCard`, `DivisionCard`, `StatusBadge`, `MetricCard`) that consume standard TypeScript interfaces.
+   - Reuse existing product and capability components (`src/components/product-card.tsx`, `src/components/product-grid.tsx`, `src/components/capability-card.tsx`, and `src/components/capability-grid.tsx`) and keep their catalog data typed.
 3. **Component Stratification**:
    - `src/components/ui/`: Atomic reusable UI primitives (Button, Badge, Card, Container, SectionHeader, GlowEffect, Input, Textarea).
-   - `src/components/layout/`: Global structural elements (Navbar, Footer, MobileNav, AnnouncementBanner).
-   - `src/components/sections/`: Composed domain sections (HeroSection, DivisionGrid, CapabilitiesShowcase, ProductPipeline, ArchitecturePhilosophy, ContactForm).
+   - `src/components/layout/`: Global structural elements (currently Navbar and Footer).
+   - `src/components/sections/`: Composed homepage sections and previews (HeroSection, CapabilitiesSection, AboutPreviewSection, InnovationLabSection, DevelopmentApproachSection, ContactCtaSection).
+   - Product and capability card/grid components currently live directly under `src/components/`.
 4. **Server vs. Client Components**:
    - Keep page roots and static marketing sections as **React Server Components (RSC)** for optimal SEO and performance.
-   - Use `'use client'` only where user interactivity is strictly required (e.g., mobile navigation drawer, interactive filter tabs, contact form state, client-side accordion).
+   - Use `'use client'` only where browser interaction requires it (currently, product and capability filters/search and interactive navigation).
+   - The Contact page currently has no form submission. Do not add a simulated success flow; genuine submission requires an approved destination and delivery implementation.
 
 ---
 

@@ -5,10 +5,18 @@ import { Logo } from "@/components/brand/Logo";
 import { companyData } from "@/data/company";
 import { footerNavigation } from "@/data/navigation";
 import { getAllProducts } from "@/lib/products";
-import { ShieldCheck, Terminal } from "lucide-react";
+import { Terminal } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const products = getAllProducts();
+  const { email, phone, address, socialLinks } = companyData.contactDetails;
+  const contactEmail = email?.trim();
+  const hasContactDetails = Boolean(
+    contactEmail ||
+      phone?.trim() ||
+      address?.trim() ||
+      socialLinks?.some((link) => link.label.trim() && link.url.trim()),
+  );
 
   return (
     <footer className="bg-[#080D1B] border-t border-[#263650] pt-16 pb-12 mt-20 relative overflow-hidden">
@@ -24,14 +32,12 @@ export const Footer: React.FC = () => {
               {companyData.tagline}
             </p>
             <p className="mt-2 text-xs text-[#A5B2CC]/80 leading-relaxed max-w-sm">
-              An AI-first parent software and technology venture architecting high-concurrency distributed platforms, applied machine intelligence, and cloud-native runtimes.
+              A proposed emerging technology venture exploring artificial intelligence, software engineering, and digital innovation.
             </p>
 
-            {/* Architectural Trust Indicator */}
-            <div className="mt-6 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#10192B] border border-[#263650] text-[11px] font-mono text-[#A5B2CC]">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#40D6C5]" />
-              <span>Zero-Fabrication Architecture Standards</span>
-            </div>
+            <p className="mt-6 rounded-lg border border-[#263650] bg-[#10192B] px-3 py-1.5 text-[11px] font-mono text-[#A5B2CC]">
+              Proposed venture // In development
+            </p>
           </div>
 
           {/* Column 2: Technology Divisions */}
@@ -99,9 +105,25 @@ export const Footer: React.FC = () => {
               <span className="text-[10px] font-mono text-[#40D6C5] uppercase tracking-wider block">
                 Research Inquiries
               </span>
-              <span className="text-xs text-[#F4F6FF] font-medium block mt-0.5">
-                {companyData.contactEmail}
-              </span>
+              {contactEmail ? (
+                <a
+                  className="mt-0.5 inline-flex min-h-11 items-center text-xs font-medium text-[#F4F6FF] underline decoration-[#586BFF]/60 underline-offset-4 hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+                  href={`mailto:${encodeURIComponent(contactEmail)}`}
+                >
+                  {contactEmail}
+                </a>
+              ) : hasContactDetails ? (
+                <Link
+                  className="mt-0.5 inline-flex min-h-11 items-center text-xs text-[#F4F6FF] underline decoration-[#586BFF]/60 underline-offset-4 hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+                  href="/contact"
+                >
+                  View contact options
+                </Link>
+              ) : (
+                <span className="mt-0.5 block text-xs text-[#A5B2CC]">
+                  Business contact details are being added.
+                </span>
+              )}
             </div>
           </div>
         </div>

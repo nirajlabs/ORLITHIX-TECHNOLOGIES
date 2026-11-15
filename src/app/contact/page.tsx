@@ -1,239 +1,211 @@
-"use client";
-
-import React, { useState } from "react";
-import { Container } from "@/components/ui/Container";
-import { Card } from "@/components/ui/Card";
+import type { Metadata } from "next";
+import {
+  ArrowUpRight,
+  Briefcase,
+  Building2,
+  Mail,
+  MessageCircle,
+  Users,
+} from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Container } from "@/components/ui/Container";
 import { companyData } from "@/data/company";
-import { Mail, Sparkles, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Explore project, collaboration, partnership, and general enquiry options for Orlithix Technologies.",
+};
+
+const enquiryOptions = [
+  {
+    title: "Project enquiry",
+    description:
+      "Share a technology challenge or an idea for an intelligent software solution.",
+    subject: "Project enquiry",
+    Icon: Briefcase,
+  },
+  {
+    title: "Collaboration",
+    description:
+      "Get in touch about research, technical exploration, or potential collaboration.",
+    subject: "Collaboration enquiry",
+    Icon: Users,
+  },
+  {
+    title: "Business partnership",
+    description:
+      "Discuss a potential business relationship or partnership opportunity.",
+    subject: "Business partnership enquiry",
+    Icon: Building2,
+  },
+  {
+    title: "General enquiry",
+    description:
+      "For other questions or messages related to Orlithix Technologies.",
+    subject: "General enquiry",
+    Icon: MessageCircle,
+  },
+];
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    organization: "",
-    inquiryType: "technical-collaboration",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate non-database client state validation and acknowledgment
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 800);
-  };
+  const { email, phone, address, socialLinks } = companyData.contactDetails;
+  const configuredEmail = email?.trim();
+  const configuredPhone = phone?.trim();
+  const configuredAddress = address?.trim();
+  const configuredSocialLinks = socialLinks?.filter(
+    (link) => link.label.trim() && link.url.trim(),
+  );
+  const hasContactDetails = Boolean(
+    configuredEmail ||
+      configuredPhone ||
+      configuredAddress ||
+      configuredSocialLinks?.length,
+  );
 
   return (
-    <div className="py-24 sm:py-32">
-      <Container>
-        <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
+    <div className="relative overflow-hidden py-24 sm:py-32">
+      <div className="pointer-events-none absolute left-1/2 top-20 h-[360px] w-[760px] -translate-x-1/2 rounded-full bg-[#586BFF]/10 blur-[140px]" />
+
+      <Container className="relative z-10">
+        <header className="mx-auto mb-16 max-w-3xl text-center">
           <Badge variant="concept" size="md" className="mb-4">
-            COMMUNICATION GATEWAY // OPEN INQUIRIES
+            CONTACT ORLITHIX
           </Badge>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#F4F6FF] tracking-tight">
-            Connect With Our Engineering Team
+          <h1 className="text-3xl font-extrabold tracking-tight text-[#F4F6FF] sm:text-5xl">
+            {companyData.contactCtaHeadline}
           </h1>
-          <p className="mt-5 text-base sm:text-lg text-[#A5B2CC] leading-relaxed">
-            We welcome technical discussions regarding distributed architecture, applied machine intelligence, and research collaboration.
+          <p className="mt-6 text-base leading-relaxed text-[#A5B2CC] sm:text-lg">
+            {companyData.contactCtaDescription}
           </p>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-5xl mx-auto">
-          {/* Left Column: Direct Details & Standards */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div>
-              <h3 className="text-xl font-bold text-[#F4F6FF] mb-4">
-                Direct Channels
-              </h3>
-              <p className="text-xs sm:text-sm text-[#A5B2CC] leading-relaxed mb-6">
-                All inquiries are reviewed directly by technical leadership. We do not use automated marketing funnels or third-party lead brokers.
-              </p>
+        <section aria-labelledby="enquiry-options-heading">
+          <div className="mb-8 text-center">
+            <h2
+              id="enquiry-options-heading"
+              className="text-2xl font-bold text-[#F4F6FF]"
+            >
+              How can we connect?
+            </h2>
+            <p className="mt-2 text-sm text-[#A5B2CC]">
+              Choose the enquiry category that best fits your message.
+            </p>
+          </div>
 
-              <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-[#10192B] border border-[#263650]">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#40D6C5] block">
-                    Direct Email Gateway
-                  </span>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {enquiryOptions.map(({ title, description, subject, Icon }) => (
+              <Card key={title} className="flex h-full flex-col">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#263650] bg-[#10192B] text-[#40D6C5]">
+                  <Icon aria-hidden="true" className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-lg font-bold text-[#F4F6FF]">
+                  {title}
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-[#A5B2CC]">
+                  {description}
+                </p>
+                {configuredEmail ? (
                   <a
-                    href={`mailto:${companyData.contactEmail}`}
-                    className="text-sm font-semibold text-[#F4F6FF] hover:text-[#586BFF] transition-colors mt-1 block"
+                    className="mt-6 inline-flex min-h-11 items-center gap-2 self-start rounded-lg border border-[#586BFF]/40 px-4 py-2 text-sm font-semibold text-[#F4F6FF] transition-colors hover:border-[#586BFF] hover:bg-[#586BFF]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+                    href={`mailto:${encodeURIComponent(configuredEmail)}?subject=${encodeURIComponent(subject)}`}
                   >
-                    {companyData.contactEmail}
+                    Send an enquiry
+                    <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                   </a>
-                </div>
-
-                <div className="p-4 rounded-xl bg-[#10192B] border border-[#263650]">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#586BFF] block">
-                    Response Benchmark
-                  </span>
-                  <span className="text-sm font-semibold text-[#F4F6FF] mt-1 block">
-                    1-2 Business Days
-                  </span>
-                  <span className="text-xs text-[#A5B2CC] block mt-0.5">
-                    Direct technical appraisal
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Privacy Assurance */}
-            <div className="mt-8 p-4 rounded-xl bg-[#121F36] border border-[#263650] flex items-start gap-3">
-              <ShieldCheck className="w-5 h-5 text-[#40D6C5] flex-shrink-0 mt-0.5" />
-              <div className="text-xs text-[#A5B2CC] leading-relaxed">
-                <strong className="text-[#F4F6FF]">Privacy Commitment: </strong>
-                Your communications and technical project details are held in strict confidence. No promotional spam.
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Contact Interface */}
-          <div className="lg:col-span-7">
-            <Card className="border-[#263650]">
-              {isSubmitted ? (
-                <div className="py-12 text-center flex flex-col items-center">
-                  <div className="w-14 h-14 rounded-full bg-[#40D6C5]/10 border border-[#40D6C5]/40 flex items-center justify-center text-[#40D6C5] mb-4">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-[#F4F6FF]">
-                    Transmission Received
-                  </h3>
-                  <p className="mt-2 text-xs sm:text-sm text-[#A5B2CC] max-w-sm">
-                    Thank you for reaching out. Your inquiry has been routed to our technical architecture team.
+                ) : (
+                  <p className="mt-6 text-xs text-[#A5B2CC]">
+                    Enquiry channel not yet available
                   </p>
-                  <Button
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setFormData({
-                        fullName: "",
-                        email: "",
-                        organization: "",
-                        inquiryType: "technical-collaboration",
-                        message: "",
-                      });
-                    }}
-                    variant="secondary"
-                    size="sm"
-                    className="mt-6"
-                  >
-                    Send Another Transmission
-                  </Button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#A5B2CC] mb-1.5">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.fullName}
-                      onChange={(e) =>
-                        setFormData({ ...formData, fullName: e.target.value })
-                      }
-                      placeholder="e.g. Dr. Alex Mercer"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#080D1B] border border-[#263650] text-[#F4F6FF] placeholder-[#A5B2CC]/40 text-xs sm:text-sm focus:outline-none focus:border-[#586BFF] transition-colors"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#A5B2CC] mb-1.5">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        placeholder="alex@enterprise.com"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#080D1B] border border-[#263650] text-[#F4F6FF] placeholder-[#A5B2CC]/40 text-xs sm:text-sm focus:outline-none focus:border-[#586BFF] transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#A5B2CC] mb-1.5">
-                        Organization / Venture
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.organization}
-                        onChange={(e) =>
-                          setFormData({ ...formData, organization: e.target.value })
-                        }
-                        placeholder="Organization Name"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#080D1B] border border-[#263650] text-[#F4F6FF] placeholder-[#A5B2CC]/40 text-xs sm:text-sm focus:outline-none focus:border-[#586BFF] transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#A5B2CC] mb-1.5">
-                      Inquiry Classification *
-                    </label>
-                    <select
-                      value={formData.inquiryType}
-                      onChange={(e) =>
-                        setFormData({ ...formData, inquiryType: e.target.value })
-                      }
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#080D1B] border border-[#263650] text-[#F4F6FF] text-xs sm:text-sm focus:outline-none focus:border-[#586BFF] transition-colors"
-                    >
-                      <option value="technical-collaboration">
-                        Architectural & Technical Collaboration
-                      </option>
-                      <option value="research-inquiry">
-                        Innovation Lab & R&D Inquiry
-                      </option>
-                      <option value="technology-partnerships">
-                        Technology Infrastructure Partnerships
-                      </option>
-                      <option value="general-inquiry">
-                        General Corporate Inquiries
-                      </option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#A5B2CC] mb-1.5">
-                      Transmission Message *
-                    </label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      placeholder="Outline your architectural context, research interests, or collaboration vector..."
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#080D1B] border border-[#263650] text-[#F4F6FF] placeholder-[#A5B2CC]/40 text-xs sm:text-sm focus:outline-none focus:border-[#586BFF] transition-colors resize-none"
-                    />
-                  </div>
-
-                  <div className="pt-2">
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      size="md"
-                      disabled={isSubmitting}
-                      className="w-full justify-center"
-                      icon={<ArrowRight className="w-4 h-4" />}
-                    >
-                      {isSubmitting ? "Transmitting..." : "Send Technical Transmission"}
-                    </Button>
-                  </div>
-                </form>
-              )}
-            </Card>
+                )}
+              </Card>
+            ))}
           </div>
-        </div>
+        </section>
+
+        <section
+          aria-labelledby="contact-details-heading"
+          className="mx-auto mt-12 max-w-3xl"
+        >
+          <div className="rounded-2xl border border-[#263650] bg-[#10192B] p-6 sm:p-8">
+            <h2
+              id="contact-details-heading"
+              className="text-xl font-bold text-[#F4F6FF]"
+            >
+              Business contact details
+            </h2>
+
+            {hasContactDetails ? (
+              <div className="mt-5 space-y-4 text-sm text-[#A5B2CC]">
+                {configuredEmail && (
+                  <p className="flex items-center gap-3">
+                    <Mail
+                      aria-hidden="true"
+                      className="h-4 w-4 shrink-0 text-[#40D6C5]"
+                    />
+                    <a
+                      className="min-h-11 inline-flex items-center underline decoration-[#586BFF]/60 underline-offset-4 hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+                      href={`mailto:${encodeURIComponent(configuredEmail)}`}
+                    >
+                      {configuredEmail}
+                    </a>
+                  </p>
+                )}
+                {configuredPhone && (
+                  <p className="flex items-center gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="h-4 w-4 shrink-0 text-center text-[#40D6C5]"
+                    >
+                      +
+                    </span>
+                    <a
+                      className="min-h-11 inline-flex items-center underline decoration-[#586BFF]/60 underline-offset-4 hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+                      href={`tel:${configuredPhone.replace(/[^\d+]/g, "")}`}
+                    >
+                      {configuredPhone}
+                    </a>
+                  </p>
+                )}
+                {configuredAddress && (
+                  <p className="flex items-start gap-3">
+                    <Building2
+                      aria-hidden="true"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-[#40D6C5]"
+                    />
+                    <span>{configuredAddress}</span>
+                  </p>
+                )}
+                {configuredSocialLinks?.map((link) => (
+                  <p key={link.label} className="flex items-center gap-3">
+                    <ArrowUpRight
+                      aria-hidden="true"
+                      className="h-4 w-4 shrink-0 text-[#40D6C5]"
+                    />
+                    <a
+                      className="min-h-11 inline-flex items-center underline decoration-[#586BFF]/60 underline-offset-4 hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {link.label}
+                    </a>
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <p
+                role="status"
+                className="mt-4 rounded-lg border border-[#263650] bg-[#080D1B]/70 p-4 text-sm leading-relaxed text-[#A5B2CC]"
+              >
+                Business contact details are being added. Enquiry actions will
+                become available here once verified contact details are
+                configured.
+              </p>
+            )}
+          </div>
+        </section>
       </Container>
     </div>
   );

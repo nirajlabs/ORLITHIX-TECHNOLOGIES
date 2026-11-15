@@ -6,6 +6,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased] - 2026-11-15
+
+### Added
+- Rebuilt the About page with company introduction, vision, mission, technology philosophy, innovation areas, development approach, and future direction sections.
+- Replaced the simulated contact form flow with four enquiry categories: project, collaboration, business partnership, and general.
+- Added optional centralized contact configuration fields for email, phone, address, and social links.
+- Added a README with current routes, data sources, and development commands.
+
+### Changed
+- Contact actions are rendered only when corresponding real contact details are configured. The current configuration is empty, so the Contact page displays a pending-details notice and does not send or persist inquiries.
+- Updated the homepage About preview, CTA, and footer to avoid fabricated contact details and unsupported operating/privacy claims.
+- Reframed innovation-area and development-approach copy as exploratory or proposed.
+- Product catalog/detail presentation includes optional local artwork with generated fallback artwork; product descriptions, features, and roadmaps are disclosed as proposed rather than deployed functionality.
+- Updated architecture, decision, agent, and handoff documentation to describe the actual application and known limitations.
+
+### Verification
+- `npm run lint` passed (exit code 0).
+- `npm run build` passed (exit code 0); Next.js compiled and generated 19/19 static pages, including About, Contact, capability details, and product details.
+- `git diff --check` passed with no whitespace errors.
+- No automated test script is configured; no unit/integration test suite was run.
+
+### Not implemented
+- No contact form submission, email provider, CRM integration, API route, server action, or database persistence.
+- No new runtime dependency or database/configuration requirement was added.
+
+---
+
 ## [0.3.0] - 2026-11-15
 
 ### Added

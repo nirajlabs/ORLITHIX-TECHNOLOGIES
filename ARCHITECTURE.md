@@ -1,318 +1,98 @@
-# ARCHITECTURE.md — Complete Architecture & Design Specification
+# Architecture: Orlithix Technologies Website
 
-**System:** Orlithix Technologies Corporate Digital Platform  
-**Target Architecture:** Next.js App Router (React Server Components)  
-**Positioning:** AI-First Parent Technology Venture  
-**Tagline:** *"Engineering Intelligence. Building the Future."*  
+**Status:** Current implementation snapshot, reviewed 2026-11-15
+**Venture status:** Orlithix Technologies is proposed and in development. This architecture describes the website, not a released product platform.
 
----
+## 1. Technology and runtime
 
-## 1. Complete Website Architecture
+- Next.js 16 App Router with React 19 and TypeScript.
+- Tailwind CSS 4 and `lucide-react`.
+- npm is the package manager.
+- `npm run dev`, `npm run lint`, and `npm run build` are configured. There is no test script in `package.json`.
+- Public routes are composed under `src/app/layout.tsx`; page components are server-rendered unless interactivity requires a client component.
 
-### 1.1 Architectural Philosophy
-Orlithix Technologies operates as a **parent holding and technology incubator entity**. Its digital presence must reflect institutional weight, engineering rigor, and structural agility. It must easily support the introduction of new autonomous technology divisions, spin-out software products, research laboratories, and cross-disciplinary capabilities without redesigning or restructuring the platform.
+## 2. Current routes
 
-```
-+----------------------------------------------------------------------------+
-|                          ORLITHIX TECHNOLOGIES                             |
-|                        (Parent Venture Architecture)                       |
-+----------------------------------------------------------------------------+
-                                      |
-         +----------------------------+----------------------------+
-         |                                                         |
-+------------------+                                      +------------------+
-|    TECHNOLOGY    |                                      |    COMMERCIAL    |
-|    DIVISIONS     |                                      |    PRODUCTS      |
-+------------------+                                      +------------------+
-| - Artificial     |                                      | - Intelligent    |
-|   Intelligence   |                                      |   SaaS Platforms |
-| - Software       |                                      | - Autonomous     |
-|   Engineering    |                                      |   Agents         |
-| - Enterprise     |                                      | - Data Fabric    |
-|   SaaS           |                                      |   Engines        |
-| - Data           |                                      | - Cloud Compute  |
-|   Intelligence   |                                      |   Accelerators   |
-| - Automation &   |                                      |                  |
-|   Agents         |                                      | (All badged with |
-| - Cloud Systems  |                                      |  explicit R&D /  |
-| - Mobile Tech    |                                      |  Alpha status)   |
-+------------------+                                      +------------------+
-         |                                                         |
-         +----------------------------+----------------------------+
-                                      |
-                         +--------------------------+
-                         |    CORE CAPABILITIES     |
-                         |   (Cross-Cutting Matrix) |
-                         +--------------------------+
-                         | - Distributed Systems    |
-                         | - Cognitive Architecture |
-                         | - Edge Compute & Runtime |
-                         | - High-Throughput Stream |
-                         +--------------------------+
-```
+| Route | Implementation |
+| --- | --- |
+| `/` | Hero, capabilities preview, About preview, Innovation Lab preview, development approach, and contact CTA. |
+| `/about` | Introduction, vision, mission, technology philosophy, innovation areas, approach, future direction, and entity disclosure. |
+| `/capabilities` | Capability catalog with client-side filtering/search. |
+| `/capabilities/[slug]` | Capability detail pages generated from the active capability catalog. |
+| `/products` | Published-product catalog with client-side category filtering and search. |
+| `/products/[slug]` | Product concept detail pages generated from the active product catalog. |
+| `/contact` | Four enquiry categories and contact options that render only from configured contact details. No enquiry is submitted or stored. |
+| `/sitemap.xml` | Generated from active product and capability catalogs plus core pages. |
+| `/robots.txt` | Next.js robots route. |
 
-### 1.2 Architectural Principles
-1. **Decoupled Content Layer:**
-   No business logic, product metadata, or capability descriptions are hardcoded within UI views. Everything is sourced from strongly typed data modules in `src/data/`.
-2. **Server-First Hydration (RSC):**
-   Marketing and informational routes are rendered on the server, delivering optimal Time to First Byte (TTFB), near-zero initial JavaScript payload, and first-class SEO crawling.
-3. **Layered Component Hierarchy:**
-   - Primitives (`src/components/ui/`) -> Domain Organisms (`src/components/sections/`) -> Layout Frames (`src/components/layout/`) -> Page Assembly (`src/app/**/page.tsx`).
-4. **Strict Type Safety:**
-   Zod or native TypeScript interfaces validate all entities at compile and runtime.
+The latest recorded production build generated 19/19 static pages, including six capability detail routes and four product detail routes.
 
----
+## 3. Active content sources
 
-## 2. Page-by-Page Structure & Content Strategy
+| Source | Responsibility |
+| --- | --- |
+| `src/lib/products.ts` | ProductItem model, published product records, and catalog/detail helpers. Product UI and sitemap use this module. |
+| `src/lib/capabilities.ts` | CapabilityItem model, capability records, and catalog/detail helpers. Capability UI and sitemap use this module. |
+| `src/data/company.ts` | Company identity/disclosure, About copy, contact CTA text, and optional contact details. |
+| `src/data/divisions.ts` | Technology exploration-area content. |
+| `src/data/developmentApproach.ts` | The proposed Discover, Design, Engineer, Validate approach content. |
+| `src/data/navigation.ts` | Main navigation and footer navigation. |
+| `src/types/index.ts` | Shared company, division, capability, product, navigation, and development-step types used by `src/data`. |
 
-### 2.1 Home Page (`/`)
-- **Hero Section:**
-  - Dynamic ambient backdrop: Deep void `#080D1B` with subtle electric blue radial glow (`#586BFF`/10) and grid lines (`#263650`).
-  - Badge: `"PROVISIONAL VENTURE · ARCHITECTURAL HORIZON"`.
-  - Headline: *"Engineering Intelligence. Building the Future."*
-  - Subheadline: *"A parent technology venture architecting high-concurrency distributed systems, applied artificial intelligence, enterprise software, and cloud-native computing platforms."*
-  - Primary CTA: *"Explore Capabilities"* (links to `/capabilities`).
-  - Secondary CTA: *"View Technology Divisions"* (links to `/about#divisions`).
-- **Core Divisions Overview (Bento Grid):**
-  - Highlighting 6 core divisions: Artificial Intelligence, Distributed Software Engineering, Enterprise SaaS, Data Intelligence, Autonomous Automation, and Cloud Infrastructure.
-  - Interactive hover state: `#121F36` background with `#40D6C5` edge glow.
-- **Featured Technology Capabilities:**
-  - Matrix showing 4 highlight capabilities with domain tags and architectural parameters.
-- **Products & Research Pipeline:**
-  - Curated preview of 3 major initiatives with status pills (`Concept Phase`, `In Development`, `Architecture Alpha`).
-- **Foundational Engineering Principles:**
-  - Non-fabricated, engineering-focused axioms: *Deterministic Reliability*, *Autonomous Orchestration*, *Symmetric Scalability*, *First-Principles Security*.
-- **Global CTA & Legal Disclaimer:**
-  - Direct inquiry CTA with standard provisional venture disclosure.
+`src/data/products.ts` and `src/data/capabilities.ts` are legacy duplicate modules. Current application imports use `src/lib/products.ts` and `src/lib/capabilities.ts`; the duplicate modules are not the active source of truth.
 
-### 2.2 About Page (`/about`)
-- **Venture Mission & Genesis:**
-  - Explaining the ethos of Orlithix Technologies as an umbrella engineering organization.
-  - Transparent disclosure regarding its formative, pre-incorporation research status.
-- **Parent Venture Operating Model:**
-  - Diagrammatic representation of how Orlithix incubates, engineers, and scales autonomous software platforms.
-- **Technology Divisions Breakdown:**
-  - Comprehensive breakdown of all operating and planned divisions, their core research vectors, and technical stacks.
-- **Architectural Tenets:**
-  - What makes Orlithix's engineering approach distinct: Clean architecture, deterministic intelligence, zero-trust infrastructure, and continuous telemetry.
-- **Research & Development Standards:**
-  - Commitment to reproducible benchmarks, ethical AI deployment, and high-assurance codebases.
+The product catalog has a `published` gate. `getAllProducts()` returns published products for the catalog, footer, and sitemap. Product category and stage fields distinguish concepts and future stages. Product feature and roadmap copy is proposed, not proof of implemented product behavior.
 
-### 2.3 Capabilities Page (`/capabilities`)
-- **Interactive Domain Filter:**
-  - Filter by domain: *All*, *Artificial Intelligence*, *Software Engineering*, *Cloud & Infrastructure*, *Data Intelligence*, *Autonomous Systems*.
-- **Data-Driven Capability Cards:**
-  - Each card features: Icon, Title, Division attribution, Technical Summary, Key Architectural Traits (e.g., *Latency targets, Protocol support, Scalability ceilings*), and Implementation Status.
-- **Enterprise Engineering Rigor:**
-  - Section detailing quality assurance, CI/CD pipelines, container orchestration, and formal verification methodologies.
-- **Technical Consultation / Collaboration CTA:**
-  - Inviting academic, research, and technical discussions.
+## 4. Component boundaries
 
-### 2.4 Products Page (`/products`)
-- **Product Pipeline Overview:**
-  - Clear statement: *"All software products, platforms, and intelligent agents listed represent active internal research, architectural prototypes, or conceptual roadmaps."*
-- **Status Filter:**
-  - Filter products by lifecycle phase: *All*, *In Development*, *Architecture Alpha*, *Research Concept*.
-- **Comprehensive Product Cards:**
-  - Name, Division, Tagline, Problem Space, Technical Architecture, Status Badge, and Projected Target Audience (e.g., Enterprise DevOps, Data Engineers, FinTech).
-- **Provisional Research Notice:**
-  - Highlighting that product access is currently restricted to internal development and closed architectural evaluations.
+- `src/components/ui/` contains shared primitives such as Badge, Button, Card, Container, and SectionHeader.
+- `src/components/layout/` contains shared navigation and footer.
+- `src/components/sections/` contains homepage sections and previews.
+- `src/components/product-card.tsx` and `src/components/product-grid.tsx` render and filter product concepts. The grid is a client component.
+- `src/components/capability-card.tsx` and `src/components/capability-grid.tsx` render and filter capabilities. The grid is a client component.
+- `src/app/about/page.tsx`, `src/app/contact/page.tsx`, catalog roots, and detail routes are server components unless a child component needs browser state.
 
-### 2.5 Contact Page (`/contact`)
-- **Inquiry Classification:**
-  - Interactive inquiry selector: *General Inquiries*, *Architectural & Research Collaboration*, *Technology Partnerships*, *Media & Disclosure*.
-- **Direct Contact Interface:**
-  - Fully validated input form: Name, Email, Organization, Inquiry Classification, Project / Research Details.
-- **Security & Privacy Guarantee:**
-  - Clear notice stating information is handled in accordance with privacy best practices without marketing tracking.
-- **Transparent Direct Details:**
-  - Clear email address contact channel (`contact@orlithix.com` or placeholder designated for launch).
+Product artwork uses an optional local image path; if absent, `ProductArtwork` renders generated CSS/SVG artwork. A product image is decorative concept artwork and must not imply a deployed interface.
 
----
+## 5. Contact behavior and boundaries
 
-## 3. Component Architecture & Hierarchy
+`src/data/company.ts` owns `contactDetails` (`email`, `phone`, `address`, and optional social links). The current object is empty.
 
-```
-src/
-├── app/                           # App Router routes
-│   ├── layout.tsx
-│   ├── page.tsx
-│   ├── about/page.tsx
-│   ├── capabilities/page.tsx
-│   ├── products/page.tsx
-│   ├── contact/page.tsx
-│   └── api/contact/route.ts
-├── components/
-│   ├── brand/
-│   │   ├── Logo.tsx               # Scalable SVG Monogram + Wordmark
-│   │   └── Favicon.tsx            # Inline SVG favicon configuration
-│   ├── layout/
-│   │   ├── Navbar.tsx             # Sticky blur navbar with active links
-│   │   ├── MobileDrawer.tsx       # Sliding accessible mobile menu
-│   │   ├── Footer.tsx             # Legal disclosures, division links, sitemap
-│   │   └── Container.tsx          # Consistent max-w-7xl px-4 sm:px-6 lg:px-8
-│   ├── ui/
-│   │   ├── Button.tsx             # Primary, secondary, outline, ghost variants
-│   │   ├── Badge.tsx              # Colored status tags (Research, Alpha, etc.)
-│   │   ├── Card.tsx               # Surface card with border highlights
-│   │   ├── SectionHeader.tsx      # Pretitle, main title, subtitle compound
-│   │   ├── GlowMesh.tsx           # Subtle ambient background gradients
-│   │   └── Input.tsx              # Form primitives with floating labels
-│   └── sections/
-│       ├── Hero.tsx               # Reusable hero banner
-│       ├── DivisionCard.tsx       # Division presentation card
-│       ├── CapabilityCard.tsx     # Capability showcase card
-│       ├── ProductCard.tsx        # Product card with status indicator
-│       └── ContactForm.tsx        # Client-side validated form
-├── data/
-│   ├── company.ts                 # Company core parameters & legal text
-│   ├── divisions.ts               # Divisions array
-│   ├── capabilities.ts            # Capabilities array
-│   ├── products.ts                # Products array
-│   └── navigation.ts              # Nav links and footer sections
-└── types/
-    └── index.ts                   # Universal TypeScript interfaces
-```
+- The Contact page presents Project, Collaboration, Business Partnership, and General enquiry categories.
+- Email actions are rendered only if an email is configured. Phone and social links appear only when their values are configured.
+- The homepage CTA and footer do not invent an email address; they display a pending-details notice when no usable contact details are available.
+- There is no contact form submission, API route, server action, provider integration, or persistence.
+- Product CTAs may include a `subject` query parameter, but the Contact page does not currently consume that parameter.
 
----
+Do not add a success state unless a real delivery mechanism exists and its result is verified. Implementing genuine inquiry submission requires an approved recipient/provider, server-side validation, and appropriate abuse/privacy controls.
 
-## 4. Logo Design Direction
+## 6. Design and accessibility direction
 
-### 4.1 Concept: The "Neural Monolith" Monogram
-- **Geometric Construct:**
-  An isometric hexagonal prism intersected by twin luminous vectors, forming an abstract uppercase **'O'** and **'X'** union.
-- **Symbolism:**
-  - **Hexagonal Foundation:** Represents crystalline structure, enterprise stability, and distributed network topology.
-  - **Intersecting Vectors:** Represents the confluence of human engineering and artificial intelligence.
-  - **Dual Gradient:** Flowing from Electric Indigo (`#586BFF`) at the vertex to Cyber Mint (`#40D6C5`) at the terminal edges.
-- **Wordmark Typography:**
-  - Font: Geometric sans-serif (Inter / Space Grotesk / Geist) with high-tracking (`tracking-wider`).
-  - Text: **ORLITHIX** in bold Ice White (`#F4F6FF`) with a subtle accent point (`.`) in Cyber Mint (`#40D6C5`), followed by a light-weight uppercase **TECHNOLOGIES** subtitle in Slate Mist (`#A5B2CC`).
-- **Scalability:**
-  Implemented as a pure vector SVG component (`<Logo variant="full" />` and `<Logo variant="mark" />`), guaranteeing razor-sharp rendering on 16px favicons up to 8K displays.
+The site uses a dark visual system with the following established values:
 
----
+- Background: `#080D1B`
+- Secondary surface: `#10192B`
+- Card surface: `#121F36`
+- Primary indigo: `#586BFF`
+- Accent mint: `#40D6C5`
+- Primary text: `#F4F6FF`
+- Secondary text: `#A5B2CC`
+- Borders: `#263650`
 
-## 5. Design System Specifications
+Tailwind utility classes are primarily used in components, with global styles in `src/app/globals.css`. Prefer responsive, mobile-first layouts, accessible labels/ARIA for interactive controls, visible keyboard focus, and touch targets of at least 44px.
 
-### 5.1 Color Palette
-```css
-/* Core Color Tokens */
---color-bg-base:        #080D1B; /* Main Canvas Deep Void */
---color-bg-secondary:   #10192B; /* Raised Sections & Navbars */
---color-surface-card:   #121F36; /* Component Cards & Modals */
---color-surface-hover:  #172847; /* Card Interactive Hover */
+The latest lint/build results do not replace browser testing. No responsive browser sweep or dedicated accessibility audit is recorded for the current About/Contact changes.
 
---color-brand-primary:  #586BFF; /* Electric Royal Blue/Indigo */
---color-brand-accent:   #40D6C5; /* Luminous Cyber Mint */
+## 7. SEO and generated pages
 
---color-text-primary:   #F4F6FF; /* Ice White (High Contrast) */
---color-text-secondary: #A5B2CC; /* Cool Slate Mist (Subdued) */
---color-text-muted:     #627394; /* Low Emphasis & Disclaimers */
+- Root metadata and Organization JSON-LD are in `src/app/layout.tsx`.
+- About and Contact pages define route metadata.
+- Product and capability detail routes define static parameters and dynamic metadata from their active catalogs.
+- `src/app/sitemap.ts` derives dynamic detail URLs from `src/lib/products.ts` and `src/lib/capabilities.ts`.
+- `NEXT_PUBLIC_SITE_URL` is optional; code falls back to `https://orlithix.com`.
 
---color-border-subtle:  #263650; /* Base Structural Borders */
---color-border-hover:   #3B527A; /* Highlighted Borders */
---color-border-active:  #586BFF; /* Focused / Active Borders */
-```
+## 8. Known follow-up
 
-### 5.2 Typography System
-- **Primary Typeface:** `Inter` or `Geist Sans` (System fallback: `system-ui, -apple-system, sans-serif`).
-- **Monospace Typeface:** `JetBrains Mono` or `Geist Mono` for status badges, technical specifications, and metrics.
-- **Hierarchy Scale:**
-  - Display / Hero: `text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-none`
-  - Section Headings: `text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight`
-  - Card Titles: `text-lg md:text-xl font-semibold`
-  - Body Text: `text-sm md:text-base text-[#A5B2CC] leading-relaxed`
-  - Caption / Badges: `text-xs font-mono uppercase tracking-wider`
-
-### 5.3 Elevation & Glassmorphism
-- **Standard Card Elevation:** Background `#121F36` with 1px border `#263650`, `rounded-xl`.
-- **Glassmorphic Elements:** Background `rgba(16, 25, 43, 0.75)` with `backdrop-blur-md` and `border border-[#263650]/80`.
-- **Ambient Lighting:** Subtle radial gradients (`radial-gradient(circle at 50% 0%, rgba(88, 107, 255, 0.12), transparent 70%)`).
-
----
-
-## 6. Responsive Layout Plan
-
-- **Mobile First Approach:**
-  - 320px–639px (Mobile): Single-column stacked cards, full-screen sliding navigation drawer, touch targets ≥ 48px, horizontal overflow scrolling for filter tabs.
-  - 640px–1023px (Tablet): 2-column bento grids, balanced header padding, medium hero scale.
-  - 1024px–1279px (Laptop): Full desktop navbar, 3-column capability grids, side-by-side about narratives.
-  - 1280px+ (Wide Desktop): Max container constrained to `1280px` (`max-w-7xl`), centered with fluid outer margins to prevent edge stretching on ultra-wide monitors.
-
----
-
-## 7. Expandable Product & Capability Architecture
-
-### 7.1 Data Schemas (TypeScript)
-
-```typescript
-export type ProductStatus = 
-  | 'CONCEPT_VALIDATION'
-  | 'IN_DEVELOPMENT'
-  | 'ALPHA_PREVIEW'
-  | 'PLANNED_INITIATIVE';
-
-export interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  divisionId: string;
-  tagline: string;
-  description: string;
-  status: ProductStatus;
-  statusLabel: string;
-  tags: string[];
-  features: string[];
-  techStack: string[];
-  targetAudience: string;
-  isFeatured: boolean;
-}
-
-export interface Division {
-  id: string;
-  name: string;
-  shortName: string;
-  tagline: string;
-  description: string;
-  iconName: string;
-  colorGradient: string;
-  coreVectors: string[];
-  status: 'ESTABLISHED_FOCUS' | 'ACTIVE_RESEARCH' | 'EXPLORATORY';
-}
-
-export interface Capability {
-  id: string;
-  title: string;
-  divisionId: string;
-  summary: string;
-  description: string;
-  architecturalPillars: string[];
-  iconName: string;
-  highlightMetric?: {
-    label: string;
-    value: string;
-  };
-}
-```
-
-### 7.2 Scalability Mechanics
-- Adding a new division requires only appending a record in `src/data/divisions.ts`.
-- Adding a new product requires only appending a record in `src/data/products.ts`.
-- The UI filters, cards, and parent associations automatically update without touching JSX or layout components.
-
----
-
-## 8. Comprehensive SEO & Meta Strategy
-
-1. **Metadata API:**
-   Dynamic metadata implemented using Next.js `generateMetadata` or static `Metadata` objects on every route.
-2. **Canonical Links:** Fully qualified canonical URLs configured via `metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://orlithix.com')`.
-3. **OpenGraph & Twitter Cards:**
-   Premium dark social preview cards dynamically describing Orlithix Technologies as an AI-first parent venture.
-4. **Structured Data (JSON-LD):**
-   - `Organization` schema in `layout.tsx` establishing legal disclaimers, brand identity, and corporate scope.
-   - `SoftwareApplication` schema for listed products indicating `applicationSubCategory` and developmental stage.
-5. **XML Sitemap & Robots:**
-   - Auto-generated `sitemap.xml` via `src/app/sitemap.ts`.
-   - Dynamic `robots.txt` via `src/app/robots.ts` indexing public marketing routes.
+1. Review capability and marketing claims for evidence. The active capability data/page still contains wording that can imply deployed production work, currently available services, or measured performance. Do not treat those claims as verified without supporting evidence.
+2. Obtain owner approval for real contact details and the inquiry-delivery method before implementing a form/API integration.
+3. Decide whether to remove or consolidate the unused duplicate data modules after confirming no external workflow depends on them.

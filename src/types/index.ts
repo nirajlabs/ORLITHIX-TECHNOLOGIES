@@ -68,9 +68,23 @@ export interface CompanyConfig {
   heroDescription: string;
   aboutHeadline: string;
   aboutSummary: string;
+  aboutVision: string;
   aboutMission: string[];
+  aboutTechnologyPhilosophy: Array<{
+    title: string;
+    description: string;
+  }>;
+  aboutFutureDirection: string;
   contactCtaHeadline: string;
   contactCtaDescription: string;
-  contactEmail: string;
+  contactDetails: {
+    email?: string;
+    phone?: string;
+    address?: string;
+    socialLinks?: Array<{
+      label: string;
+      url: string;
+    }>;
+  };
   foundedYear: string;
 }
