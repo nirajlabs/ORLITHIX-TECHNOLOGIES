@@ -4,41 +4,37 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { TechVisual } from "@/components/ui/TechVisual";
 import { companyData } from "@/data/company";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { divisionsData } from "@/data/divisions";
+import { ArrowRight } from "lucide-react";
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative pt-32 sm:pt-40 pb-20 overflow-hidden">
-      {/* Dynamic Ambient Background Illumination */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] sm:w-[850px] h-[350px] bg-[#586BFF]/12 rounded-full blur-[140px]" />
-        <div className="absolute top-44 left-1/3 -translate-x-1/2 w-[300px] sm:w-[450px] h-[220px] bg-[#40D6C5]/8 rounded-full blur-[100px]" />
-      </div>
+    <section className="relative isolate overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-36">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-[440px] max-w-5xl bg-[radial-gradient(ellipse_at_top,rgba(88,107,255,0.12),transparent_68%)]"
+      />
 
-      {/* Grid texture overlay */}
-      <div className="absolute inset-0 tech-grid-pattern opacity-30 pointer-events-none" />
-
-      <Container className="relative z-10">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+      <Container>
+        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           {/* Status Badge */}
-          <div className="mb-6 animate-fade-in">
+          <div className="mb-6">
             <Badge variant="concept" size="md">
-              AI-FIRST PARENT VENTURE · ACTIVE R&D
+              PROPOSED TECHNOLOGY VENTURE
             </Badge>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#F4F6FF] leading-[1.12]">
+          <h1 className="max-w-4xl text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-[#F4F6FF] sm:text-5xl lg:text-6xl">
             {companyData.heroHeadline}
           </h1>
 
           {/* Description */}
-          <p className="mt-6 text-base sm:text-lg lg:text-xl text-[#A5B2CC] leading-relaxed max-w-3xl font-normal">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#A5B2CC] sm:text-lg">
             {companyData.heroDescription}
           </p>
 
-          {/* Dual Action Buttons */}
-          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row">
             <Button
               href="/capabilities"
               variant="primary"
@@ -52,31 +48,28 @@ export const HeroSection: React.FC = () => {
               href="/contact"
               variant="secondary"
               size="lg"
-              icon={<Sparkles className="w-4 h-4 text-[#40D6C5]" />}
+              icon={<ArrowRight className="w-4 h-4" />}
               className="w-full sm:w-auto"
             >
-              Let&apos;s Collaborate
+              Contact Us
             </Button>
           </div>
 
-          {/* Key Venture Signals */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-[#A5B2CC]/80 border-t border-[#263650]/60 pt-6">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#586BFF]" />
-              Modular Parent Architecture
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-2 border-t border-[#263650] pt-6">
+            <span className="mr-1 text-xs text-[#A5B2CC]">
+              Areas of exploration
             </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#40D6C5]" />
-              Multi-Agent Orchestration
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F4F6FF]" />
-              High-Assurance Engineering
-            </span>
+            {divisionsData.slice(0, 3).map((division) => (
+              <span
+                key={division.id}
+                className="rounded-full border border-[#263650] bg-[#10192B]/80 px-3 py-1.5 text-xs text-[#A5B2CC]"
+              >
+                {division.shortName}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Sophisticated SVG/CSS Technology Visual */}
         <TechVisual />
       </Container>
     </section>

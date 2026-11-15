@@ -32,39 +32,56 @@ export const Navbar: React.FC = () => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-colors duration-200 ${
         isScrolled
-          ? "bg-[#080D1B]/85 backdrop-blur-md border-b border-[#263650]/80 shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-3"
-          : "bg-transparent border-b border-[#263650]/30 py-5"
+          ? "border-[#263650] bg-[#080D1B]/95 shadow-sm shadow-black/20"
+          : "border-[#263650]/70 bg-[#080D1B]/90"
       }`}
     >
       <Container>
-        <div className="flex items-center justify-between">
+        <div className="flex min-h-16 items-center justify-between gap-4">
           {/* Logo on the left */}
           <div className="flex-shrink-0">
-            <Logo size="md" variant="horizontal" />
+            <Logo size="sm" variant="horizontal" />
           </div>
 
           {/* Navigation links in the center / right */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2 bg-[#10192B]/60 border border-[#263650]/60 rounded-full px-4 py-1.5 backdrop-blur-sm">
+          <nav
+            aria-label="Main navigation"
+            className="hidden items-center gap-1 rounded-full border border-[#263650] bg-[#10192B] px-2 py-1 lg:flex"
+          >
             {mainNavItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(`${item.href}/`));
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative text-xs lg:text-sm font-medium px-3 py-1.5 rounded-full transition-all duration-200 ${
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative inline-flex min-h-11 items-center rounded-full px-3 text-xs font-medium transition-colors duration-200 ${
                     isActive
-                      ? "text-[#F4F6FF] bg-[#121F36] shadow-[0_0_12px_rgba(88,107,255,0.25)] border border-[#586BFF]/30"
-                      : "text-[#A5B2CC] hover:text-[#F4F6FF] hover:bg-[#121F36]/50"
+                      ? "border border-[#586BFF]/50 bg-[#121F36] text-[#F4F6FF]"
+                      : "border border-transparent text-[#A5B2CC] hover:bg-[#121F36] hover:text-[#F4F6FF]"
                   }`}
                 >
                   <span className="flex items-center gap-1.5">
                     {item.label}
                     {item.badge && (
-                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.2 bg-[#40D6C5]/15 text-[#40D6C5] rounded-full border border-[#40D6C5]/30">
+                      <span className="rounded-full border border-[#40D6C5]/30 bg-[#40D6C5]/10 px-1.5 py-0.5 text-[9px] font-mono font-semibold text-[#40D6C5]">
                         {item.badge}
                       </span>
                     )}
@@ -75,7 +92,7 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Right Action: Contact Us button */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden items-center gap-3 lg:flex">
             <Button
               href="/contact"
               variant="primary"
@@ -87,19 +104,14 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu Hamburger */}
-          <div className="flex md:hidden items-center gap-2">
-            <Button
-              href="/contact"
-              variant="primary"
-              size="sm"
-              className="text-xs px-3 py-1.5"
-            >
-              Contact
-            </Button>
+          <div className="flex items-center gap-2 lg:hidden">
             <button
+              type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg bg-[#10192B] border border-[#263650] text-[#A5B2CC] hover:text-[#F4F6FF] focus:outline-none"
-              aria-label="Toggle Navigation Menu"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#263650] bg-[#10192B] text-[#A5B2CC] transition-colors hover:border-[#586BFF]/60 hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {isMobileMenuOpen ? (
                 <X className="w-5 h-5 text-[#F4F6FF]" />
@@ -111,33 +123,41 @@ export const Navbar: React.FC = () => {
         </div>
       </Container>
 
-      {/* Mobile Sliding Drawer */}
+      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[65px] bg-[#080D1B]/95 backdrop-blur-xl border-b border-[#263650] shadow-2xl transition-all duration-300">
-          <Container className="py-6 flex flex-col gap-3">
-            {mainNavItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? "bg-[#121F36] text-[#F4F6FF] border border-[#586BFF]/40"
-                      : "text-[#A5B2CC] hover:text-[#F4F6FF] hover:bg-[#10192B]"
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  {item.badge && (
-                    <span className="text-[10px] font-mono px-2 py-0.5 bg-[#40D6C5]/15 text-[#40D6C5] rounded-full border border-[#40D6C5]/30">
-                      {item.badge}
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
+        <div
+          id="mobile-navigation"
+          className="absolute inset-x-0 top-full border-b border-[#263650] bg-[#080D1B] shadow-xl shadow-black/25 lg:hidden"
+        >
+          <Container className="flex flex-col gap-3 py-5">
+            <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
+              {mainNavItems.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(`${item.href}/`));
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`flex min-h-11 items-center justify-between rounded-xl px-4 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5] ${
+                      isActive
+                        ? "border border-[#586BFF]/40 bg-[#121F36] text-[#F4F6FF]"
+                        : "border border-transparent text-[#A5B2CC] hover:bg-[#10192B] hover:text-[#F4F6FF]"
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    {item.badge && (
+                      <span className="rounded-full border border-[#40D6C5]/30 bg-[#40D6C5]/10 px-2 py-0.5 text-[10px] font-mono text-[#40D6C5]">
+                        {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
 
-            <div className="pt-4 mt-2 border-t border-[#263650] flex flex-col gap-3">
+            <div className="mt-2 border-t border-[#263650] pt-4">
               <Button
                 href="/contact"
                 variant="primary"

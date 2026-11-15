@@ -18,20 +18,21 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   align = "center",
   className = "",
 }) => {
-  const alignmentClass = align === "center" ? "text-center items-center" : "text-left items-start";
+  const alignmentClass =
+    align === "center" ? "items-center text-center" : "items-start text-left";
 
   return (
-    <div className={`flex flex-col mb-12 sm:mb-16 ${alignmentClass} ${className}`}>
+    <div className={`mb-10 flex flex-col sm:mb-12 ${alignmentClass} ${className}`}>
       {badgeText && (
         <Badge variant={badgeVariant} className="mb-4">
           {badgeText}
         </Badge>
       )}
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F4F6FF] max-w-3xl leading-snug">
+      <h2 className="max-w-3xl text-2xl font-bold leading-tight tracking-tight text-[#F4F6FF] sm:text-3xl lg:text-4xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-sm sm:text-base text-[#A5B2CC] max-w-2xl leading-relaxed">
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#A5B2CC] sm:text-base">
           {subtitle}
         </p>
       )}

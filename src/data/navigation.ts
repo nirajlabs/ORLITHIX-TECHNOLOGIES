@@ -19,7 +19,7 @@ export const footerNavigation = {
   ],
   company: [
     { label: "About Orlithix", href: "/about" },
-    { label: "Parent Company Model", href: "/about#operating-model" },
+    { label: "Company Introduction", href: "/about#introduction" },
     { label: "Architectural Principles", href: "/about#tenets" },
     { label: "Innovation Lab", href: "/#innovation-lab" },
     { label: "Contact & Collaboration", href: "/contact" },

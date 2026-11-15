@@ -9,7 +9,6 @@ import {
   CloudCog, 
   Smartphone, 
   ArrowRight,
-  Sparkles,
   Layers
 } from "lucide-react";
 
@@ -37,7 +36,7 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
   // Status badge styling
   const statusConfig = {
     current: {
-      badgeBg: "bg-[#586BFF]/10 text-[#7888FF] border-[#586BFF]/30",
+      badgeBg: "bg-[#586BFF]/10 text-[#F4F6FF] border-[#586BFF]/30",
       dot: "bg-[#586BFF]",
     },
     service: {
@@ -45,35 +44,32 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
       dot: "bg-[#40D6C5]",
     },
     research: {
-      badgeBg: "bg-purple-500/10 text-purple-300 border-purple-500/30",
-      dot: "bg-purple-400",
+      badgeBg: "bg-[#10192B] text-[#A5B2CC] border-[#263650]",
+      dot: "bg-[#A5B2CC]",
     },
   }[capability.statusType];
 
   return (
-    <div
-      className={`group relative flex flex-col justify-between bg-[#121F36] border border-[#263650] hover:border-[#586BFF]/50 rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:bg-[#15233c] hover:shadow-[0_12px_40px_rgba(88,107,255,0.12)] hover:-translate-y-1 overflow-hidden ${className}`}
+    <article
+      className={`group flex h-full flex-col justify-between rounded-2xl border border-[#263650] bg-[#121F36] p-5 transition-[background-color,border-color,box-shadow] duration-200 hover:border-[#586BFF]/60 hover:bg-[#15233c] hover:shadow-md hover:shadow-[#080D1B]/25 sm:p-6 ${className}`}
     >
-      {/* Subtle top edge border gradient highlight */}
-      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#586BFF]/30 to-transparent pointer-events-none" />
-
       <div>
         {/* Top Header Bar: Icon, Benchmark & Status Badge */}
-        <div className="flex items-start justify-between gap-3 mb-5">
-          <div className="w-12 h-12 rounded-xl bg-[#10192B] border border-[#263650] flex items-center justify-center text-[#586BFF] group-hover:text-[#40D6C5] group-hover:border-[#40D6C5]/40 transition-colors duration-300 flex-shrink-0">
-            <IconComponent className="w-6 h-6" />
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#263650] bg-[#10192B] text-[#40D6C5] transition-colors group-hover:border-[#586BFF]/50">
+            <IconComponent aria-hidden="true" className="h-5 w-5" />
           </div>
 
-          <div className="flex flex-col items-end gap-1.5">
+          <div className="flex max-w-full flex-col items-start gap-1.5 sm:items-end">
             <span
-              className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase font-semibold px-2.5 py-0.5 rounded-full border ${statusConfig.badgeBg}`}
+              className={`inline-flex max-w-full items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase leading-tight ${statusConfig.badgeBg}`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${statusConfig.dot}`} />
+              <span aria-hidden="true" className={`h-1.5 w-1.5 shrink-0 rounded-full ${statusConfig.dot}`} />
               <span>{capability.statusLabel}</span>
             </span>
 
             {capability.benchmarkMetric && (
-              <span className="font-mono text-[9px] uppercase tracking-wider text-[#A5B2CC]/70">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#A5B2CC]">
                 {capability.benchmarkMetric.value}
               </span>
             )}
@@ -81,31 +77,34 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
         </div>
 
         {/* Name & Tagline */}
-        <h3 className="text-xl font-bold text-[#F4F6FF] group-hover:text-[#40D6C5] transition-colors duration-200">
-          <Link href={`/capabilities/${capability.slug}`} className="focus:outline-none">
+        <h3 className="text-lg font-semibold leading-snug text-[#F4F6FF] group-hover:text-[#40D6C5] transition-colors duration-200 sm:text-xl">
+          <Link
+            href={`/capabilities/${capability.slug}`}
+            className="inline-flex min-h-11 items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+          >
             {capability.name}
           </Link>
         </h3>
 
-        <p className="mt-1 font-mono text-xs text-[#7888FF]">
+        <p className="mt-2 text-xs font-medium text-[#40D6C5]">
           {capability.shortTagline}
         </p>
 
         {/* Description */}
-        <p className="mt-3.5 text-xs sm:text-sm text-[#A5B2CC] leading-relaxed line-clamp-3">
+        <p className="mt-3 text-sm leading-relaxed text-[#A5B2CC] line-clamp-3">
           {capability.description}
         </p>
 
         {/* Technologies List */}
         <div className="mt-6 pt-4 border-t border-[#263650]/60">
-          <span className="block text-[10px] font-mono uppercase tracking-wider text-[#A5B2CC]/70 mb-2">
-            Core Technologies & Stack:
+          <span className="mb-2 block text-[10px] font-mono uppercase tracking-wider text-[#A5B2CC]">
+            Related technologies:
           </span>
           <div className="flex flex-wrap gap-1.5">
             {capability.technologies.slice(0, 5).map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-0.5 rounded bg-[#10192B] border border-[#263650] text-[11px] font-mono text-[#F4F6FF]/90 group-hover:border-[#586BFF]/30 transition-colors"
+                className="rounded-md border border-[#263650] bg-[#10192B] px-2 py-1 text-[10px] font-mono text-[#A5B2CC]"
               >
                 {tech}
               </span>
@@ -120,8 +119,8 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
 
         {/* Use Case Teaser */}
         {capability.useCases.length > 0 && (
-          <div className="mt-4 pt-3 border-t border-[#263650]/40 flex items-center gap-1.5 text-xs text-[#A5B2CC]">
-            <Sparkles className="w-3.5 h-3.5 text-[#40D6C5] flex-shrink-0" />
+          <div className="mt-4 flex items-center gap-2 border-t border-[#263650] pt-3 text-xs text-[#A5B2CC]">
+            <Layers aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[#40D6C5]" />
             <span className="truncate">
               Use Case: <strong className="text-[#F4F6FF] font-medium">{capability.useCases[0].title}</strong>
             </span>
@@ -130,19 +129,19 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
       </div>
 
       {/* Footer Action */}
-      <div className="mt-6 pt-4 border-t border-[#263650] flex items-center justify-between">
-        <span className="font-mono text-[10px] text-[#A5B2CC]/60 uppercase">
-          {capability.useCases.length} Enterprise Use Cases
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-[#263650] pt-4">
+        <span className="text-[10px] text-[#A5B2CC]">
+          {capability.useCases.length} illustrative use cases
         </span>
 
         <Link
           href={`/capabilities/${capability.slug}`}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#586BFF] group-hover:text-[#40D6C5] transition-colors"
+          className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[#A5B2CC] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
         >
-          <span>Explore Architecture</span>
-          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+          <span>Explore capability</span>
+          <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
         </Link>
       </div>
-    </div>
+    </article>
   );
 };

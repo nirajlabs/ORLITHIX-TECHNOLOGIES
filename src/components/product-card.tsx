@@ -5,9 +5,8 @@ import type { ProductCategory, ProductItem } from "@/lib/products";
 import { 
   ArrowRight, 
   Terminal, 
-  CheckCircle2, 
+  CircleDot,
   Layers, 
-  ShieldAlert,
   Cpu,
   Database,
   Briefcase
@@ -26,10 +25,10 @@ const categoryIcons: Record<string, React.ElementType> = {
 };
 
 const artworkStyles: Record<ProductCategory, string> = {
-  "AI & ML": "from-indigo-500/30 via-[#10192B] to-cyan-400/10",
-  "Enterprise Software": "from-cyan-500/25 via-[#10192B] to-indigo-500/20",
-  "Data Intelligence": "from-emerald-500/20 via-[#10192B] to-blue-500/25",
-  Automation: "from-violet-500/25 via-[#10192B] to-cyan-400/15",
+  "AI & ML": "from-[#586BFF]/20 via-[#10192B] to-[#40D6C5]/10",
+  "Enterprise Software": "from-[#40D6C5]/15 via-[#10192B] to-[#586BFF]/15",
+  "Data Intelligence": "from-[#40D6C5]/15 via-[#10192B] to-[#586BFF]/10",
+  Automation: "from-[#586BFF]/15 via-[#10192B] to-[#40D6C5]/10",
 };
 
 interface ProductArtworkProps {
@@ -52,7 +51,7 @@ export function ProductArtwork({
       {product.image ? (
         <Image
           src={product.image}
-          alt={`${product.name} concept artwork`}
+          alt={`${product.name} product artwork`}
           fill
           sizes={sizes}
           className="object-cover"
@@ -76,7 +75,7 @@ export function ProductArtwork({
               stroke="currentColor"
             />
           </svg>
-          <div className="absolute right-[20%] top-1/2 flex h-20 w-20 -translate-y-1/2 items-center justify-center rounded-2xl border border-[#40D6C5]/40 bg-[#080D1B]/70 text-[#40D6C5] shadow-[0_0_40px_rgba(64,214,197,0.18)] sm:h-24 sm:w-24">
+          <div className="absolute right-[20%] top-1/2 flex h-20 w-20 -translate-y-1/2 items-center justify-center rounded-2xl border border-[#40D6C5]/40 bg-[#080D1B]/80 text-[#40D6C5] sm:h-24 sm:w-24">
             <CategoryIcon
               aria-hidden="true"
               className="h-10 w-10 sm:h-12 sm:w-12"
@@ -91,7 +90,7 @@ export function ProductArtwork({
       <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4 sm:p-6">
         <div className="min-w-0">
           <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#40D6C5] sm:text-[10px]">
-            {product.category} // Product Concept
+            {product.category}
           </p>
           <p className="mt-1 truncate text-sm font-semibold text-[#F4F6FF] sm:text-base">
             {product.name}
@@ -118,113 +117,113 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       dot: "bg-[#40D6C5] shadow-[0_0_6px_#40D6C5]",
     },
     future_concept: {
-      badgeBg: "bg-[#586BFF]/10 text-[#7888FF] border-[#586BFF]/30 shadow-[0_0_12px_rgba(88,107,255,0.15)]",
-      dot: "bg-[#586BFF] shadow-[0_0_6px_#586BFF]",
+      badgeBg: "bg-[#586BFF]/10 text-[#F4F6FF] border-[#586BFF]/30",
+      dot: "bg-[#586BFF]",
     },
     prototype: {
-      badgeBg: "bg-purple-500/10 text-purple-300 border-purple-500/30",
-      dot: "bg-purple-400",
+      badgeBg: "bg-[#10192B] text-[#F4F6FF] border-[#263650]",
+      dot: "bg-[#A5B2CC]",
     },
     pilot: {
-      badgeBg: "bg-amber-500/10 text-amber-300 border-amber-500/30",
-      dot: "bg-amber-400",
+      badgeBg: "bg-[#40D6C5]/10 text-[#40D6C5] border-[#40D6C5]/30",
+      dot: "bg-[#40D6C5]",
     },
     launched: {
-      badgeBg: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-      dot: "bg-emerald-400",
+      badgeBg: "bg-[#586BFF]/10 text-[#F4F6FF] border-[#586BFF]/40",
+      dot: "bg-[#586BFF]",
     },
   }[product.stage];
 
   return (
-    <div
-      className={`group relative flex flex-col justify-between bg-[#121F36] border border-[#263650] hover:border-[#586BFF]/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:bg-[#15233c] hover:shadow-[0_12px_40px_rgba(88,107,255,0.12)] hover:-translate-y-1 overflow-hidden ${className}`}
+    <article
+      className={`group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-[#263650] bg-[#121F36] p-5 transition-[background-color,border-color,box-shadow] duration-200 hover:border-[#586BFF]/60 hover:bg-[#15233c] hover:shadow-md hover:shadow-[#080D1B]/25 sm:p-6 ${className}`}
     >
-      {/* Subtle top edge border gradient highlight */}
-      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#586BFF]/40 to-transparent pointer-events-none" />
-
       <ProductArtwork
         product={product}
         sizes="(max-width: 1024px) 100vw, 50vw"
-        className="-mx-6 -mt-6 mb-6 rounded-t-2xl border-b border-[#263650] sm:-mx-8 sm:-mt-8"
+        className="-mx-5 -mt-5 mb-5 border-b border-[#263650] sm:-mx-6 sm:-mt-6"
       />
 
       <div>
         {/* Top Header Bar: Category + Status Badge */}
-        <div className="flex items-center justify-between gap-3 mb-5">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-[#10192B] border border-[#263650] flex items-center justify-center text-[#586BFF] group-hover:text-[#40D6C5] transition-colors">
-              <CategoryIcon className="w-4 h-4" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#263650] bg-[#10192B] text-[#40D6C5]">
+              <CategoryIcon aria-hidden="true" className="h-4 w-4" />
             </div>
-            <span className="font-mono text-xs text-[#A5B2CC] uppercase tracking-wider">
+            <span className="text-xs font-medium text-[#A5B2CC]">
               {product.category}
             </span>
           </div>
 
           <span
-            className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase font-semibold px-2.5 py-0.5 rounded-full border ${statusConfig.badgeBg}`}
+            className={`inline-flex max-w-full items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase leading-tight ${statusConfig.badgeBg}`}
           >
-            <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${statusConfig.dot}`} />
+            <span aria-hidden="true" className={`h-1.5 w-1.5 shrink-0 rounded-full ${statusConfig.dot}`} />
             <span>{product.statusLabel}</span>
           </span>
         </div>
 
         {/* Product Name */}
-        <h3 className="text-xl sm:text-2xl font-bold text-[#F4F6FF] group-hover:text-[#40D6C5] transition-colors duration-200">
-          <Link href={`/products/${product.slug}`} className="focus:outline-none">
+        <h3 className="text-xl font-semibold leading-snug text-[#F4F6FF] transition-colors duration-200 group-hover:text-[#40D6C5] sm:text-2xl">
+          <Link
+            href={`/products/${product.slug}`}
+            className="inline-flex min-h-11 items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+          >
             {product.name}
           </Link>
         </h3>
 
         {/* Tagline */}
-        <p className="mt-1 font-mono text-xs text-[#7888FF] leading-snug">
+        <p className="mt-2 text-sm leading-snug text-[#40D6C5]">
           {product.tagline}
         </p>
 
         {/* Description */}
-        <p className="mt-3.5 text-xs sm:text-sm text-[#A5B2CC] leading-relaxed line-clamp-3">
+        <p className="mt-3 text-sm leading-relaxed text-[#A5B2CC] line-clamp-3">
           {product.description}
         </p>
 
         {/* Problem & Solution Snapshot Box */}
-        <div className="mt-5 p-3.5 rounded-xl bg-[#10192B]/80 border border-[#263650]/80 space-y-2">
+        <div className="mt-5 space-y-2 rounded-xl border border-[#263650] bg-[#10192B] p-4">
           <div>
-            <span className="block text-[10px] font-mono uppercase text-[#A5B2CC]/70 tracking-wider">
-              Problem Space:
+            <span className="block text-[10px] font-mono uppercase tracking-wider text-[#A5B2CC]">
+              Problem space
             </span>
-            <p className="text-xs text-[#A5B2CC] line-clamp-2 mt-0.5">
+            <p className="mt-1 text-xs leading-relaxed text-[#A5B2CC] line-clamp-2">
               {product.problemStatement}
             </p>
           </div>
         </div>
 
         {/* Key Features Preview */}
-        <div className="mt-5 pt-4 border-t border-[#263650]/60">
-          <span className="block text-[10px] font-mono uppercase text-[#A5B2CC]/70 tracking-wider mb-2">
-            Architectural Capabilities:
+        <div className="mt-5 border-t border-[#263650] pt-4">
+          <span className="mb-2 block text-[10px] font-mono uppercase tracking-wider text-[#A5B2CC]">
+            Proposed feature areas
           </span>
           <ul className="space-y-1.5">
             {product.features.slice(0, 3).map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs text-[#F4F6FF]/90">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#40D6C5] flex-shrink-0 mt-0.5" />
-                <span className="truncate">{feature.title}</span>
+              <li key={idx} className="flex items-start gap-2 text-xs leading-relaxed text-[#F4F6FF]/90">
+                <CircleDot aria-hidden="true" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#40D6C5]" />
+                <span className="line-clamp-1">{feature.title}</span>
               </li>
             ))}
           </ul>
         </div>
 
         {/* Technology Stack Chips */}
-        <div className="mt-5 pt-3 border-t border-[#263650]/40">
+        <div className="mt-5 border-t border-[#263650] pt-3">
           <div className="flex flex-wrap gap-1.5">
             {product.techStack.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-0.5 rounded bg-[#080D1B] border border-[#263650] text-[10px] font-mono text-[#A5B2CC]"
+                className="rounded-md border border-[#263650] bg-[#080D1B] px-2 py-1 text-[10px] font-mono text-[#A5B2CC]"
               >
                 {tech}
               </span>
             ))}
             {product.techStack.length > 4 && (
-              <span className="px-1.5 py-0.5 rounded bg-[#080D1B] text-[10px] font-mono text-[#A5B2CC]/70">
+              <span className="rounded-md bg-[#080D1B] px-2 py-1 text-[10px] font-mono text-[#A5B2CC]">
                 +{product.techStack.length - 4} more
               </span>
             )}
@@ -232,21 +231,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
 
-      {/* Footer CTA & R&D Badge */}
-      <div className="mt-6 pt-4 border-t border-[#263650] flex items-center justify-between">
-        <span className="text-[10px] font-mono text-[#A5B2CC]/60 uppercase flex items-center gap-1">
-          <ShieldAlert className="w-3 h-3 text-amber-400/80" />
-          R&D Evaluation
-        </span>
-
+      <div className="mt-6 flex justify-end border-t border-[#263650] pt-3">
         <Link
           href={`/products/${product.slug}`}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#586BFF] group-hover:text-[#40D6C5] transition-colors"
+          className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[#A5B2CC] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
         >
-          <span>Explore Product Concept</span>
-          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+          <span>View product details</span>
+          <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
         </Link>
       </div>
-    </div>
+    </article>
   );
 };

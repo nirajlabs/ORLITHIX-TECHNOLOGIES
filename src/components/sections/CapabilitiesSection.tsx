@@ -29,7 +29,7 @@ export const CapabilitiesSection: React.FC = () => {
   const capabilities = getAllCapabilities();
 
   return (
-    <section id="capabilities" className="py-20 relative">
+    <section id="capabilities" className="relative py-16 sm:py-20">
       <Container>
         <SectionHeader
           badgeText="ENGINEERING PILLARS"
@@ -38,7 +38,7 @@ export const CapabilitiesSection: React.FC = () => {
           subtitle="Our engineering practice is built on six foundational disciplines, engineered to solve complex operational bottlenecks with mathematical rigor."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {capabilities.map((capability) => {
             const IconComponent = iconMap[capability.icon] || Layers;
 
@@ -50,45 +50,48 @@ export const CapabilitiesSection: React.FC = () => {
               >
                 <div>
                   {/* Top Bar: Icon + Metric Tag */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-[#10192B] border border-[#263650] flex items-center justify-center text-[#586BFF] group-hover:text-[#40D6C5] group-hover:border-[#40D6C5]/40 transition-colors duration-300">
-                      <IconComponent className="w-6 h-6" />
+                  <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#263650] bg-[#10192B] text-[#40D6C5] transition-colors group-hover:border-[#586BFF]/50">
+                      <IconComponent aria-hidden="true" className="h-5 w-5" />
                     </div>
                     {capability.benchmarkMetric && (
-                      <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#10192B] border border-[#263650] text-[#40D6C5]">
+                      <span className="rounded-full border border-[#263650] bg-[#10192B] px-2.5 py-1 text-[10px] text-[#40D6C5]">
                         {capability.benchmarkMetric.value}
                       </span>
                     )}
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-[#F4F6FF] group-hover:text-[#40D6C5] transition-colors">
-                    <Link href={`/capabilities/${capability.slug}`}>
+                  <h3 className="text-lg font-semibold text-[#F4F6FF] transition-colors group-hover:text-[#40D6C5]">
+                    <Link
+                      href={`/capabilities/${capability.slug}`}
+                      className="inline-flex min-h-11 items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+                    >
                       {capability.name}
                     </Link>
                   </h3>
 
                   {/* Summary */}
-                  <p className="mt-3 text-xs sm:text-sm text-[#A5B2CC] leading-relaxed line-clamp-3">
+                  <p className="mt-3 text-sm leading-relaxed text-[#A5B2CC] line-clamp-3">
                     {capability.description}
                   </p>
 
                   {/* Key Technologies */}
-                  <div className="mt-5 pt-4 border-t border-[#263650]/60">
-                    <span className="block text-[10px] font-mono uppercase text-[#A5B2CC]/70 tracking-wider mb-2">
+                  <div className="mt-5 border-t border-[#263650] pt-4">
+                    <span className="mb-2 block text-[10px] font-mono uppercase tracking-wider text-[#A5B2CC]">
                       Core Technologies:
                     </span>
                     <div className="flex flex-wrap gap-1.5">
                       {capability.technologies.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 rounded bg-[#10192B] border border-[#263650] text-[10px] font-mono text-[#F4F6FF]/90"
+                          className="rounded-md border border-[#263650] bg-[#10192B] px-2 py-1 text-[10px] font-mono text-[#A5B2CC]"
                         >
                           {tech}
                         </span>
                       ))}
                       {capability.technologies.length > 4 && (
-                        <span className="text-[10px] font-mono text-[#A5B2CC]/70 px-1 py-0.5">
+                        <span className="rounded-md px-1 py-1 text-[10px] font-mono text-[#A5B2CC]">
                           +{capability.technologies.length - 4}
                         </span>
                       )}
@@ -97,10 +100,13 @@ export const CapabilitiesSection: React.FC = () => {
                 </div>
 
                 {/* Footer link to detail */}
-                <div className="mt-6 pt-3 border-t border-[#263650]/40 flex items-center justify-between text-xs font-medium text-[#586BFF] group-hover:text-[#40D6C5] transition-colors">
-                  <Link href={`/capabilities/${capability.slug}`} className="inline-flex items-center gap-1.5">
+                <div className="mt-5 flex items-center justify-end border-t border-[#263650] pt-2 text-xs font-medium text-[#A5B2CC] transition-colors group-hover:text-[#40D6C5]">
+                  <Link
+                    href={`/capabilities/${capability.slug}`}
+                    className="inline-flex min-h-11 items-center gap-1.5 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
+                  >
                     <span>Technical Architecture</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
                   </Link>
                 </div>
               </Card>

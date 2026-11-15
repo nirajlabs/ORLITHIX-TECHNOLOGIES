@@ -16,8 +16,7 @@ import {
   Terminal, 
   ArrowLeft, 
   ArrowRight, 
-  CheckCircle2, 
-  ShieldAlert, 
+  CircleDot,
   Sparkles, 
   Layers, 
   Cpu, 
@@ -89,82 +88,78 @@ export default async function ProductDetailPage({
   // Status badge styling
   const statusConfig = {
     research_and_validation: {
-      badgeBg: "bg-[#40D6C5]/10 text-[#40D6C5] border-[#40D6C5]/30 shadow-[0_0_12px_rgba(64,214,197,0.15)]",
-      dot: "bg-[#40D6C5] shadow-[0_0_6px_#40D6C5]",
+      badgeBg: "bg-[#40D6C5]/10 text-[#40D6C5] border-[#40D6C5]/30",
+      dot: "bg-[#40D6C5]",
     },
     future_concept: {
-      badgeBg: "bg-[#586BFF]/10 text-[#7888FF] border-[#586BFF]/30 shadow-[0_0_12px_rgba(88,107,255,0.15)]",
-      dot: "bg-[#586BFF] shadow-[0_0_6px_#586BFF]",
+      badgeBg: "bg-[#586BFF]/10 text-[#F4F6FF] border-[#586BFF]/30",
+      dot: "bg-[#586BFF]",
     },
     prototype: {
-      badgeBg: "bg-purple-500/10 text-purple-300 border-purple-500/30",
-      dot: "bg-purple-400",
+      badgeBg: "bg-[#10192B] text-[#F4F6FF] border-[#263650]",
+      dot: "bg-[#A5B2CC]",
     },
     pilot: {
-      badgeBg: "bg-amber-500/10 text-amber-300 border-amber-500/30",
-      dot: "bg-amber-400",
+      badgeBg: "bg-[#40D6C5]/10 text-[#40D6C5] border-[#40D6C5]/30",
+      dot: "bg-[#40D6C5]",
     },
     launched: {
-      badgeBg: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-      dot: "bg-emerald-400",
+      badgeBg: "bg-[#586BFF]/10 text-[#F4F6FF] border-[#586BFF]/40",
+      dot: "bg-[#586BFF]",
     },
   }[product.stage];
 
   return (
-    <div className="py-24 sm:py-32 relative">
-      {/* Background ambient lighting */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#586BFF]/10 rounded-full blur-[140px] pointer-events-none" />
+    <div className="relative py-20 sm:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-[#586BFF]/[0.07] to-transparent" />
 
-      <Container className="relative z-10">
+      <Container className="relative">
         {/* Breadcrumb Navigation */}
-        <div className="flex items-center gap-2 text-xs font-mono text-[#A5B2CC] mb-8">
+        <nav aria-label="Breadcrumb" className="mb-6 flex min-h-11 items-center gap-2 text-xs text-[#A5B2CC] sm:mb-8">
           <Link
             href="/products"
-            className="hover:text-[#F4F6FF] flex items-center gap-1 transition-colors"
+            className="inline-flex min-h-11 items-center gap-1 transition-colors hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
             Product Innovation Lab
           </Link>
-          <span>/</span>
-          <span className="text-[#40D6C5] truncate">{product.name}</span>
-        </div>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page" className="truncate text-[#40D6C5]">{product.name}</span>
+        </nav>
 
         {/* Hero Stage Header */}
-        <div className="rounded-3xl bg-gradient-to-b from-[#121F36] to-[#0c1424] border border-[#263650] p-6 sm:p-10 lg:p-12 mb-14 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-          {/* Subtle top edge border gradient highlight */}
-          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#586BFF]/40 to-transparent pointer-events-none" />
-
+        <div className="relative mb-12 overflow-hidden rounded-3xl border border-[#263650] bg-[#10192B] p-4 sm:mb-14 sm:p-7 lg:p-10">
           <ProductArtwork
             product={product}
-            className="mb-8 rounded-2xl border border-[#263650]"
+            className="mb-6 rounded-xl border border-[#263650] sm:mb-8 sm:rounded-2xl"
           />
 
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-[#263650]">
-            <div>
-              <div className="flex flex-wrap items-center gap-3 mb-3">
-                <span className="flex items-center gap-1.5 font-mono text-xs text-[#A5B2CC] px-2.5 py-0.5 rounded-lg bg-[#10192B] border border-[#263650]">
-                  <CategoryIcon className="w-3.5 h-3.5 text-[#586BFF]" />
+          <div className="flex flex-col items-start justify-between gap-6 border-b border-[#263650] pb-6 sm:pb-8 lg:flex-row lg:items-center">
+            <div className="min-w-0">
+              <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
+                <span className="inline-flex min-h-8 items-center gap-1.5 rounded-lg border border-[#263650] bg-[#080D1B] px-2.5 py-1 text-xs text-[#A5B2CC]">
+                  <CategoryIcon aria-hidden="true" className="h-3.5 w-3.5 text-[#40D6C5]" />
                   {product.category}
                 </span>
 
                 <span
-                  className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase font-semibold px-2.5 py-0.5 rounded-full border ${statusConfig.badgeBg}`}
+                  className={`inline-flex max-w-full items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase leading-tight ${statusConfig.badgeBg}`}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${statusConfig.dot}`} />
+                  <span aria-hidden="true" className={`h-1.5 w-1.5 shrink-0 rounded-full ${statusConfig.dot}`} />
                   <span>{product.statusLabel}</span>
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-[#F4F6FF] tracking-tight">
+              <h1 className="break-words text-3xl font-semibold tracking-tight text-[#F4F6FF] sm:text-5xl">
                 {product.name}
               </h1>
 
-              <p className="mt-2 font-mono text-xs sm:text-sm text-[#40D6C5] max-w-3xl">
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#40D6C5] sm:text-base">
                 {product.tagline}
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 w-full lg:w-auto">
+            <div className="flex w-full flex-col items-stretch gap-3 sm:flex-row lg:w-auto lg:flex-col lg:items-end">
               <Button
                 href={product.cta.href}
                 variant="primary"
@@ -184,7 +179,7 @@ export default async function ProductDetailPage({
 
           {/* Target Audience Pill */}
           <div className="mt-6 flex items-center gap-2 text-xs font-mono text-[#A5B2CC]">
-            <span className="uppercase text-[#A5B2CC]/60">Intended Audience:</span>
+            <span className="shrink-0 uppercase text-[#A5B2CC]">Intended audience:</span>
             <span className="text-[#F4F6FF] font-medium">{product.targetAudience}</span>
           </div>
         </div>
@@ -193,37 +188,37 @@ export default async function ProductDetailPage({
         <section className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* The Problem Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#10192B] border border-red-500/20 flex flex-col justify-between">
+            <div className="flex flex-col justify-between rounded-2xl border border-[#586BFF]/30 bg-[#10192B] p-5 sm:p-8">
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-red-400 block mb-2">
+                <span className="mb-2 block text-xs font-mono uppercase tracking-wider text-[#586BFF]">
                   THE ENTERPRISE PROBLEM SPACE
                 </span>
-                <h3 className="text-lg font-bold text-[#F4F6FF] mb-3">
+                <h3 className="mb-3 text-lg font-semibold text-[#F4F6FF]">
                   Operational Vulnerability & Bottleneck
                 </h3>
-                <p className="text-xs sm:text-sm text-[#A5B2CC] leading-relaxed">
+                <p className="text-sm leading-relaxed text-[#A5B2CC]">
                   {product.problemStatement}
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#263650] font-mono text-[10px] text-red-400/80">
+              <div className="mt-6 border-t border-[#263650] pt-4 text-[10px] text-[#A5B2CC]">
                 CHALLENGE // CONTEXT LOSS & UNVERIFIED CLAIMS
               </div>
             </div>
 
             {/* The Solution Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#10192B] border border-[#40D6C5]/30 flex flex-col justify-between">
+            <div className="flex flex-col justify-between rounded-2xl border border-[#40D6C5]/30 bg-[#10192B] p-5 sm:p-8">
               <div>
                 <span className="font-mono text-xs uppercase tracking-wider text-[#40D6C5] block mb-2">
                   THE ARCHITECTURAL SOLUTION
                 </span>
-                <h3 className="text-lg font-bold text-[#F4F6FF] mb-3">
+                <h3 className="mb-3 text-lg font-semibold text-[#F4F6FF]">
                   Deterministic Verification Architecture
                 </h3>
-                <p className="text-xs sm:text-sm text-[#A5B2CC] leading-relaxed">
+                <p className="text-sm leading-relaxed text-[#A5B2CC]">
                   {product.solution}
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#263650] font-mono text-[10px] text-[#40D6C5]">
+              <div className="mt-6 border-t border-[#263650] pt-4 text-[10px] text-[#40D6C5]">
                 SOLUTION // MATHEMATICAL & EMPIRICAL RIGOR
               </div>
             </div>
@@ -232,7 +227,7 @@ export default async function ProductDetailPage({
 
         {/* In-Depth Overview & Architectural Tenets */}
         <section className="mb-16">
-          <div className="rounded-2xl bg-[#121F36] border border-[#263650] p-6 sm:p-10">
+          <div className="rounded-2xl border border-[#263650] bg-[#121F36] p-5 sm:p-8">
             <span className="text-xs font-mono uppercase tracking-wider text-[#586BFF] block mb-2">
               DEEP DIVE
             </span>
@@ -251,9 +246,9 @@ export default async function ProductDetailPage({
                 {product.architecturalHighlights.map((highlight, idx) => (
                   <div
                     key={idx}
-                    className="p-3 rounded-lg bg-[#080D1B] border border-[#263650] flex items-center gap-2 text-xs font-mono text-[#F4F6FF]"
+                    className="flex items-center gap-2 rounded-lg border border-[#263650] bg-[#080D1B] p-3 text-xs text-[#F4F6FF]"
                   >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#40D6C5] flex-shrink-0" />
+                    <CircleDot aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[#40D6C5]" />
                     <span>{highlight}</span>
                   </div>
                 ))}
@@ -284,7 +279,7 @@ export default async function ProductDetailPage({
                     <span className="font-mono text-xs font-bold text-[#586BFF]">
                       FEATURE // 0{idx + 1}
                     </span>
-                    <Sparkles className="w-4 h-4 text-[#40D6C5]" />
+                    <Layers aria-hidden="true" className="h-4 w-4 text-[#40D6C5]" />
                   </div>
                   <h3 className="text-base font-bold text-[#F4F6FF] mb-2">
                     {feature.title}
@@ -296,7 +291,7 @@ export default async function ProductDetailPage({
 
                 {feature.technicalDetail && (
                   <div className="mt-5 pt-3 border-t border-[#263650] flex items-center gap-2 text-[10px] font-mono text-[#40D6C5]">
-                    <GitCommit className="w-3 h-3 flex-shrink-0" />
+                    <GitCommit aria-hidden="true" className="h-3 w-3 shrink-0" />
                     <span>{feature.technicalDetail}</span>
                   </div>
                 )}
@@ -307,7 +302,7 @@ export default async function ProductDetailPage({
 
         {/* Technology Stack & Toolchain */}
         <section className="mb-16">
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#10192B] border border-[#263650]">
+          <div className="rounded-2xl border border-[#263650] bg-[#10192B] p-5 sm:p-8">
             <span className="text-xs font-mono uppercase tracking-wider text-[#586BFF] block mb-2">
               FOUNDATIONAL INFRASTRUCTURE
             </span>
@@ -330,7 +325,7 @@ export default async function ProductDetailPage({
         {/* Future Product Updates / Roadmap Milestones */}
         <section className="mb-16">
           <div className="mb-8">
-            <span className="text-xs font-mono uppercase tracking-wider text-purple-400 block mb-1">
+            <span className="mb-1 block text-xs font-mono uppercase tracking-wider text-[#40D6C5]">
               DEVELOPMENT HORIZON
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#F4F6FF]">
@@ -343,16 +338,16 @@ export default async function ProductDetailPage({
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {product.futureUpdates.map((milestone, idx) => (
-              <Card key={idx} className="flex flex-col justify-between border-purple-500/20">
+              <Card key={idx} className="flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs font-bold text-purple-400">
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <span className="text-xs font-mono font-semibold text-[#40D6C5]">
                       {milestone.phase}
                     </span>
                     <span
                       className={`text-[9px] font-mono uppercase px-2 py-0.5 rounded-full border ${
                         milestone.status === "in_progress"
-                          ? "bg-[#40D6C5]/10 text-[#40D6C5] border-[#40D6C5]/30 animate-pulse"
+                          ? "bg-[#40D6C5]/10 text-[#40D6C5] border-[#40D6C5]/30"
                           : "bg-[#10192B] text-[#A5B2CC] border-[#263650]"
                       }`}
                     >
@@ -369,8 +364,8 @@ export default async function ProductDetailPage({
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-[#263650] flex items-center gap-1.5 text-[10px] font-mono text-[#A5B2CC]/70">
-                  <Milestone className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" />
+                <div className="mt-5 flex items-center gap-1.5 border-t border-[#263650] pt-3 text-[10px] text-[#A5B2CC]">
+                  <Milestone aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[#40D6C5]" />
                   <span>Horizon: {milestone.targetHorizon}</span>
                 </div>
               </Card>
@@ -393,10 +388,10 @@ export default async function ProductDetailPage({
                   <Link
                     key={cap.slug}
                     href={`/capabilities/${cap.slug}`}
-                    className="p-3 rounded-xl bg-[#121F36] border border-[#263650] hover:border-[#40D6C5]/50 flex items-center gap-2 text-xs font-mono text-[#F4F6FF] hover:text-[#40D6C5] transition-colors"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[#263650] bg-[#121F36] p-3 text-xs text-[#F4F6FF] transition-colors hover:border-[#40D6C5]/50 hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
                   >
                     <span>{cap.name}</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-[#586BFF]" />
+                    <ExternalLink aria-hidden="true" className="h-3.5 w-3.5 text-[#586BFF]" />
                   </Link>
                 ))}
               </div>
@@ -405,17 +400,17 @@ export default async function ProductDetailPage({
         )}
 
         {/* Adjacent Navigation (Prev / Next) */}
-        <div className="border-t border-b border-[#263650] py-6 mb-16 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <nav aria-label="Adjacent product concepts" className="mb-14 flex flex-col items-stretch justify-between gap-3 border-y border-[#263650] py-4 sm:mb-16 sm:flex-row sm:items-center sm:gap-4 sm:py-6">
           <Link
             href={`/products/${prev.slug}`}
-            className="flex items-center gap-3 text-xs text-[#A5B2CC] hover:text-[#40D6C5] transition-colors group"
+            className="group inline-flex min-h-11 items-center gap-3 rounded-lg text-xs text-[#A5B2CC] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
           >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
             <div>
-              <span className="font-mono text-[10px] uppercase text-[#A5B2CC]/60 block">
+              <span className="block text-[10px] uppercase text-[#A5B2CC]">
                 Previous Concept
               </span>
-              <span className="font-semibold text-sm text-[#F4F6FF] group-hover:text-[#40D6C5]">
+              <span className="text-sm font-semibold text-[#F4F6FF] group-hover:text-[#40D6C5]">
                 {prev.name}
               </span>
             </div>
@@ -423,22 +418,22 @@ export default async function ProductDetailPage({
 
           <Link
             href={`/products/${next.slug}`}
-            className="flex items-center gap-3 text-xs text-[#A5B2CC] hover:text-[#40D6C5] transition-colors group text-right"
+            className="group inline-flex min-h-11 items-center justify-end gap-3 rounded-lg text-right text-xs text-[#A5B2CC] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
           >
             <div>
-              <span className="font-mono text-[10px] uppercase text-[#A5B2CC]/60 block">
+              <span className="block text-[10px] uppercase text-[#A5B2CC]">
                 Next Concept
               </span>
-              <span className="font-semibold text-sm text-[#F4F6FF] group-hover:text-[#40D6C5]">
+              <span className="text-sm font-semibold text-[#F4F6FF] group-hover:text-[#40D6C5]">
                 {next.name}
               </span>
             </div>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
-        </div>
+        </nav>
 
         {/* Targeted Action CTA */}
-        <div className="p-8 sm:p-12 rounded-2xl bg-gradient-to-r from-[#121F36] to-[#0c1424] border border-[#586BFF]/40 text-center max-w-3xl mx-auto shadow-[0_20px_50px_rgba(88,107,255,0.1)]">
+        <div className="mx-auto max-w-3xl rounded-2xl border border-[#586BFF]/40 bg-[#10192B] p-6 text-center sm:p-10">
           <Badge variant="concept" size="sm" className="mb-4">
             R&D COLLABORATION
           </Badge>

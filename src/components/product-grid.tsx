@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import type { ProductItem } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
-import { Search, SlidersHorizontal } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 
 interface ProductGridProps {
   products: ProductItem[];
@@ -69,24 +69,30 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   return (
     <div className={`w-full ${className}`}>
       {enableFilters && (
-        <div className="mb-10 flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div className="mb-8 flex flex-col items-stretch justify-between gap-4 sm:mb-10 lg:flex-row lg:items-center">
           {/* Category Filter Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 w-full lg:w-auto scrollbar-none">
+          <div
+            role="group"
+            aria-label="Filter products by category"
+            className="flex w-full min-w-0 max-w-full items-center gap-2 overflow-x-auto pb-2 scrollbar-none lg:w-auto lg:pb-0"
+          >
             {categories.map((tab) => {
               const isSelected = selectedCategory === tab.id;
               return (
                 <button
                   key={tab.id}
+                  type="button"
+                  aria-pressed={isSelected}
                   onClick={() => setSelectedCategory(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-medium transition-all duration-200 border whitespace-nowrap select-none ${
+                  className={`inline-flex min-h-11 shrink-0 select-none items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-mono font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5] ${
                     isSelected
-                      ? "bg-[#586BFF] text-[#F4F6FF] border-[#586BFF] shadow-[0_0_15px_rgba(88,107,255,0.4)]"
+                      ? "border-[#586BFF] bg-[#586BFF] text-[#F4F6FF]"
                       : "bg-[#10192B] text-[#A5B2CC] border-[#263650] hover:text-[#F4F6FF] hover:border-[#586BFF]/40"
                   }`}
                 >
                   <span>{tab.label}</span>
                   <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                    className={`rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
                       isSelected
                         ? "bg-[#080D1B] text-[#F4F6FF]"
                         : "bg-[#121F36] text-[#A5B2CC]"
@@ -100,21 +106,27 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
           </div>
 
           {/* Search Input */}
-          <div className="relative w-full lg:w-72 flex-shrink-0">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#A5B2CC]/60" />
+          <div className="relative w-full shrink-0 lg:w-72">
+            <label htmlFor="product-search" className="sr-only">
+              Search products
+            </label>
+            <Search aria-hidden="true" className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#A5B2CC]" />
             <input
+              id="product-search"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search concepts or tech stack..."
-              className="w-full pl-9 pr-4 py-2 rounded-full bg-[#10192B] border border-[#263650] text-xs font-mono text-[#F4F6FF] placeholder-[#A5B2CC]/50 focus:outline-none focus:border-[#586BFF] transition-colors"
+              className="min-h-11 w-full rounded-full border border-[#263650] bg-[#10192B] py-2 pl-9 pr-11 text-sm text-[#F4F6FF] placeholder:text-[#A5B2CC] transition-colors focus-visible:border-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
             />
             {searchQuery && (
               <button
+                type="button"
+                aria-label="Clear product search"
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono text-[#A5B2CC] hover:text-[#F4F6FF]"
+                className="absolute right-1 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full text-[#A5B2CC] transition-colors hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#40D6C5]"
               >
-                ✕
+                <X aria-hidden="true" className="h-4 w-4" />
               </button>
             )}
           </div>
@@ -122,29 +134,35 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
       )}
 
       {/* Products Grid */}
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        {filteredProducts.length} published {filteredProducts.length === 1 ? "product" : "products"} shown.
+      </p>
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 px-4 rounded-2xl bg-[#10192B] border border-[#263650]">
-          <SlidersHorizontal className="w-8 h-8 text-[#586BFF] mx-auto mb-3 opacity-60" />
-          <h4 className="text-base font-bold text-[#F4F6FF]">
+        <div className="rounded-2xl border border-[#263650] bg-[#10192B] px-4 py-12 text-center sm:px-8 sm:py-16">
+          <SlidersHorizontal aria-hidden="true" className="mx-auto mb-3 h-8 w-8 text-[#40D6C5]" />
+          <h2 className="text-base font-semibold text-[#F4F6FF]">
             No matching product concepts found
-          </h4>
-          <p className="mt-1 text-xs text-[#A5B2CC]">
-            No products match the search &quot;{searchQuery}&quot; in the selected category.
+          </h2>
+          <p className="mt-2 text-sm text-[#A5B2CC]">
+            {searchQuery
+              ? `No products match "${searchQuery}" in the selected category.`
+              : "There are no published products in the selected category."}
           </p>
           <button
+            type="button"
             onClick={() => {
               setSelectedCategory("all");
               setSearchQuery("");
             }}
-            className="mt-4 px-4 py-1.5 rounded-lg bg-[#121F36] border border-[#263650] text-xs font-mono text-[#40D6C5] hover:border-[#40D6C5]/50 transition-colors"
+            className="mt-4 inline-flex min-h-11 items-center rounded-lg border border-[#263650] bg-[#121F36] px-4 text-xs font-medium text-[#40D6C5] transition-colors hover:border-[#40D6C5]/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
           >
-            Reset Filters
+            Reset filters
           </button>
         </div>
       )}

@@ -27,23 +27,23 @@ const divisionIcons: Record<string, ElementType> = {
 
 export default function AboutPage() {
   return (
-    <div className="relative overflow-hidden py-24 sm:py-32">
-      <div className="pointer-events-none absolute left-1/2 top-20 h-[360px] w-[760px] -translate-x-1/2 rounded-full bg-[#586BFF]/10 blur-[140px]" />
+    <div className="relative overflow-hidden py-20 sm:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-[#586BFF]/[0.07] to-transparent" />
 
-      <Container className="relative z-10">
-        <header className="mx-auto mb-20 max-w-4xl text-center">
+      <Container className="relative">
+        <header className="mx-auto mb-14 max-w-4xl text-center sm:mb-16">
           <Badge variant="concept" size="md" className="mb-4">
             PROPOSED TECHNOLOGY VENTURE
           </Badge>
-          <h1 className="text-3xl font-extrabold tracking-tight text-[#F4F6FF] sm:text-5xl">
+          <h1 className="text-3xl font-semibold tracking-tight text-[#F4F6FF] sm:text-5xl">
             {companyData.aboutHeadline}
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-[#A5B2CC] sm:text-lg">
+          <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-[#A5B2CC] sm:mt-6 sm:text-base">
             {companyData.aboutSummary}
           </p>
         </header>
 
-        <section id="introduction" className="mb-20">
+        <section id="introduction" className="mb-16 sm:mb-20">
           <SectionHeader
             badgeText="01 // COMPANY INTRODUCTION"
             title="A venture taking shape"
@@ -66,7 +66,7 @@ export default function AboutPage() {
           </Card>
         </section>
 
-        <section id="vision" className="mb-20">
+        <section id="vision" className="mb-16 sm:mb-20">
           <SectionHeader
             badgeText="02 // OUR VISION"
             title="Technology should serve a meaningful purpose"
@@ -74,7 +74,7 @@ export default function AboutPage() {
           />
         </section>
 
-        <section id="mission" className="mb-20">
+        <section id="mission" className="mb-16 sm:mb-20">
           <SectionHeader
             badgeText="03 // OUR MISSION"
             title="The questions guiding our work"
@@ -94,7 +94,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section id="tenets" className="mb-20">
+        <section id="tenets" className="mb-16 sm:mb-20">
           <SectionHeader
             badgeText="04 // TECHNOLOGY PHILOSOPHY"
             title="Principles for thoughtful innovation"
@@ -122,7 +122,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section id="innovation" className="mb-20">
+        <section id="innovation" className="mb-16 sm:mb-20">
           <SectionHeader
             badgeText="05 // AREAS OF INNOVATION"
             title="Fields we are exploring"
@@ -152,7 +152,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section id="approach" className="mb-20">
+        <section id="approach" className="mb-16 sm:mb-20">
           <SectionHeader
             badgeText="06 // OUR APPROACH"
             title="A considered path from question to evaluation"
@@ -169,7 +169,7 @@ export default function AboutPage() {
                     <h3 className="text-lg font-bold text-[#F4F6FF]">
                       {step.name}
                     </h3>
-                    <p className="mt-1 font-mono text-xs text-[#7888FF]">
+                    <p className="mt-1 text-xs font-medium text-[#40D6C5]">
                       {step.tagline}
                     </p>
                     <p className="mt-3 text-sm leading-relaxed text-[#A5B2CC]">
@@ -192,13 +192,13 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section id="future-direction" className="mb-20">
+        <section id="future-direction" className="mb-16 sm:mb-20">
           <SectionHeader
             badgeText="07 // FUTURE DIRECTION"
             title="Progress through learning and validation"
             subtitle={companyData.aboutFutureDirection}
           />
-          <div className="mx-auto max-w-4xl rounded-2xl border border-[#586BFF]/30 bg-gradient-to-br from-[#121F36] to-[#10192B] p-6 text-center sm:p-10">
+          <div className="mx-auto max-w-4xl rounded-2xl border border-[#586BFF]/30 bg-[#10192B] p-6 text-center sm:p-10">
             <p className="text-sm leading-relaxed text-[#A5B2CC]">
               Orlithix remains a proposed venture in development. Any future initiatives will be presented with clear status and without implying unverified outcomes.
             </p>

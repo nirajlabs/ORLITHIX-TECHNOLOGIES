@@ -21,7 +21,6 @@ import {
   Smartphone, 
   ArrowLeft, 
   ArrowRight, 
-  CheckCircle2, 
   Wrench, 
   FlaskConical, 
   Layers, 
@@ -97,7 +96,7 @@ export default async function CapabilityDetailPage({
   // Status badge config
   const statusConfig = {
     current: {
-      badgeBg: "bg-[#586BFF]/10 text-[#7888FF] border-[#586BFF]/30",
+      badgeBg: "bg-[#586BFF]/10 text-[#F4F6FF] border-[#586BFF]/30",
       dot: "bg-[#586BFF]",
     },
     service: {
@@ -105,59 +104,55 @@ export default async function CapabilityDetailPage({
       dot: "bg-[#40D6C5]",
     },
     research: {
-      badgeBg: "bg-purple-500/10 text-purple-300 border-purple-500/30",
-      dot: "bg-purple-400",
+      badgeBg: "bg-[#10192B] text-[#A5B2CC] border-[#263650]",
+      dot: "bg-[#A5B2CC]",
     },
   }[capability.statusType];
 
   return (
-    <div className="py-24 sm:py-32 relative">
-      {/* Background ambient lighting */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#586BFF]/10 rounded-full blur-[140px] pointer-events-none" />
+    <div className="relative py-20 sm:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-[#586BFF]/[0.07] to-transparent" />
 
-      <Container className="relative z-10">
+      <Container className="relative">
         {/* Breadcrumb Navigation */}
-        <div className="flex items-center gap-2 text-xs font-mono text-[#A5B2CC] mb-8">
+        <nav aria-label="Breadcrumb" className="mb-6 flex min-h-11 items-center gap-2 text-xs text-[#A5B2CC] sm:mb-8">
           <Link
             href="/capabilities"
-            className="hover:text-[#F4F6FF] flex items-center gap-1 transition-colors"
+            className="inline-flex min-h-11 items-center gap-1 transition-colors hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
             Capabilities Directory
           </Link>
-          <span>/</span>
-          <span className="text-[#40D6C5] truncate">{capability.name}</span>
-        </div>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page" className="truncate text-[#40D6C5]">{capability.name}</span>
+        </nav>
 
         {/* Hero Stage */}
-        <div className="rounded-3xl bg-gradient-to-b from-[#121F36] to-[#0c1424] border border-[#263650] p-6 sm:p-10 lg:p-12 mb-16 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-          {/* Subtle top edge border gradient highlight */}
-          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#586BFF]/40 to-transparent pointer-events-none" />
-
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-[#263650]">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#10192B] border border-[#263650] flex items-center justify-center text-[#586BFF] flex-shrink-0 shadow-[0_0_20px_rgba(88,107,255,0.2)]">
-                <IconComponent className="w-8 h-8 text-[#40D6C5]" />
+        <div className="relative mb-14 overflow-hidden rounded-3xl border border-[#263650] bg-[#10192B] p-5 sm:p-8 lg:p-10 sm:mb-16">
+          <div className="flex flex-col items-start justify-between gap-6 border-b border-[#263650] pb-6 sm:pb-8 lg:flex-row lg:items-center">
+            <div className="flex min-w-0 items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#263650] bg-[#080D1B] text-[#40D6C5] sm:h-14 sm:w-14">
+                <IconComponent aria-hidden="true" className="h-6 w-6 sm:h-7 sm:w-7" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <span
-                  className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase font-semibold px-2.5 py-0.5 rounded-full border ${statusConfig.badgeBg}`}
+                  className={`inline-flex max-w-full items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase leading-tight ${statusConfig.badgeBg}`}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${statusConfig.dot}`} />
+                  <span aria-hidden="true" className={`h-1.5 w-1.5 shrink-0 rounded-full ${statusConfig.dot}`} />
                   <span>{capability.statusLabel}</span>
                 </span>
-                <h1 className="text-2xl sm:text-4xl font-extrabold text-[#F4F6FF] mt-1.5 tracking-tight">
+                <h1 className="mt-1.5 break-words text-2xl font-semibold tracking-tight text-[#F4F6FF] sm:text-4xl">
                   {capability.name}
                 </h1>
-                <p className="font-mono text-xs sm:text-sm text-[#7888FF] mt-0.5">
+                <p className="mt-1 text-sm text-[#40D6C5]">
                   {capability.shortTagline}
                 </p>
               </div>
             </div>
 
             {capability.benchmarkMetric && (
-              <div className="flex lg:flex-col items-center lg:items-end justify-between w-full lg:w-auto p-3 lg:p-0 rounded-lg bg-[#10192B] lg:bg-transparent border lg:border-none border-[#263650]">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#A5B2CC]/70">
+              <div className="flex w-full items-center justify-between gap-3 rounded-lg border border-[#263650] bg-[#080D1B] p-3 lg:w-auto lg:flex-col lg:items-end lg:border-0 lg:bg-transparent lg:p-0">
+                <span className="text-[10px] uppercase tracking-wider text-[#A5B2CC]">
                   {capability.benchmarkMetric.label}
                 </span>
                 <span className="font-mono text-sm sm:text-base font-bold text-[#40D6C5]">
@@ -169,24 +164,24 @@ export default async function CapabilityDetailPage({
 
           {/* Long Overview */}
           <div className="mt-8">
-            <h2 className="text-sm font-mono uppercase tracking-wider text-[#A5B2CC]/80 mb-3">
+            <h2 className="mb-3 text-xs font-mono uppercase tracking-wider text-[#A5B2CC]">
               Architectural Overview & Scope
             </h2>
-            <p className="text-sm sm:text-base text-[#F4F6FF]/90 leading-relaxed max-w-4xl">
+            <p className="max-w-4xl text-sm leading-relaxed text-[#F4F6FF]/90 sm:text-base">
               {capability.longOverview}
             </p>
           </div>
 
           {/* Technologies Chips */}
-          <div className="mt-8 pt-6 border-t border-[#263650]/60">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-[#A5B2CC] mb-3">
+          <div className="mt-8 border-t border-[#263650] pt-6">
+            <h3 className="mb-3 text-xs font-mono uppercase tracking-wider text-[#A5B2CC]">
               Core Technologies & Toolchain:
             </h3>
             <div className="flex flex-wrap gap-2">
               {capability.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 rounded-lg bg-[#080D1B] border border-[#263650] text-xs font-mono text-[#F4F6FF] hover:border-[#586BFF] transition-colors"
+                  className="rounded-lg border border-[#263650] bg-[#080D1B] px-3 py-2 text-xs text-[#F4F6FF] transition-colors hover:border-[#586BFF]"
                 >
                   {tech}
                 </span>
@@ -209,7 +204,7 @@ export default async function CapabilityDetailPage({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-3 lg:gap-6">
             {/* Horizon 1: Current Skills */}
             <Card className="flex flex-col justify-between border-[#586BFF]/30">
               <div>
@@ -275,17 +270,17 @@ export default async function CapabilityDetailPage({
             </Card>
 
             {/* Horizon 3: Future Research */}
-            <Card className="flex flex-col justify-between border-purple-500/30">
+            <Card className="flex flex-col justify-between border-[#263650]">
               <div>
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-[#10192B] border border-purple-500/40 flex items-center justify-center text-purple-400">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#263650] bg-[#10192B] text-[#A5B2CC]">
                     <FlaskConical className="w-4 h-4" />
                   </div>
                   <div>
                     <h3 className="text-base font-bold text-[#F4F6FF]">
                       Future R&D Vectors
                     </h3>
-                    <span className="text-[10px] font-mono text-purple-400">
+                    <span className="text-[10px] font-mono text-[#A5B2CC]">
                       Active Investigation
                     </span>
                   </div>
@@ -294,14 +289,14 @@ export default async function CapabilityDetailPage({
                 <ul className="space-y-2.5">
                   {capability.futureResearch.map((res, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-xs text-[#A5B2CC] leading-relaxed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0 mt-1.5" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A5B2CC]" />
                       <span>{res}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-6 pt-3 border-t border-[#263650] text-[10px] font-mono text-purple-400">
+              <div className="mt-6 border-t border-[#263650] pt-3 text-[10px] font-mono text-[#A5B2CC]">
                 STATUS: RESEARCH & EXPERIMENTATION
               </div>
             </Card>
@@ -359,7 +354,7 @@ export default async function CapabilityDetailPage({
                 </div>
 
                 <div className="mt-6 pt-3 border-t border-[#263650]">
-                  <strong className="text-[#7888FF] font-mono uppercase block text-[10px]">
+                  <strong className="text-[#586BFF] font-mono uppercase block text-[10px]">
                     Outcome & Impact:
                   </strong>
                   <p className="text-xs text-[#A5B2CC] mt-0.5 leading-relaxed">
@@ -401,10 +396,10 @@ export default async function CapabilityDetailPage({
                     </div>
                     <Link
                       href={`/products/${prod.slug}`}
-                      className="p-2 rounded-lg bg-[#10192B] border border-[#263650] text-[#586BFF] hover:text-[#40D6C5] transition-colors"
+                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#263650] bg-[#10192B] text-[#586BFF] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
                       aria-label={`View ${prod.name}`}
                     >
-                      <ExternalLink className="w-4 h-4" />
+                    <ExternalLink aria-hidden="true" className="h-4 w-4" />
                     </Link>
                   </div>
                 ))}
@@ -414,17 +409,17 @@ export default async function CapabilityDetailPage({
         )}
 
         {/* Adjacent Navigation (Prev / Next) */}
-        <div className="border-t border-b border-[#263650] py-6 mb-16 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <nav aria-label="Adjacent capabilities" className="mb-14 flex flex-col items-stretch justify-between gap-3 border-y border-[#263650] py-4 sm:mb-16 sm:flex-row sm:items-center sm:gap-4 sm:py-6">
           <Link
             href={`/capabilities/${prev.slug}`}
-            className="flex items-center gap-3 text-xs text-[#A5B2CC] hover:text-[#40D6C5] transition-colors group"
+            className="group inline-flex min-h-11 items-center gap-3 rounded-lg text-xs text-[#A5B2CC] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
           >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
             <div>
-              <span className="font-mono text-[10px] uppercase text-[#A5B2CC]/60 block">
+              <span className="block text-[10px] uppercase text-[#A5B2CC]">
                 Previous Discipline
               </span>
-              <span className="font-semibold text-sm text-[#F4F6FF] group-hover:text-[#40D6C5]">
+              <span className="text-sm font-semibold text-[#F4F6FF] group-hover:text-[#40D6C5]">
                 {prev.name}
               </span>
             </div>
@@ -432,22 +427,22 @@ export default async function CapabilityDetailPage({
 
           <Link
             href={`/capabilities/${next.slug}`}
-            className="flex items-center gap-3 text-xs text-[#A5B2CC] hover:text-[#40D6C5] transition-colors group text-right"
+            className="group inline-flex min-h-11 items-center justify-end gap-3 rounded-lg text-right text-xs text-[#A5B2CC] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
           >
             <div>
-              <span className="font-mono text-[10px] uppercase text-[#A5B2CC]/60 block">
+              <span className="block text-[10px] uppercase text-[#A5B2CC]">
                 Next Discipline
               </span>
-              <span className="font-semibold text-sm text-[#F4F6FF] group-hover:text-[#40D6C5]">
+              <span className="text-sm font-semibold text-[#F4F6FF] group-hover:text-[#40D6C5]">
                 {next.name}
               </span>
             </div>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
-        </div>
+        </nav>
 
         {/* Targeted Action CTA */}
-        <div className="p-8 sm:p-12 rounded-2xl bg-gradient-to-r from-[#121F36] to-[#0c1424] border border-[#586BFF]/40 text-center max-w-3xl mx-auto shadow-[0_20px_50px_rgba(88,107,255,0.1)]">
+        <div className="mx-auto max-w-3xl rounded-2xl border border-[#586BFF]/40 bg-[#10192B] p-6 text-center sm:p-10">
           <Badge variant="concept" size="sm" className="mb-4">
             TECHNICAL ENGAGEMENT
           </Badge>

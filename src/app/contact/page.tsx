@@ -65,18 +65,18 @@ export default function ContactPage() {
   );
 
   return (
-    <div className="relative overflow-hidden py-24 sm:py-32">
-      <div className="pointer-events-none absolute left-1/2 top-20 h-[360px] w-[760px] -translate-x-1/2 rounded-full bg-[#586BFF]/10 blur-[140px]" />
+    <div className="relative overflow-hidden py-20 sm:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-[#586BFF]/[0.07] to-transparent" />
 
-      <Container className="relative z-10">
-        <header className="mx-auto mb-16 max-w-3xl text-center">
+      <Container className="relative">
+        <header className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
           <Badge variant="concept" size="md" className="mb-4">
             CONTACT ORLITHIX
           </Badge>
-          <h1 className="text-3xl font-extrabold tracking-tight text-[#F4F6FF] sm:text-5xl">
+          <h1 className="text-3xl font-semibold tracking-tight text-[#F4F6FF] sm:text-5xl">
             {companyData.contactCtaHeadline}
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-[#A5B2CC] sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-[#A5B2CC] sm:mt-6 sm:text-base">
             {companyData.contactCtaDescription}
           </p>
         </header>
@@ -85,7 +85,7 @@ export default function ContactPage() {
           <div className="mb-8 text-center">
             <h2
               id="enquiry-options-heading"
-              className="text-2xl font-bold text-[#F4F6FF]"
+              className="text-xl font-semibold text-[#F4F6FF] sm:text-2xl"
             >
               How can we connect?
             </h2>
@@ -100,7 +100,7 @@ export default function ContactPage() {
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#263650] bg-[#10192B] text-[#40D6C5]">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-lg font-bold text-[#F4F6FF]">
+                <h3 className="mt-5 text-lg font-semibold text-[#F4F6FF]">
                   {title}
                 </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-[#A5B2CC]">
@@ -128,10 +128,10 @@ export default function ContactPage() {
           aria-labelledby="contact-details-heading"
           className="mx-auto mt-12 max-w-3xl"
         >
-          <div className="rounded-2xl border border-[#263650] bg-[#10192B] p-6 sm:p-8">
+          <div className="rounded-2xl border border-[#263650] bg-[#10192B] p-5 sm:p-8">
             <h2
               id="contact-details-heading"
-              className="text-xl font-bold text-[#F4F6FF]"
+              className="text-xl font-semibold text-[#F4F6FF]"
             >
               Business contact details
             </h2>

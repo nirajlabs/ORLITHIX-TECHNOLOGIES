@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { getAllProducts } from "@/lib/products";
 import { ProductGrid } from "@/components/product-grid";
-import { ShieldAlert, ArrowRight } from "lucide-react";
+import { Info, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Product Innovation Lab",
@@ -17,31 +17,30 @@ export default function ProductsPage() {
   const products = getAllProducts();
 
   return (
-    <div className="py-24 sm:py-32 relative">
-      {/* Background ambient lighting */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#586BFF]/10 rounded-full blur-[140px] pointer-events-none" />
+    <div className="relative py-20 sm:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-[#586BFF]/[0.07] to-transparent" />
 
-      <Container className="relative z-10">
+      <Container className="relative">
         {/* Page Hero */}
-        <div className="max-w-4xl mx-auto text-center mb-12">
+        <div className="mx-auto mb-10 max-w-4xl text-center sm:mb-12">
           <Badge variant="concept" size="md" className="mb-4">
             INNOVATION LAB // PRODUCT PIPELINE
           </Badge>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#F4F6FF] tracking-tight">
+          <h1 className="text-3xl font-semibold tracking-tight text-[#F4F6FF] sm:text-5xl">
             Product Innovation Lab
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-[#A5B2CC] leading-relaxed">
+          <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-[#A5B2CC] sm:mt-6 sm:text-base">
             As an AI-first parent venture, Orlithix incubates specialized software architectures designed to solve foundational enterprise bottlenecks. Explore our active research initiatives, algorithmic prototypes, and conceptual platforms.
           </p>
         </div>
 
         {/* Strict Business Integrity & R&D Status Notice */}
-        <div className="mb-14 max-w-4xl mx-auto p-5 rounded-2xl bg-[#10192B] border border-amber-500/30 flex items-start gap-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
-          <ShieldAlert className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-          <div className="text-xs font-mono text-[#A5B2CC] leading-relaxed">
-            <strong className="text-[#F4F6FF] uppercase tracking-wider block mb-1">
+        <div className="mx-auto mb-12 flex max-w-4xl items-start gap-3.5 rounded-2xl border border-[#40D6C5]/25 bg-[#10192B] p-4 sm:mb-14 sm:p-5">
+          <Info aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-[#40D6C5]" />
+          <div className="text-xs leading-relaxed text-[#A5B2CC] sm:text-sm">
+            <strong className="mb-1 block font-mono text-xs uppercase tracking-wider text-[#F4F6FF]">
               R&D Lifecycle Transparency Notice:
             </strong>
             All initiatives described below represent active research concepts, architectural prototypes, or developmental roadmaps within the Orlithix Innovation Lab. Feature descriptions, technology stacks, and roadmap items communicate proposed direction, not deployed product functionality. None are marketed as established commercial offerings.
@@ -49,71 +48,71 @@ export default function ProductsPage() {
         </div>
 
         {/* Product Lifecycle Stage Taxonomy Explainer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          <div className="p-4 rounded-xl bg-[#10192B] border border-[#40D6C5]/30 flex flex-col justify-between">
+        <div className="mb-14 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 sm:mb-16">
+          <div className="flex flex-col justify-between rounded-xl border border-[#40D6C5]/30 bg-[#10192B] p-4">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-[#40D6C5] animate-pulse" />
-                <span className="font-mono text-xs font-bold text-[#F4F6FF] uppercase">
+              <div className="mb-2 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#40D6C5]" />
+                <span className="font-mono text-xs font-semibold uppercase text-[#F4F6FF]">
                   Research & Validation
                 </span>
               </div>
-              <p className="text-[11px] text-[#A5B2CC] leading-relaxed">
+              <p className="text-xs leading-relaxed text-[#A5B2CC]">
                 Active algorithmic experimentation, AST parsing, and empirical test harness formulation.
               </p>
             </div>
-            <span className="mt-3 font-mono text-[9px] text-[#40D6C5] uppercase tracking-wider block">
+            <span className="mt-3 block font-mono text-[10px] uppercase tracking-wider text-[#40D6C5]">
               Active Investigation
             </span>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#10192B] border border-[#586BFF]/30 flex flex-col justify-between">
+          <div className="flex flex-col justify-between rounded-xl border border-[#586BFF]/30 bg-[#10192B] p-4">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-[#586BFF]" />
-                <span className="font-mono text-xs font-bold text-[#F4F6FF] uppercase">
+              <div className="mb-2 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#586BFF]" />
+                <span className="font-mono text-xs font-semibold uppercase text-[#F4F6FF]">
                   Future Concept
                 </span>
               </div>
-              <p className="text-[11px] text-[#A5B2CC] leading-relaxed">
+              <p className="text-xs leading-relaxed text-[#A5B2CC]">
                 Architectural problem-space definition, mathematical modeling, and conceptual system design.
               </p>
             </div>
-            <span className="mt-3 font-mono text-[9px] text-[#586BFF] uppercase tracking-wider block">
+            <span className="mt-3 block font-mono text-[10px] uppercase tracking-wider text-[#586BFF]">
               Architectural Roadmap
             </span>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#10192B] border border-purple-500/20 flex flex-col justify-between opacity-80">
+          <div className="flex flex-col justify-between rounded-xl border border-[#263650] bg-[#10192B] p-4">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-purple-400" />
-                <span className="font-mono text-xs font-bold text-[#F4F6FF] uppercase">
+              <div className="mb-2 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#A5B2CC]" />
+                <span className="font-mono text-xs font-semibold uppercase text-[#F4F6FF]">
                   Prototypes & Pilots
                 </span>
               </div>
-              <p className="text-[11px] text-[#A5B2CC] leading-relaxed">
+              <p className="text-xs leading-relaxed text-[#A5B2CC]">
                 Closed architectural evaluations and internal synthetic stress testing (Future Phase).
               </p>
             </div>
-            <span className="mt-3 font-mono text-[9px] text-purple-400 uppercase tracking-wider block">
+            <span className="mt-3 block font-mono text-[10px] uppercase tracking-wider text-[#A5B2CC]">
               Planned Progression
             </span>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#10192B] border border-emerald-500/20 flex flex-col justify-between opacity-80">
+          <div className="flex flex-col justify-between rounded-xl border border-[#263650] bg-[#10192B] p-4">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span className="font-mono text-xs font-bold text-[#F4F6FF] uppercase">
+              <div className="mb-2 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#A5B2CC]" />
+                <span className="font-mono text-xs font-semibold uppercase text-[#F4F6FF]">
                   Launched Products
                 </span>
               </div>
-              <p className="text-[11px] text-[#A5B2CC] leading-relaxed">
+              <p className="text-xs leading-relaxed text-[#A5B2CC]">
                 Commercially released platforms operating under enterprise SLAs (Future Horizon).
               </p>
             </div>
-            <span className="mt-3 font-mono text-[9px] text-emerald-400 uppercase tracking-wider block">
+            <span className="mt-3 block font-mono text-[10px] uppercase tracking-wider text-[#A5B2CC]">
               Future Commercialization
             </span>
           </div>
@@ -123,17 +122,17 @@ export default function ProductsPage() {
         <ProductGrid products={products} enableFilters={true} />
 
         {/* Bottom Consultation Banner */}
-        <div className="mt-20 p-8 sm:p-12 rounded-2xl bg-gradient-to-r from-[#121F36] to-[#0c1424] border border-[#263650] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-16 flex flex-col items-center justify-between gap-6 rounded-2xl border border-[#263650] bg-[#10192B] p-6 sm:mt-20 sm:p-8 lg:flex-row">
           <div className="max-w-xl text-center md:text-left">
-            <h3 className="text-xl sm:text-2xl font-bold text-[#F4F6FF]">
+            <h2 className="text-xl font-semibold text-[#F4F6FF] sm:text-2xl">
               Interested in Co-Developing or Evaluating an R&D Concept?
-            </h3>
-            <p className="mt-2 text-xs sm:text-sm text-[#A5B2CC] leading-relaxed">
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-[#A5B2CC]">
               We welcome academic institutions, enterprise DevOps leaders, and technical partners to review our specifications and collaborate on architectural benchmarks.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex w-full shrink-0 items-center justify-center gap-3 sm:w-auto">
             <Button
               href="/contact?subject=innovation-lab-collaboration"
               variant="primary"

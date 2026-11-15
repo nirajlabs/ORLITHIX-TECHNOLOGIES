@@ -6,6 +6,7 @@ interface LogoProps {
   variant?: "horizontal" | "stacked" | "icon";
   size?: "sm" | "md" | "lg";
   withLink?: boolean;
+  tone?: "dark" | "light";
 }
 
 export const Logo: React.FC<LogoProps> = ({
@@ -13,7 +14,9 @@ export const Logo: React.FC<LogoProps> = ({
   variant = "horizontal",
   size = "md",
   withLink = true,
+  tone = "dark",
 }) => {
+  const gradientPrefix = React.useId().replace(/:/g, "");
   // Dimension mapping for the SVG icon
   const iconDimensions = {
     sm: { width: 32, height: 32 },
@@ -28,26 +31,28 @@ export const Logo: React.FC<LogoProps> = ({
       viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
-      aria-label="Orlithix Technologies Logo Icon"
+      className="flex-shrink-0"
+      role={variant === "icon" ? "img" : undefined}
+      aria-label={variant === "icon" ? "Orlithix Technologies" : undefined}
+      aria-hidden={variant !== "icon"}
     >
       <defs>
         {/* Primary Indigo to Teal linear gradient for the outer geometric ecosystem ring */}
-        <linearGradient id="orlithixRingGrad" x1="10%" y1="0%" x2="90%" y2="100%">
+        <linearGradient id={`${gradientPrefix}-ring`} x1="10%" y1="0%" x2="90%" y2="100%">
           <stop offset="0%" stopColor="#586BFF" />
           <stop offset="50%" stopColor="#4F86FF" />
           <stop offset="100%" stopColor="#40D6C5" />
         </linearGradient>
 
         {/* Upward Pathway Gradient */}
-        <linearGradient id="orlithixBridgeGrad" x1="50%" y1="100%" x2="50%" y2="0%">
+        <linearGradient id={`${gradientPrefix}-bridge`} x1="50%" y1="100%" x2="50%" y2="0%">
           <stop offset="0%" stopColor="#586BFF" stopOpacity="0.4" />
           <stop offset="50%" stopColor="#40D6C5" stopOpacity="0.9" />
           <stop offset="100%" stopColor="#F4F6FF" />
         </linearGradient>
 
         {/* Core Node Glow */}
-        <radialGradient id="orlithixCoreGlow" cx="50%" cy="30%" r="50%">
+        <radialGradient id={`${gradientPrefix}-core-glow`} cx="50%" cy="30%" r="50%">
           <stop offset="0%" stopColor="#40D6C5" stopOpacity="0.8" />
           <stop offset="100%" stopColor="#40D6C5" stopOpacity="0" />
         </radialGradient>
@@ -66,7 +71,7 @@ export const Logo: React.FC<LogoProps> = ({
            L22 76 
            L12 50 
            L22 24 Z"
-        stroke="url(#orlithixRingGrad)"
+        stroke={`url(#${gradientPrefix}-ring)`}
         strokeWidth="6"
         strokeLinejoin="round"
         fill="#080D1B"
@@ -86,7 +91,7 @@ export const Logo: React.FC<LogoProps> = ({
       {/* Anchored at bottom chamber, ascending through the center and projecting through the apex */}
       <path
         d="M40 76 L46 42 L38 42 L50 20 L62 42 L54 42 L60 76 Z"
-        fill="url(#orlithixBridgeGrad)"
+        fill={`url(#${gradientPrefix}-bridge)`}
       />
 
       {/* Perspective Isometric Bridge Guideway Lines */}
@@ -95,7 +100,7 @@ export const Logo: React.FC<LogoProps> = ({
 
       {/* Central Meridian Data Nodes */}
       <circle cx="50" cy="20" r="4" fill="#F4F6FF" />
-      <circle cx="50" cy="20" r="8" fill="url(#orlithixCoreGlow)" />
+      <circle cx="50" cy="20" r="8" fill={`url(#${gradientPrefix}-core-glow)`} />
       
       {/* Ecosystem Interconnected Vertex Nodes */}
       <circle cx="78" cy="24" r="3" fill="#40D6C5" />
@@ -109,17 +114,23 @@ export const Logo: React.FC<LogoProps> = ({
 
   if (variant === "icon") {
     return withLink ? (
-      <Link href="/" className={`inline-flex items-center group ${className}`}>
+      <Link
+        href="/"
+        aria-label="Orlithix Technologies home"
+        className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5] ${className}`}
+      >
         {iconSvg}
       </Link>
     ) : (
-      <div className={`inline-flex items-center group ${className}`}>{iconSvg}</div>
+      <div className={`inline-flex items-center ${className}`}>{iconSvg}</div>
     );
   }
 
+  const wordmarkColor = tone === "light" ? "text-[#080D1B]" : "text-[#F4F6FF]";
+  const subtitleColor = tone === "light" ? "text-[#263650]" : "text-[#A5B2CC]";
   const textBlock = (
     <div className={`flex flex-col ${variant === "stacked" ? "items-center text-center mt-2" : "text-left"}`}>
-      <div className="flex items-baseline tracking-wider font-extrabold text-[#F4F6FF]">
+      <div className={`flex items-baseline tracking-wider font-extrabold ${wordmarkColor}`}>
         <span
           className={`font-sans tracking-[0.18em] ${
             size === "sm" ? "text-base" : size === "md" ? "text-xl" : "text-2xl"
@@ -127,10 +138,10 @@ export const Logo: React.FC<LogoProps> = ({
         >
           ORLITHIX
         </span>
-        <span className="text-[#40D6C5] font-mono ml-0.5 animate-pulse">.</span>
+        <span className="ml-0.5 font-mono text-[#40D6C5]">.</span>
       </div>
       <span
-        className={`font-mono text-[#A5B2CC] font-medium tracking-[0.32em] uppercase -mt-0.5 ${
+        className={`-mt-0.5 font-mono font-medium uppercase tracking-[0.32em] ${subtitleColor} ${
           size === "sm" ? "text-[8px]" : size === "md" ? "text-[9px]" : "text-[11px]"
         }`}
       >
@@ -152,7 +163,7 @@ export const Logo: React.FC<LogoProps> = ({
 
   if (withLink) {
     return (
-      <Link href="/" className="group inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#586BFF] rounded-lg">
+      <Link href="/" className="inline-flex min-h-11 items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]">
         {content}
       </Link>
     );

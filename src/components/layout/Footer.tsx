@@ -19,12 +19,9 @@ export const Footer: React.FC = () => {
   );
 
   return (
-    <footer className="bg-[#080D1B] border-t border-[#263650] pt-16 pb-12 mt-20 relative overflow-hidden">
-      {/* Subtle top edge border gradient highlight */}
-      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#586BFF]/40 to-transparent pointer-events-none" />
-
+    <footer className="mt-16 border-t border-[#263650] bg-[#080D1B] py-12 sm:mt-20 sm:py-14">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-[#263650]/60">
+        <div className="grid grid-cols-1 gap-10 border-b border-[#263650] pb-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8 lg:pb-12">
           {/* Company Brand Column (Spans 2 columns on lg) */}
           <div className="lg:col-span-2 flex flex-col items-start pr-0 lg:pr-8">
             <Logo size="md" variant="horizontal" />
@@ -35,22 +32,22 @@ export const Footer: React.FC = () => {
               A proposed emerging technology venture exploring artificial intelligence, software engineering, and digital innovation.
             </p>
 
-            <p className="mt-6 rounded-lg border border-[#263650] bg-[#10192B] px-3 py-1.5 text-[11px] font-mono text-[#A5B2CC]">
+            <p className="mt-6 rounded-lg border border-[#263650] bg-[#10192B] px-3 py-2 text-[11px] font-mono text-[#A5B2CC]">
               Proposed venture // In development
             </p>
           </div>
 
           {/* Column 2: Technology Divisions */}
           <div className="flex flex-col">
-            <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#F4F6FF] mb-4">
+            <h3 className="mb-4 text-xs font-mono font-semibold uppercase tracking-wider text-[#F4F6FF]">
               Technology Divisions
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1">
               {footerNavigation.divisions.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-xs text-[#A5B2CC] hover:text-[#40D6C5] transition-colors"
+                    className="inline-flex min-h-11 items-center text-xs text-[#A5B2CC] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
                   >
                     {item.label}
                   </Link>
@@ -61,15 +58,15 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Platform & Company */}
           <div className="flex flex-col">
-            <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#F4F6FF] mb-4">
+            <h3 className="mb-4 text-xs font-mono font-semibold uppercase tracking-wider text-[#F4F6FF]">
               Organization
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1">
               {footerNavigation.company.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-xs text-[#A5B2CC] hover:text-[#586BFF] transition-colors"
+                    className="inline-flex min-h-11 items-center text-xs text-[#A5B2CC] transition-colors hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
                   >
                     {item.label}
                   </Link>
@@ -80,16 +77,16 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Innovation Lab & R&D */}
           <div className="flex flex-col">
-            <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#F4F6FF] mb-4 flex items-center gap-1.5">
+            <h3 className="mb-4 flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-[#F4F6FF]">
               <Terminal className="w-3.5 h-3.5 text-[#40D6C5]" />
               Innovation Lab
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               {products.map((product) => (
                 <li key={product.slug}>
                   <Link
                     href={`/products/${product.slug}`}
-                    className="text-xs text-[#A5B2CC] hover:text-[#F4F6FF] transition-colors flex items-center gap-1.5"
+                    className="inline-flex min-h-11 items-center gap-1.5 text-xs text-[#A5B2CC] transition-colors hover:text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
                   >
                     <span className="w-1 h-1 rounded-full bg-[#40D6C5]" />
                     {product.name}
@@ -103,7 +100,7 @@ export const Footer: React.FC = () => {
 
             <div className="mt-6 p-3 rounded-lg bg-[#10192B] border border-[#263650]">
               <span className="text-[10px] font-mono text-[#40D6C5] uppercase tracking-wider block">
-                Research Inquiries
+                Contact options
               </span>
               {contactEmail ? (
                 <a
@@ -129,7 +126,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Legal Disclaimer & Entity Transparency */}
-        <div className="py-6 border-b border-[#263650]/40">
+        <div className="border-b border-[#263650] py-6">
           <p className="text-[11px] font-mono text-[#A5B2CC]/70 leading-relaxed">
             <strong className="text-[#A5B2CC]">DISCLOSURE NOTICE: </strong>
             {companyData.legalEntityNotice}
@@ -137,7 +134,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar: Copyright & Rights */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#A5B2CC]/80 gap-4">
+        <div className="flex flex-col items-center justify-between gap-4 pt-6 text-xs text-[#A5B2CC]/80 sm:flex-row">
           <p>
             &copy; {new Date().getFullYear()} {companyData.name}. All rights reserved.
           </p>
