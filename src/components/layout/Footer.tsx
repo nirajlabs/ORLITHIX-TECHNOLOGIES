@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/brand/Logo";
+import { ContactLinks } from "@/components/contact/ContactLinks";
 import { companyData } from "@/data/company";
 import { footerNavigation } from "@/data/navigation";
 import { getAllProducts } from "@/lib/products";
@@ -9,14 +10,6 @@ import { Terminal } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const products = getAllProducts();
-  const { email, phone, address, socialLinks } = companyData.contactDetails;
-  const contactEmail = email?.trim();
-  const hasContactDetails = Boolean(
-    contactEmail ||
-      phone?.trim() ||
-      address?.trim() ||
-      socialLinks?.some((link) => link.label.trim() && link.url.trim()),
-  );
 
   return (
     <footer className="mt-16 border-t border-[#263650] bg-[#080D1B] py-12 sm:mt-20 sm:py-14">
@@ -102,25 +95,7 @@ export const Footer: React.FC = () => {
               <span className="text-[10px] font-mono text-[#40D6C5] uppercase tracking-wider block">
                 Contact options
               </span>
-              {contactEmail ? (
-                <a
-                  className="mt-0.5 inline-flex min-h-11 items-center text-xs font-medium text-[#F4F6FF] underline decoration-[#586BFF]/60 underline-offset-4 hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
-                  href={`mailto:${encodeURIComponent(contactEmail)}`}
-                >
-                  {contactEmail}
-                </a>
-              ) : hasContactDetails ? (
-                <Link
-                  className="mt-0.5 inline-flex min-h-11 items-center text-xs text-[#F4F6FF] underline decoration-[#586BFF]/60 underline-offset-4 hover:text-[#40D6C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5]"
-                  href="/contact"
-                >
-                  View contact options
-                </Link>
-              ) : (
-                <span className="mt-0.5 block text-xs text-[#A5B2CC]">
-                  Business contact details are being added.
-                </span>
-              )}
+              <ContactLinks className="mt-1" />
             </div>
           </div>
         </div>

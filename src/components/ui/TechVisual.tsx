@@ -61,7 +61,7 @@ export function TechVisual() {
               type="button"
               onClick={() => setSelectedId(area.id)}
               aria-pressed={isSelected}
-              className={`flex min-h-16 items-center gap-3 rounded-xl border p-3 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5] ${
+              className={`flex min-h-16 cursor-pointer items-center gap-3 rounded-xl border p-3 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#40D6C5] ${
                 isSelected
                   ? "border-[#586BFF]/70 bg-[#121F36]"
                   : "border-[#263650] bg-[#080D1B]/50 hover:border-[#586BFF]/50 hover:bg-[#121F36]"

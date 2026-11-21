@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased] - 2026-11-21
+
+### Fixed
+- Corrected the founder data array in `src/data/founders.ts`, removing an accidental sparse array entry that caused TypeScript build errors in `FoundersSection`.
+- Added a typed `Founder` model and kept both founder profiles available to the About page.
+
+### Documentation
+- Updated project handoff, architecture, README, and changelog dates and status guidance to reflect the 2026-11-21 founder and contact work.
+
+### Verification
+- `npm run lint` passed with zero errors or warnings.
+- `npm run build` passed and generated 21/21 static pages, including the `/about` route with both founder profiles.
+
 ## [Unreleased] - 2026-11-15
 
 ### Added

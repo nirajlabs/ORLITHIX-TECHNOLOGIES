@@ -5,7 +5,6 @@ export const mainNavItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Capabilities", href: "/capabilities" },
   { label: "Products", href: "/products", badge: "R&D" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export const footerNavigation = {

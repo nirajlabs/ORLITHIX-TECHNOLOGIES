@@ -95,7 +95,7 @@ This document records the foundational architectural decisions, evaluation trade
 - **Context:**
   The Contact page needs to describe enquiry categories, but no verified business email, telephone number, address, social account, or inquiry-delivery service is currently configured.
 - **Decision:**
-  Store optional contact details in `src/data/company.ts`. Render email, telephone, and social actions only when their corresponding values are configured. When no details exist, show a pending-details notice. Do not simulate form submission or report successful delivery without a verified delivery mechanism.
+  Store direct contact destinations in `src/data/contact.ts`. Render email and telephone actions for the configured real destinations. The enquiry form prepares a local `mailto:` draft instead of claiming to submit or deliver an inquiry. Do not simulate form submission or report successful delivery without a verified delivery mechanism.
 - **Consequences:**
   - *Positive:* The site does not fabricate business details or imply that an inquiry was delivered.
   - *Negative:* Visitors cannot currently send an inquiry through the website. Genuine submission requires owner approval of the destination/provider and a server-side implementation.

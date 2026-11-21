@@ -4,17 +4,9 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Mail } from "lucide-react";
 import { companyData } from "@/data/company";
+import { ContactLinks } from "@/components/contact/ContactLinks";
 
 export const ContactCtaSection: React.FC = () => {
-  const { email, phone, address, socialLinks } = companyData.contactDetails;
-  const contactEmail = email?.trim();
-  const hasContactDetails = Boolean(
-    contactEmail ||
-      phone?.trim() ||
-      address?.trim() ||
-      socialLinks?.some((link) => link.label.trim() && link.url.trim()),
-  );
-
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background Ambient Glow */}
@@ -44,27 +36,23 @@ export const ContactCtaSection: React.FC = () => {
             >
               View Enquiry Options
             </Button>
-            {contactEmail && (
-              <Button
-                href={`mailto:${encodeURIComponent(contactEmail)}`}
-                variant="secondary"
-                size="lg"
-                icon={<Mail className="w-4 h-4 text-[#40D6C5]" />}
-                className="w-full sm:w-auto"
-              >
-                Direct Email Channel
-              </Button>
-            )}
+            <Button
+              href="/contact#enquiry-form"
+              variant="secondary"
+              size="lg"
+              icon={<Mail className="w-4 h-4 text-[#40D6C5]" />}
+              className="w-full sm:w-auto"
+            >
+              Send an Enquiry
+            </Button>
           </div>
 
-          {!hasContactDetails && (
-            <p
-              role="status"
-              className="mt-8 text-xs text-[#A5B2CC]"
-            >
-              Business contact details are being added.
+          <div className="mx-auto mt-8 max-w-2xl border-t border-[#263650] pt-5 text-left">
+            <p className="mb-2 text-center text-xs font-medium uppercase tracking-wider text-[#40D6C5]">
+              Call or email us directly
             </p>
-          )}
+            <ContactLinks className="grid grid-cols-1 gap-x-6 sm:grid-cols-2" />
+          </div>
         </div>
       </Container>
     </section>

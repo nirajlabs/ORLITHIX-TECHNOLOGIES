@@ -1,6 +1,6 @@
 # Architecture: Orlithix Technologies Website
 
-**Status:** Current implementation snapshot, reviewed 2026-11-15
+**Status:** Current implementation snapshot, reviewed 2026-11-21
 **Venture status:** Orlithix Technologies is proposed and in development. This architecture describes the website, not a released product platform.
 
 ## 1. Technology and runtime
@@ -16,12 +16,12 @@
 | Route | Implementation |
 | --- | --- |
 | `/` | Hero, capabilities preview, About preview, Innovation Lab preview, development approach, and contact CTA. |
-| `/about` | Introduction, vision, mission, technology philosophy, innovation areas, approach, future direction, and entity disclosure. |
+| `/about` | Introduction, founders, vision, mission, technology philosophy, innovation areas, approach, future direction, and entity disclosure. |
 | `/capabilities` | Capability catalog with client-side filtering/search. |
 | `/capabilities/[slug]` | Capability detail pages generated from the active capability catalog. |
 | `/products` | Published-product catalog with client-side category filtering and search. |
 | `/products/[slug]` | Product concept detail pages generated from the active product catalog. |
-| `/contact` | Four enquiry categories and contact options that render only from configured contact details. No enquiry is submitted or stored. |
+| `/contact` | Phone, WhatsApp, and email links plus a validated enquiry form that prepares a `mailto:` draft. The site does not send or store enquiries. |
 | `/icon.svg` and `/opengraph-image` | SVG favicon and generated social preview image. |
 | `/sitemap.xml` | Generated from active product and capability catalogs plus core pages. |
 | `/robots.txt` | Next.js robots route. |
@@ -34,7 +34,9 @@ The latest recorded production build generated 21/21 pages, including six capabi
 | --- | --- |
 | `src/lib/products.ts` | ProductItem model, published product records, and catalog/detail helpers. Product UI and sitemap use this module. |
 | `src/lib/capabilities.ts` | CapabilityItem model, capability records, and catalog/detail helpers. Capability UI and sitemap use this module. |
-| `src/data/company.ts` | Company identity/disclosure, About copy, contact CTA text, and optional contact details. |
+| `src/data/company.ts` | Company identity/disclosure, About copy, and contact CTA text. |
+| `src/data/contact.ts` | Official phone, WhatsApp, and email destinations. |
+| `src/data/founders.ts` | Founder profile copy, supplied image paths, and specialisations. |
 | `src/data/divisions.ts` | Technology exploration-area content. |
 | `src/data/developmentApproach.ts` | The proposed Discover, Design, Engineer, Validate approach content. |
 | `src/data/navigation.ts` | Main navigation and footer navigation. |
@@ -48,7 +50,9 @@ The product catalog has a `published` gate. `getAllProducts()` returns published
 
 - `src/components/ui/` contains shared primitives such as Badge, Button, Card, Container, and SectionHeader.
 - `src/components/layout/` contains shared navigation and footer.
+- `src/components/contact/` contains direct contact links and the interactive enquiry form.
 - `src/components/sections/` contains homepage sections and previews.
+- `src/components/sections/FoundersSection.tsx` renders the typed founder profiles from `src/data/founders.ts` on the About page.
 - `src/components/product-card.tsx` and `src/components/product-grid.tsx` render and filter product concepts. The grid is a client component.
 - `src/components/capability-card.tsx` and `src/components/capability-grid.tsx` render and filter capabilities. The grid is a client component.
 - `src/app/about/page.tsx`, `src/app/contact/page.tsx`, catalog roots, and detail routes are server components unless a child component needs browser state.
@@ -57,15 +61,14 @@ Product artwork uses an optional local image path; if absent, `ProductArtwork` r
 
 ## 5. Contact behavior and boundaries
 
-`src/data/company.ts` owns `contactDetails` (`email`, `phone`, `address`, and optional social links). The current object is empty.
+`src/data/contact.ts` owns the published phone and email destinations. No email delivery service or server-side form endpoint is configured.
 
-- The Contact page presents Project, Collaboration, Business Partnership, and General enquiry categories.
-- Email actions are rendered only if an email is configured. Phone and social links appear only when their values are configured.
-- The homepage CTA and footer do not invent an email address; they display a pending-details notice when no usable contact details are available.
-- There is no contact form submission, API route, server action, provider integration, or persistence.
+- Phone links use `tel:`, WhatsApp links use `wa.me` with a prefilled greeting, and email links use `mailto:`.
+- The enquiry form validates locally and prepares an email draft for the primary contact address. The visitor must review and send the email; the site cannot report delivery success or failure.
+- No API route, server action, email provider integration, or enquiry persistence exists.
 - Product CTAs may include a `subject` query parameter, but the Contact page does not currently consume that parameter.
 
-Do not add a success state unless a real delivery mechanism exists and its result is verified. Implementing genuine inquiry submission requires an approved recipient/provider, server-side validation, and appropriate abuse/privacy controls.
+Do not report an enquiry as sent unless a real delivery mechanism exists and its result is verified. Implementing genuine inquiry submission requires an approved recipient/provider, server-side validation, and appropriate abuse/privacy controls.
 
 ## 6. Design and accessibility direction
 

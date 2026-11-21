@@ -33,8 +33,8 @@ export const companyData: CompanyConfig = {
     },
   ],
   aboutFutureDirection: "The venture's direction is to explore relevant problems, validate technical ideas, and develop selected concepts responsibly over time. Future services and products will be described according to their actual stage; no launch dates or commercial outcomes are promised.",
-  contactCtaHeadline: "Let's Build Something Meaningful.",
-  contactCtaDescription: "Have a technology challenge or an idea for an intelligent software solution? Let's connect.",
+  contactCtaHeadline: "Let's Build Something Extraordinary.",
+  contactCtaDescription: "Have an idea, a business challenge or an innovative technology concept? Connect with our team and let's explore the possibilities together.",
   contactDetails: {},
   foundedYear: "2026",
 };

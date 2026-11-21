@@ -6,7 +6,7 @@ export const divisionsData: Division[] = [
     name: "Artificial Intelligence Division",
     shortName: "Orlithix AI",
     tagline: "Neural Reasoning & Deterministic Systems",
-    description: "Exploring applied artificial intelligence, language models, retrieval-augmented systems, and edge inference concepts.",
+    description: "Exploring applied artificial intelligence, language models, retrieval-augmented systems and edge inference concepts.",
     iconName: "BrainCircuit",
     accentColor: "#586BFF",
     coreVectors: [
@@ -21,7 +21,7 @@ export const divisionsData: Division[] = [
     name: "Software Engineering Division",
     shortName: "Orlithix Core",
     tagline: "High-Throughput Enterprise Architecture",
-    description: "Exploring maintainable software architecture, APIs, distributed services, and resilient system design.",
+    description: "Exploring scalable software architecture, modern application development, backend engineering and engineering practices.",
     iconName: "Layers",
     accentColor: "#40D6C5",
     coreVectors: [
@@ -36,7 +36,7 @@ export const divisionsData: Division[] = [
     name: "Enterprise SaaS Division",
     shortName: "Orlithix SaaS",
     tagline: "Intelligent B2B Operational Platforms",
-    description: "Exploring how software platforms could support focused business workflows and data-informed decisions.",
+    description: "Exploring enterprise software platforms, multi-tenant architecture, subscription-based products and business applications.",
     iconName: "Briefcase",
     accentColor: "#586BFF",
     coreVectors: [
@@ -51,7 +51,7 @@ export const divisionsData: Division[] = [
     name: "Data Intelligence Division",
     shortName: "Orlithix Data",
     tagline: "Real-Time Telemetry & Knowledge Fabrics",
-    description: "Exploring data engineering, knowledge modeling, analytics, and observability concepts.",
+    description: "Exploring data engineering, data analytics, intelligent information systems and data-driven technologies.",
     iconName: "Database",
     accentColor: "#40D6C5",
     coreVectors: [
@@ -66,7 +66,7 @@ export const divisionsData: Division[] = [
     name: "Automation & Agents Division",
     shortName: "Orlithix Autonomous",
     tagline: "Cognitive Multi-Agent Orchestration",
-    description: "Exploring governed workflow automation, agent orchestration, and human-in-the-loop processes.",
+    description: "Exploring workflow automation, intelligent agents, API integrations and autonomous task execution.",
     iconName: "Bot",
     accentColor: "#586BFF",
     coreVectors: [
@@ -81,7 +81,7 @@ export const divisionsData: Division[] = [
     name: "Cloud & DevOps Division",
     shortName: "Orlithix Cloud",
     tagline: "Resilient Cloud-Native Runtimes",
-    description: "Exploring cloud-native architecture, deployment automation, infrastructure, and edge computing concepts.",
+    description: "Exploring cloud infrastructure, deployment engineering, CI/CD pipelines and scalable application operations.",
     iconName: "Cloud",
     accentColor: "#40D6C5",
     coreVectors: [

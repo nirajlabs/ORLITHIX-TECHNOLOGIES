@@ -1,6 +1,6 @@
 # Project Handoff: Orlithix Technologies
 
-**Updated:** 2026-11-15
+**Updated:** 2026-11-21
 **Project status:** Website routes and content systems are implemented; contact submission is not implemented.
 **Entity status:** Orlithix Technologies is a proposed venture in development. Product and capability content must not be presented as evidence of completed client work, launched products, or verified business results.
 
@@ -45,6 +45,8 @@ The active product source is `src/lib/products.ts`; the active capability source
 ### About and Contact work
 
 - Rebuilt the existing About route with seven requested content sections and proposed-venture language.
+- Added the founder profiles for Vishnu Vardhan and Niraj Khawash through `src/data/founders.ts` and `src/components/sections/FoundersSection.tsx`.
+- Corrected the founder catalog to remove an accidental sparse array entry that caused the initial production build to fail TypeScript validation.
 - Replaced the prior simulated contact-form behavior with four enquiry categories and conditional contact actions.
 - Added centralized optional email, phone, address, and social-link fields to the company configuration/type.
 - Updated the homepage About preview, contact CTA, and footer to avoid unsupported operating/privacy claims and fabricated contact information.
@@ -93,6 +95,11 @@ No files were removed and no API, database, or dependency changes were made in t
 
 ## 4. Verification run and actual results
 
+The 2026-11-21 follow-up corrected and verified the founder data:
+
+- `npm run lint` — **passed**, exit code 0.
+- `npm run build` — **passed**, exit code 0. Next.js TypeScript validation completed and all 21 pages were generated.
+
 On the current application code, before the documentation-only edits in this handoff:
 
 - `npm run lint` — **passed**, exit code 0 (`eslint src`).
@@ -109,7 +116,7 @@ No claim is made that the contact delivery flow has been tested or implemented.
 
 ## 5. Known incomplete work and verified limitations
 
-1. **No genuine inquiry delivery:** `companyData.contactDetails` is empty. The page clearly shows contact details are being added and exposes no `mailto:` or `tel:` action. There is no form submission, API/server action, email provider, CRM integration, or persistence.
+1. **No genuine inquiry delivery:** Direct phone, WhatsApp, and email links are available. The validated enquiry form only prepares a `mailto:` draft; the visitor must send it. There is no API/server action, email provider, CRM integration, or persistence, so the website cannot confirm delivery.
 2. **Contact query parameters are unused:** Product CTAs may link to `/contact?subject=...`, but the Contact page does not read or prefill the query parameter.
 3. **Illustrative capability examples are not results:** Capability use cases and numeric outcomes are explicitly labeled illustrative targets, not verified benchmarks or client results. Keep that distinction in future copy.
 4. **Legacy duplicate data:** `src/data/products.ts` and `src/data/capabilities.ts` remain unused duplicates. Do not edit them as active data sources; consolidation is a separate decision.
@@ -121,9 +128,9 @@ No build, lint, or TypeScript errors were observed in the reported verification.
 ## 6. Dependencies, configuration, APIs, and data
 
 - No dependencies or package manifests were changed in the latest QA pass.
-- No database, migration, API route, server action, email provider, CRM integration, or inquiry persistence was added.
+- No database, migration, API route, server action, email provider, CRM integration, or inquiry persistence was added. The form uses the documented `mailto:` fallback.
 - `NEXT_PUBLIC_SITE_URL` currently falls back to `https://orlithix.com`; set it to the approved canonical production URL before deployment if that is not the correct production origin.
-- `.env.example` no longer contains a fabricated contact email. Its contact-related values are not consumed by current application code; contact details are centralized in `src/data/company.ts`.
+- Contact details are centralized in `src/data/contact.ts`; `.env.example` contains no contact secrets or email-provider credentials.
 - Configuring real contact links requires owner-approved details. Genuine inquiry submission additionally requires an approved delivery destination/provider and server-side implementation.
 
 ## 7. Documentation updated in this handoff
@@ -138,4 +145,4 @@ No build, lint, or TypeScript errors were observed in the reported verification.
 
 ## 8. Exact next development task
 
-**Ask the project owner to approve a real inquiry destination and delivery method.** Once approved, implement genuine contact submission with server-side validation, abuse/spam controls, clear privacy/disclosure copy, and success/error states tied to actual delivery results. Add focused tests for validation and delivery/error handling. Do not select a provider, invent contact details, or show success unless delivery is confirmed. Until approval, leave the Contact page informational and non-submitting.
+**If genuine form delivery is required, ask the project owner to approve a delivery provider and server-side destination.** Until then, retain the validated `mailto:` fallback, and do not claim a message has been sent or delivered.

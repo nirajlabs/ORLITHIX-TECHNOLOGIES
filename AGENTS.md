@@ -49,6 +49,7 @@ Welcome, AI Coding Agent. This document establishes operational guidelines, arch
 1. **Data-Driven Architecture**:
    - **Never hardcode** product lists, capability items, technology divisions, or leadership principles directly inside page JSX files.
    - Active product and capability catalogs are `src/lib/products.ts` and `src/lib/capabilities.ts`. Company, division, development-approach, and navigation content is in `src/data/`.
+   - Founder profiles are centralized in `src/data/founders.ts`; keep the profile model and supplied public image paths aligned.
    - `src/data/products.ts` and `src/data/capabilities.ts` are legacy duplicate modules and are not imported by the active routes; do not treat them as sources of truth.
 2. **Parent Company Expandability**:
    - The platform is designed to scale across multiple technology divisions and future product verticals without refactoring layouts.
@@ -56,13 +57,14 @@ Welcome, AI Coding Agent. This document establishes operational guidelines, arch
 3. **Component Stratification**:
    - `src/components/ui/`: Current shared primitives and visuals include Button, Badge, Card, Container, SectionHeader, and TechVisual. Add form primitives only when an implemented feature needs them.
    - `src/components/layout/`: Global structural elements currently include Navbar and Footer.
-   - `src/components/sections/`: Composed homepage sections and previews currently include HeroSection, CapabilitiesSection, AboutPreviewSection, InnovationLabSection, DevelopmentApproachSection, and ContactCtaSection.
+   - `src/components/sections/`: Composed homepage sections and previews include HeroSection, CapabilitiesSection, AboutPreviewSection, InnovationLabSection, DevelopmentApproachSection, ContactCtaSection, and FoundersSection.
+   - `src/components/contact/`: Contact links and the client-side enquiry form.
    - `src/components/brand/`: Brand assets and reusable identity components, including the SVG Logo.
    - Product and capability card/grid components currently live directly under `src/components/`.
 4. **Server vs. Client Components**:
    - Keep page roots and static marketing sections as **React Server Components (RSC)** for optimal SEO and performance.
    - Use `'use client'` only where browser interaction requires it (currently, product and capability filters/search and interactive navigation).
-   - The Contact page currently has no form submission. Do not add a simulated success flow; genuine submission requires an approved destination and delivery implementation.
+   - The Contact page prepares a prefilled `mailto:` enquiry because no delivery backend is configured. Do not describe this as sent or show a server-success state; genuine submission requires an approved destination and delivery implementation.
 
 ---
 

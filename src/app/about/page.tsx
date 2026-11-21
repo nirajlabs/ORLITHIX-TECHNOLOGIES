@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { FoundersSection } from "@/components/sections/FoundersSection";
 import { companyData } from "@/data/company";
 import { developmentApproachData } from "@/data/developmentApproach";
 import { divisionsData } from "@/data/divisions";
@@ -66,6 +67,8 @@ export default function AboutPage() {
             </div>
           </Card>
         </section>
+
+        <FoundersSection />
 
         <section id="vision" className="mb-16 sm:mb-20">
           <SectionHeader
